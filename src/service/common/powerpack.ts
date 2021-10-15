@@ -6,7 +6,7 @@ export interface PowerpackUserInfo {
   expire_date: string;
 }
 
-export interface IPowerpackServiceInterface {
+export interface IPowerpackService {
   userInfo: PowerpackUserInfo | null;
   accessToken?: string;
   bought: boolean;
@@ -18,4 +18,4 @@ export interface IPowerpackServiceInterface {
   login: (token: string) => Promise<void>;
 }
 
-export const IPowerpackService = new Token<IPowerpackServiceInterface>();
+export const IPowerpackService = new Token<IPowerpackService>();

@@ -1,12 +1,10 @@
 import { LazzzyConfiguration } from '@/service/common/configuration';
 
-interface IGenerateLocalConfigOptionsInterface {
+interface IGenerateLocalConfigOptions {
   locale: string;
 }
 
-const generateLocalConfig = (
-  _options: IGenerateLocalConfigOptionsInterface
-): LazzzyConfiguration => {
+const generateLocalConfig = (_options: IGenerateLocalConfigOptions): LazzzyConfiguration => {
   return {
     resource: {
       host: '',

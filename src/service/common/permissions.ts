@@ -6,7 +6,7 @@ export interface Permissions {
   permissions?: string[];
 }
 
-export interface IPermissionsServiceInterface {
+export interface IPermissionsService {
   contains: (permissions: Permissions) => Promise<boolean>;
 
   request: (permissions: Permissions) => Promise<boolean>;
@@ -14,4 +14,4 @@ export interface IPermissionsServiceInterface {
   remove: (permissions: Permissions) => Promise<boolean>;
 }
 
-export const IPermissionsService = new Token<IPermissionsServiceInterface>();
+export const IPermissionsService = new Token<IPermissionsService>();

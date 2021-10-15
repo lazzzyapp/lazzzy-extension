@@ -20,9 +20,10 @@ jobs:
         with:
           node-version: '12.x'
       - name: Install Dependencies
-        run: npm install
-      - run: npm run lint
-      - run: npm run cov
+        run: npm install yarn
+      - run: yarn
+      - run: yarn lint
+      - run: yarn cov
         env:
           GITHUB_BRANCH: ${{ github.ref }}
       - uses: codecov/codecov-action@v1

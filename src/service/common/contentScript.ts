@@ -4,7 +4,7 @@ export interface IToggleConfig {
   pathname: string;
   query?: string;
 }
-export interface IContentScriptServiceInterface {
+export interface IContentScriptService {
   hide: () => Promise<void>;
   remove: () => Promise<void>;
   checkStatus: () => Promise<boolean>;
@@ -14,4 +14,4 @@ export interface IContentScriptServiceInterface {
   getPageUrl: () => Promise<string>;
 }
 
-export const IContentScriptService = new Token<IContentScriptServiceInterface>();
+export const IContentScriptService = new Token<IContentScriptService>();

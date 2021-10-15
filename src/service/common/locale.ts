@@ -1,10 +1,10 @@
 import { Token } from 'typedi';
 import { MessageDescriptor } from 'react-intl';
 
-export interface ILocaleServiceInterface {
+export interface ILocaleService {
   locale: string;
   init: () => Promise<void>;
   format: (descriptor: MessageDescriptor) => string;
 }
 
-export const ILocaleService = new Token<ILocaleServiceInterface>('locale');
+export const ILocaleService = new Token<ILocaleService>('locale');

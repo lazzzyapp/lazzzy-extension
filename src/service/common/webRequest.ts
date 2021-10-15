@@ -17,7 +17,7 @@ export interface RequestInBackgroundOptions {
   headers?: HeadersInit;
 }
 
-export interface IWebRequestServiceInterface {
+export interface IWebRequestService {
   startChangeHeader: (option: WebRequestBlockOption) => Promise<WebBlockHeader>;
 
   end: (webBlockHeader: WebBlockHeader) => Promise<void>;
@@ -25,4 +25,4 @@ export interface IWebRequestServiceInterface {
   requestInBackground: <T>(url: string, options?: RequestInBackgroundOptions) => Promise<T>;
 }
 
-export const IWebRequestService = new Token<IWebRequestServiceInterface>();
+export const IWebRequestService = new Token<IWebRequestService>();

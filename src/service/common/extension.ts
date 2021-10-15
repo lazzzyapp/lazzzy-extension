@@ -5,7 +5,7 @@ export interface Extension {
   //
 }
 
-export interface IExtensionServiceInterface {
+export interface IExtensionService {
   DefaultExtensionId: string | null;
 
   DisabledExtensionIds: string[];
@@ -23,11 +23,11 @@ export interface IExtensionServiceInterface {
   toggleAutomaticExtension: (id: string) => Promise<void>;
 }
 
-export interface IExtensionContainerInterface {
+export interface IExtensionContainer {
   extensions: IExtensionWithId[];
   contextMenus: IContextMenusWithId[];
 }
 
-export const IExtensionService = new Token<IExtensionServiceInterface>();
+export const IExtensionService = new Token<IExtensionService>();
 
-export const IExtensionContainer = new Token<IExtensionContainerInterface>();
+export const IExtensionContainer = new Token<IExtensionContainer>();
