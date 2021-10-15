@@ -33,7 +33,7 @@
     "lazzzy": "bin/index.js"
   },
   "lint-staged": {
-    "**/*.less": "stylelint --syntax less",
+    "**/*.less": "lint:style",
     "**/*.{js,jsx,ts,tsx}": [
         "eslint --fix"
     ],
