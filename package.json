@@ -33,9 +33,9 @@
     "lazzzy": "bin/index.js"
   },
   "lint-staged": {
-    "**/*.less": "stylelint --fix \"src/**/*.less\" --syntax less",
+    "**/*.less": "yarn lint:style",
     "**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty"
+      "yarn lint-staged:js"
     ],
     "**/*.{js,jsx,tsx,ts,less,md,json}": [
       "prettier --write",
