@@ -14,12 +14,15 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: Install Yarn
+        run: |
+          npm install yarn
       - name: Install Dependencies
         run: |
-          npm install
+          yarn
       - name: Build project
         run: |
-          npm run release
+          yarn release
         env:
           DIST_TYPE: Beta
           GITHUB_BRANCH: ${{ github.ref }}
