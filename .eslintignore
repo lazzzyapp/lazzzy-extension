@@ -6,3 +6,4 @@ chrome/js/icon.js
 releases/
 config/
 .history
+*.snap
