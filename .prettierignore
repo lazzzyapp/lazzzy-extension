@@ -22,3 +22,4 @@ CNAME
 /build/*
 node_modules
 *.less
+*.html
