@@ -6,4 +6,5 @@ chrome/js/icon.js
 releases/
 config/
 .history
-*.snap
+**snap
+DS_Store
