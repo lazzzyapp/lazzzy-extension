@@ -1,0 +1,45 @@
+@import '~antd/es//style/themes/default.less';
+
+.mainContainer {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 12px 0;
+}
+
+.toolContainer {
+  width: 324px;
+  height: auto;
+  background: #fff;
+  padding: 10px;
+}
+.closeButton {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.centerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.editorContainer {
+  position: absolute;
+  right: 350px;
+  top: 0;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 12px 0;
+  border: 2px solid #ddd;
+}
+
+.mask {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: @modal-mask-bg;
+}

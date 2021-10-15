@@ -1,0 +1,71 @@
+.toolFrame {
+  position: fixed !important;
+  right: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2147483646 !important;
+  border: none !important;
+}
+
+.lazzzy-loading-box {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2147483646;
+  border: none;
+  :global {
+    .lazzzy-loading {
+      position: fixed;
+      right: 10px;
+      top: 10px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 0 12px 0;
+      background: white;
+      width: 324px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lazzzy-loading .line :local {
+      animation: expand 1s ease-in-out infinite;
+      border-radius: 10px;
+      display: inline-block;
+      transform-origin: center center;
+      margin: 0 3px;
+      width: 1px;
+      height: 25px;
+    }
+
+    .lazzzy-loading .line:nth-child(1) {
+      background: #27ae60;
+    }
+
+    .lazzzy-loading .line:nth-child(2) {
+      animation-delay: 180ms;
+      background: #f1c40f;
+    }
+
+    .lazzzy-loading .line:nth-child(3) {
+      animation-delay: 360ms;
+      background: #e67e22;
+    }
+
+    .lazzzy-loading .line:nth-child(4) {
+      animation-delay: 540ms;
+      background: #2980b9;
+    }
+
+    @keyframes expand {
+      0% {
+        transform: scale(1);
+      }
+      25% {
+        transform: scale(2);
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+name: Release Lazzzy Beta
+on:
+  push:
+    tags:
+      - '**-alpha*'
+      - '**-beta*'
+
+jobs:
+  build:
+    name: Release Lazzzy Beta
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install Dependencies
+        run: |
+          npm install
+      - name: Build project
+        run: |
+          npm run release
+        env:
+          DIST_TYPE: Beta
+          GITHUB_BRANCH: ${{ github.ref }}
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Firefox Release Asset
+        id: upload-firefox-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release/lazzzy_extention_firefox.zip
+          asset_name: lazzzy_extention_firefox.zip
+          asset_content_type: application/zip
+      - name: Upload Chrome Release Asset
+        id: upload-chrome-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release/lazzzy_extention_chrome.zip
+          asset_name: lazzzy_extention_chrome.zip
+          asset_content_type: application/zip
