@@ -131,7 +131,7 @@
     "@umijs/fabric": "^2.8.1",
     "@umijs/preset-react": "^1.8.24",
     "@umijs/preset-ui": "^2.2.9",
-    "axios": "^0.21.1",
+    "axios": "^0.23.0",
     "clean-webpack-plugin": "^0.1.19",
     "compressing": "^1.4.0",
     "copy-webpack-plugin": "^9.0.1",
