@@ -80,7 +80,7 @@
     "jquery": "^3.4.0",
     "lodash": "^4.17.20",
     "mobx": "^5.15.1",
-    "mobx-react": "^6.1.4",
+    "mobx-react": "^7.2.1",
     "path-to-regexp": "^6.2.0",
     "proptypes": "^1.1.0",
     "qrcode": "^1.4.1",
