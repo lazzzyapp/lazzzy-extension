@@ -1,6 +1,10 @@
 ---
 name: Feature Request
 about: Suggest an idea for this project
+title: ''
+labels: ''
+assignees: ''
+
 ---
 
 # Feature Requests
@@ -9,7 +13,7 @@ about: Suggest an idea for this project
 
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
-## Describe the solution yåœou'd like
+## Describe the Solution
 
 A clear and concise description of what you want to happen.
 

@@ -1,6 +1,10 @@
 ---
 name: Bug Report
 about: Create a report to help us improve on any bugs you may encounter
+title: ''
+labels: ''
+assignees: ''
+
 ---
 
 # Lazzzy Exention Bug Report
