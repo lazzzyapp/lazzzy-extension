@@ -79,7 +79,7 @@
     "immutability-helper": "^3.0.1",
     "jquery": "^3.4.0",
     "lodash": "^4.17.20",
-    "mobx": "^5.15.1",
+    "mobx": "^6.3.5",
     "mobx-react": "^6.1.4",
     "path-to-regexp": "^6.2.0",
     "proptypes": "^1.1.0",
