@@ -13,9 +13,9 @@ executors:
   linux: # a Linux VM running Ubuntu 20.04
     machine:
       image: ubuntu-2004:202107-02
-  macos: # macos executor running Xcode
-    macos:
-      xcode: 12.5
+  # macos: # macos executor running Xcode
+   # macos:
+    #  xcode: 12.5
 
 jobs:
   test:
@@ -37,5 +37,5 @@ workflows:
       - test:
           matrix:
             parameters:
-              os: [docker, linux, macos]
+              os: [docker, linux]
               node-version: ["14.17.6", "16.9.0"]
