@@ -74,7 +74,8 @@ labels:
 
   - name: dependencies
     # Provide a new name to rename an existing label
-    new_name: first-timers-only
+    color: "0000ff"
+    description: "Dependency upgrades"
 
 # Milestones: define milestones for Issues and Pull Requests
 #milestones:
