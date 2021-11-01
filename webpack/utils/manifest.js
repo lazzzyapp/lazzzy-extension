@@ -54,7 +54,7 @@ function generateManifest(options) {
       extra = {
         applications: {
           gecko: {
-            id: 'lazzzy@lazzzy',
+            id: 'web-clipper@web-clipper',
           },
         },
       };
