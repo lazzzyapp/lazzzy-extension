@@ -72,6 +72,10 @@ labels:
     # Provide a new name to rename an existing label
     new_name: first-timers-only
 
+  - name: dependencies
+    # Provide a new name to rename an existing label
+    new_name: first-timers-only
+
 # Milestones: define milestones for Issues and Pull Requests
 #milestones:
  # - title: Official Release
