@@ -1,12 +1,12 @@
 import { IBasicRequestService, IRequestService } from '@/service/common/request';
 import { ILocaleService } from '@/service/common/locale';
 import { Inject, Service } from 'typedi';
-import { IEnvironmentService } from './environment';
+import { IEnvironmentService, IEnvironmentServiceInterface } from './environment';
 
 const privacyLocale = ['en-US'];
 const changelogLocale = ['en-US'];
 
-export class EnvironmentService implements IEnvironmentService {
+export class EnvironmentService implements IEnvironmentServiceInterface {
   constructor(
     @Inject(ILocaleService) private localeService: ILocaleService,
     @Inject(IBasicRequestService) private basicRequestService: IRequestService

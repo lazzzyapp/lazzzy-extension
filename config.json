@@ -1,8 +1,8 @@
 {
   "iconfont": "./chrome/js/icon.js",
-  "chromeWebStoreVersion": "1.28.4",
-  "edgeWebStoreVersion": "1.28.4",
-  "firefoxWebStoreVersion": "1.28.4",
+  "chromeWebStoreVersion": "0.0.1",
+  "edgeWebStoreVersion": "0.0.1",
+  "firefoxWebStoreVersion": "0.0.1",
   "privacyLocale": ["en-US"],
   "changelogLocale": ["en-US"]
 }
