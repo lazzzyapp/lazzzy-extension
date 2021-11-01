@@ -2,7 +2,7 @@ const { generateManifest } = require('./manifest');
 
 const FIREFOX_MANIFEST_STORE = {
   name: 'lazzzy',
-  version: '1.0.0',
+  version: '0.0.1',
   commands: {
     'toggle-feature-foo': { suggested_key: { default: 'Alt+S' }, description: 'Test' },
   },
@@ -21,7 +21,7 @@ const FIREFOX_MANIFEST_STORE = {
 
 const FIREFOX_MANIFEST_DEVELOPMENT = {
   name: 'lazzzy',
-  version: '1.0.0',
+  version: '0.0.1',
   commands: {
     'toggle-feature-foo': { suggested_key: { default: 'Alt+S' }, description: 'Test' },
   },
@@ -69,7 +69,7 @@ describe('test generateManifest', () => {
       generateManifest({
         publishToStore: true,
         targetBrowser: 'Firefox',
-        basicManifest: { name: 'lazzzy', version: '1.0.0' },
+        basicManifest: { name: 'lazzzy', version: '0.0.1' },
       })
     ).toEqual(FIREFOX_MANIFEST_STORE);
   });
@@ -79,7 +79,7 @@ describe('test generateManifest', () => {
       generateManifest({
         publishToStore: false,
         targetBrowser: 'Firefox',
-        basicManifest: { name: 'lazzzy', version: '1.0.0' },
+        basicManifest: { name: 'lazzzy', version: '0.0.1' },
       })
     ).toEqual(FIREFOX_MANIFEST_DEVELOPMENT);
   });
@@ -89,7 +89,7 @@ describe('test generateManifest', () => {
       generateManifest({
         publishToStore: false,
         targetBrowser: 'Chrome',
-        basicManifest: { name: 'lazzzy', version: '1.0.0' },
+        basicManifest: { name: 'lazzzy', version: '0.0.1' },
       })
     ).toEqual(CHROME_MANIFEST);
 
@@ -97,7 +97,7 @@ describe('test generateManifest', () => {
       generateManifest({
         publishToStore: true,
         targetBrowser: 'Chrome',
-        basicManifest: { name: 'lazzzy', version: '1.0.0' },
+        basicManifest: { name: 'lazzzy', version: '0.0.1' },
       })
     ).toEqual(CHROME_MANIFEST);
   });
