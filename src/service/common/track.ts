@@ -1,8 +1,6 @@
 import { Token } from 'typedi';
 
-export type TrackEventCategory =
-  | 'Load_Web_Lazzzy' /** 加载插件，每次初始化时候记录。 */
-  | 'Open_Page'; /** 打开页面 */
+export type TrackEventCategory = 'Load_Web_Lazzzy' | 'Open_Page';
 
 export interface ITrackService {
   enable: boolean;
