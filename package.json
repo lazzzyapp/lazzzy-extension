@@ -136,7 +136,7 @@
     "axios": "^0.24.0",
     "clean-webpack-plugin": "^4.0.0",
     "compressing": "^1.4.0",
-    "copy-webpack-plugin": "^5.1.1",
+    "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.5.0",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.14.0",
