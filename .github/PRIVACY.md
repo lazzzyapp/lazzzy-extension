@@ -1,6 +1,6 @@
 # Privacy Policy
 
-As users of many other internet services, we recognizes that privacy is extremely important. Further details of the Lazzzy's privacy policy are outlined below.
+As users of many other internet services, Lazzzy, LLC recognizes privacy is extremely important. Further details of the Lazzzy's privacy policy are outlined below.
 
 ## Where is your Data Saved
 
@@ -8,7 +8,7 @@ Servers of Lazzzy are located at [NameCheap](https://namecheap.com) in the Unite
 
 ## Data We Collect
 
-Lazzzy collects **email address** when you register for Lazzzy service or otherwise voluntarily provide such information. **We don't collect other personal information.**
+Lazzzy collects **email address** when you register for Lazzzy service or otherwise voluntarily provide such information. **We do not collect other personal information.**
 
 Lazzzy uses Github OAuth to register a Lazzzy account from your Github account. We don’t save password and other personal information to Lazzzy. So, no worry about password leak.
 
@@ -16,7 +16,7 @@ Lazzzy uses cookies and other technologies to enhance your online experience and
 
 ## Use
 
-The log information is mainly used for usage analysis in Google Analytics, such as how many users access X feature etc.We don't collect and  analysis personal information. We may also use log information for auditing, research and analysis to operate and improve Lazzzy technologies and services. If information is used in any way other than indicated above, it will be in the aggregated form, and with all personal identifications removed. Lazzzy will not disclose information users store in the servers to any third party.
+The log information is mainly used for usage analysis in Google Analytics, such as how many users access X feature etc. We do not collect and  analysis personal information. We may also use log information for auditing, research and analysis to operate and improve Lazzzy technologies and services. If information is used in any way other than indicated above, it will be in the aggregated form, and with all personal identifications removed. Lazzzy will not disclose information users store in the servers to any third party.
 
 ## Security
 
