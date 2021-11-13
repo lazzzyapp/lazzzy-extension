@@ -1,4 +1,4 @@
-# Privacy policy
+# Privacy Policy
 
 As users of many other internet services, we recognizes that privacy is extremely important. Further details of the Lazzzy's privacy policy are outlined below.
 
