@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "importHelpers": true,
     "target": "ES2018",
     "module": "CommonJS",
     "lib": ["dom", "es2020", "es5", "ESNext.String"],
@@ -8,6 +9,7 @@
     "baseUrl": ".",
     "outDir": "lib",
     "jsx": "react",
+    "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "noImplicitReturns": true,
