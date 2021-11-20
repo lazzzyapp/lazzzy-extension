@@ -7,13 +7,11 @@ import { routerRedux, useDispatch } from 'dva';
 function usePowerpack() {
   const powerpackService = Container.get(IPowerpackService);
 
-  const { userInfo, bought, expired } = useObserver(() => {
-    return {
-      userInfo: powerpackService.userInfo,
-      bought: powerpackService.bought,
-      expired: powerpackService.expired,
-    };
-  });
+  const { userInfo, bought, expired } = useObserver(() => ({
+    userInfo: powerpackService.userInfo,
+    bought: powerpackService.bought,
+    expired: powerpackService.expired,
+  }));
 
   const dispatch = useDispatch();
   const boughtPowerpack = useCallback(() => {

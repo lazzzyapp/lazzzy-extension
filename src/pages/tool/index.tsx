@@ -8,8 +8,8 @@ import { connect, routerRedux } from 'dva';
 import { GlobalStore } from '@/common/types';
 import { isEqual } from 'lodash';
 import { ToolContainer } from 'components/container';
-import { selectRepository, asyncChangeAccount } from 'pageActions/clipper';
-import { asyncRunExtension } from 'pageActions/userPreference';
+import { selectRepository, asyncChangeAccount } from '@/actions/clipper';
+import { asyncRunExtension } from '@/actions/userPreference';
 import Section from 'components/section';
 import { DvaRouterProps } from 'common/types';
 import useFilterExtensions from '@/common/hooks/useFilterExtensions';
@@ -80,8 +80,8 @@ const Page = React.memo<PageProps>(
 
     const { valid } = usePowerpack();
 
-    const extensions = useObserver(() => {
-      return Container.get(IExtensionContainer)
+    const extensions = useObserver(() =>
+      Container.get(IExtensionContainer)
         .extensions.filter(o => !extensionService.DisabledExtensionIds.includes(o.id))
         .filter(o => {
           if (!valid) {
@@ -96,8 +96,8 @@ const Page = React.memo<PageProps>(
             return matches.some(o => matchUrl(o, url!));
           }
           return true;
-        });
-    });
+        })
+    );
 
     const configService = Container.get(IConfigService);
 
@@ -151,18 +151,19 @@ const Page = React.memo<PageProps>(
 
     const [toolExtensions, clipExtensions] = useFilterExtensions(enableExtensions);
 
-    const header = useMemo(() => {
-      return (
+    const header = useMemo(
+      () => (
         <Header
           pathname={pathname}
           service={currentService}
           currentRepository={currentRepository}
         />
-      );
-    }, [pathname, currentService, currentRepository]);
+      ),
+      [pathname, currentService, currentRepository]
+    );
 
-    const overlay = useMemo(() => {
-      return (
+    const overlay = useMemo(
+      () => (
         <Menu onClick={e => dispatch(asyncChangeAccount.started({ id: e.key as string }))}>
           {props.accounts.map(o => (
             <Menu.Item key={o.id} title={o.name}>
@@ -175,8 +176,9 @@ const Page = React.memo<PageProps>(
             </Menu.Item>
           ))}
         </Menu>
-      );
-    }, [dispatch, props.accounts, servicesMeta]);
+      ),
+      [dispatch, props.accounts, servicesMeta]
+    );
 
     const dropdown = (
       <Dropdown overlay={overlay} placement="bottomRight">
@@ -261,19 +263,17 @@ const Page = React.memo<PageProps>(
       servicesMeta,
       accounts,
       hasEditor,
-    }: PageProps) => {
-      return {
-        hasEditor,
-        loadingAccount,
-        currentRepository,
-        repositories,
-        currentAccount,
-        pathname: history.location.pathname,
-        locale,
-        servicesMeta,
-        accounts,
-      };
-    };
+    }: PageProps) => ({
+      hasEditor,
+      loadingAccount,
+      currentRepository,
+      repositories,
+      currentAccount,
+      pathname: history.location.pathname,
+      locale,
+      servicesMeta,
+      accounts,
+    });
     return isEqual(selector(prevProps), selector(nextProps));
   }
 );

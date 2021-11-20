@@ -1,6 +1,5 @@
 import { ImageHostingWithMeta } from '@/common/hooks/useFilterImageHostingServices';
-import { SelectProps } from 'antd/lib/select';
-import Select from 'antd/lib/select';
+import Select, { SelectProps } from 'antd/lib/select';
 import React, { forwardRef } from 'react';
 import ImageHostingSelectOption from '@/components/imageHostingSelectOption';
 import styles from './ImageHostingSelect.less';
@@ -18,13 +17,11 @@ export const ImageHostingSelect: React.ForwardRefRenderFunction<any, ImageHostin
   ref
 ) => (
   <Select allowClear className={styles.imageHostingSelect} {...props} ref={ref}>
-    {supportedImageHostingServices.map(({ imageHostingServices: { id, remark }, meta }) => {
-      return (
-        <Select.Option key={id} value={id}>
-          <ImageHostingSelectOption id={id} icon={meta.icon} name={meta.name} remark={remark} />
-        </Select.Option>
-      );
-    })}
+    {supportedImageHostingServices.map(({ imageHostingServices: { id, remark }, meta }) => (
+      <Select.Option key={id} value={id}>
+        <ImageHostingSelectOption id={id} icon={meta.icon} name={meta.name} remark={remark} />
+      </Select.Option>
+    ))}
   </Select>
 );
 

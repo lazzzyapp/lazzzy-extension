@@ -8,9 +8,7 @@ import { IEnvironmentService } from '@/services/environment/common/environment';
 
 const Privacy: React.FC = () => {
   const environmentService = Container.get(IEnvironmentService);
-  const { loading, data: privacy } = useFetch(async () => {
-    return environmentService.privacy();
-  }, []);
+  const { loading, data: privacy } = useFetch(async () => environmentService.privacy(), []);
 
   if (loading || !privacy) {
     return <Skeleton active />;

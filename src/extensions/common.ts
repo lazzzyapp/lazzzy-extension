@@ -1,3 +1,5 @@
+/* eslint-disable no-implicit-globals */
+/* eslint-disable no-unused-vars */
 import TurndownService from 'turndown';
 import { IHighlighter } from '@web-clipper/highlight';
 import { IAreaSelector } from '@web-clipper/area-selector';
@@ -76,24 +78,9 @@ export interface ToolContext<T, Out> {
 }
 
 export interface IExtensionLifeCycle<T, U> {
-  /**
-   * 插件被加载之前
-   */
   init?: (context: InitContext) => boolean;
-
-  /**
-   * 执行插件
-   */
   run?: (context: ContentScriptContext) => Promise<T> | T;
-
-  /**
-   * 执行插件后
-   */
   afterRun?: (context: ToolContext<T, U>) => Promise<U> | U;
-
-  /**
-   * 清理环境
-   */
   destroy?: (context: ContentScriptContext) => void;
 }
 

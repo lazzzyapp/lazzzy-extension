@@ -1,3 +1,5 @@
+/* eslint-disable no-redeclare */
+/* eslint-disable no-unused-vars */
 import { Token } from 'typedi';
 
 export interface ICookieService {

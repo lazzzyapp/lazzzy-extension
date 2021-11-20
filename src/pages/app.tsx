@@ -31,6 +31,7 @@ import { IBackendService } from '@/services/backend/common/backend';
 import { PowerpackService } from '@/service/powerpackService';
 const { Route, Switch, Router, withRouter } = router;
 
+// eslint-disable-next-line no-implicit-globals
 function withTool(WrappedComponent: any): any {
   return () => {
     const ToolWith = withRouter(Tool as any);
@@ -66,23 +67,21 @@ export default async () => {
   });
   app.use(createLoading());
 
-  app.router(router => {
-    return (
-      <LocalWrapper>
-        <Router history={router!.history}>
-          <Switch>
-            <Route exact path="/" component={Tool} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/auth" component={AuthPage} />
-            <Route exact path="/complete" component={Complete} />
-            <Route path="/editor" component={withTool(PluginPage)} />
-            <Route path="/preference/:id" component={withTool(preference)} />
-            <Route path="/plugins/:id" component={withTool(PluginPage)} />
-          </Switch>
-        </Router>
-      </LocalWrapper>
-    );
-  });
+  app.router(router => (
+    <LocalWrapper>
+      <Router history={router!.history}>
+        <Switch>
+          <Route exact path="/" component={Tool} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/auth" component={AuthPage} />
+          <Route exact path="/complete" component={Complete} />
+          <Route path="/editor" component={withTool(PluginPage)} />
+          <Route path="/preference/:id" component={withTool(preference)} />
+          <Route path="/plugins/:id" component={withTool(PluginPage)} />
+        </Switch>
+      </Router>
+    </LocalWrapper>
+  ));
 
   app.model(account);
   app.model(clipper);

@@ -10,9 +10,7 @@ class MockStorage implements CommonStorage {
     this.data = {};
   }
 
-  get = (key: string) => {
-    return this.data[key];
-  };
+  get = (key: string) => this.data[key];
 
   set = (key: string, item: Object) => {
     this.data[key] = item;

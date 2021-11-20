@@ -4,13 +4,12 @@ import {
   asyncDeleteAccount,
   asyncUpdateDefaultAccountId,
   asyncUpdateAccount,
-} from 'pageActions/account';
+} from '@/actions/account';
 import { PlusOutlined } from '@ant-design/icons';
 import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.less';
 import { Button, Row, Col } from 'antd';
-import { Dispatch } from 'redux';
-import { bindActionCreators } from 'redux';
+import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'dva';
 import AccountItem from '../../../components/accountItem';
 import styles from './index.less';
@@ -33,16 +32,14 @@ const mapStateToProps = ({
   clipper: { currentAccountId },
   account: { accounts, defaultAccountId },
   userPreference: { servicesMeta, imageHostingServicesMeta, imageHosting },
-}: GlobalStore) => {
-  return {
-    currentAccountId,
-    imageHostingServicesMeta,
-    accounts,
-    defaultAccountId,
-    servicesMeta,
-    imageHosting,
-  };
-};
+}: GlobalStore) => ({
+  currentAccountId,
+  imageHostingServicesMeta,
+  accounts,
+  defaultAccountId,
+  servicesMeta,
+  imageHosting,
+});
 type PageState = {
   showAccountModal: boolean;
   currentAccount: null | AccountPreference;

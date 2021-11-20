@@ -1,3 +1,6 @@
+/* eslint-disable no-redeclare */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-implicit-globals */
 export interface SerializedError {
   readonly $isError: true;
   readonly name: string;

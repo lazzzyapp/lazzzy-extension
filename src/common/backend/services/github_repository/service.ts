@@ -7,8 +7,7 @@ import {
   GithubCreateDocumentRequest,
 } from './interface';
 import { DocumentService } from '../../index';
-import { AxiosInstance } from 'axios';
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import md5 from '@web-clipper/shared/lib/md5';
 import { stringify } from 'qs';
 import { isUndefined, toNumber } from 'lodash';
@@ -29,11 +28,7 @@ export default class GithubRepositoryDocumentService implements DocumentService 
         Authorization: `token ${config.accessToken}`,
       },
       timeout: 10000,
-      transformResponse: [
-        (data): string => {
-          return JSON.parse(data);
-        },
-      ],
+      transformResponse: [(data): string => JSON.parse(data)],
       withCredentials: true,
     });
     this.request = request;
@@ -41,13 +36,9 @@ export default class GithubRepositoryDocumentService implements DocumentService 
     this.config = config;
   }
 
-  getId = () => {
-    return md5(`${this.config.accessToken}_github_repository`);
-  };
+  getId = () => md5(`${this.config.accessToken}_github_repository`);
 
-  getStorageLocation = () => {
-    return this.config.storageLocation;
-  };
+  getStorageLocation = () => this.config.storageLocation;
 
   getUserInfo = async () => {
     const data = await this.request.get<GithubUserInfoResponse>('user');
@@ -86,16 +77,16 @@ export default class GithubRepositoryDocumentService implements DocumentService 
 
     if (isUndefined(this.config.savePath)) this.config.savePath = '';
     if (this.config.savePath.startsWith('/')) this.config.savePath.substr(1);
-    if (!this.config.savePath.endsWith('/') && this.config.savePath.length > 0)
+    if (!this.config.savePath.endsWith('/') && this.config.savePath.length > 0) {
       this.config.savePath += '/';
+    }
 
-    const b64EncodeUnicode = (str: string) => {
-      return btoa(
+    const b64EncodeUnicode = (str: string) =>
+      btoa(
         encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(_match, p1) {
           return String.fromCharCode(toNumber(`0x${p1}`));
         })
       );
-    };
     const fileContent: string = b64EncodeUnicode(`# ${title}\n${body}`);
 
     const fileName: string = fileNamify(title, { replacement: ' ' });
@@ -111,8 +102,9 @@ export default class GithubRepositoryDocumentService implements DocumentService 
       })
       .catch(error => {
         if (error.response) {
-          if (error.response.status === 422)
+          if (error.response.status === 422) {
             throw new Error('Response Status: 422. The file may already exist.');
+          }
         } else if (error.request) {
           throw new Error(error.request);
         } else {

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { PowerpackUserInfo } from '@/service/common/powerpack';
 import { Token } from 'typedi';
 

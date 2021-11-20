@@ -1,8 +1,6 @@
 import { LOCAL_USER_PREFERENCE_LOCALE_KEY } from '@/common/modelTypes/userPreference';
-import { IntlShape, MessageDescriptor } from 'react-intl';
-import { createIntlCache, createIntl } from 'react-intl';
-import { LocaleModel } from './interface';
-import { removeEmptyKeys } from './interface';
+import { createIntlCache, createIntl, IntlShape, MessageDescriptor } from 'react-intl';
+import { LocaleModel, removeEmptyKeys } from './interface';
 import { localStorageService } from '@/common/chrome/storage';
 
 const context = require.context('./data', true, /\.[t|j]s$/);

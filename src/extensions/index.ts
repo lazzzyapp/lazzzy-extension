@@ -1,5 +1,4 @@
-import { IExtensionWithId } from './common';
-import { ToolExtension, TextExtension } from './common';
+import { IExtensionWithId, ToolExtension, TextExtension } from './common';
 import { IContextMenuExtensionFactory } from './contextMenus';
 
 const context = require.context('./extensions', true, /\.(ts|tsx)$/);

@@ -1,8 +1,12 @@
-import { CaptureVisibleTabOptions, Tab } from '@/service/common/tab';
-import { ITabService, AbstractTabService } from '@/service/common/tab';
+import {
+  CaptureVisibleTabOptions,
+  Tab,
+  ITabService,
+  AbstractTabService,
+} from '@/service/common/tab';
 import * as browser from '@web-clipper/chrome-promise';
 import { Service } from 'typedi';
-
+import chrome from 'sinon-chrome/apps';
 class ChromeTabService extends AbstractTabService {
   getCurrent() {
     return new Promise<Tab>(r => {

@@ -8,9 +8,7 @@ import { IEnvironmentService } from '@/services/environment/common/environment';
 
 const Changelog: React.FC = () => {
   const environmentService = Container.get(IEnvironmentService);
-  const { loading, data: changelog } = useFetch(async () => {
-    return environmentService.changelog();
-  }, []);
+  const { loading, data: changelog } = useFetch(async () => environmentService.changelog(), []);
 
   if (loading || !changelog) {
     return <Skeleton active />;

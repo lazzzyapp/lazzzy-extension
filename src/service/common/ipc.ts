@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { generateUuid } from '@web-clipper/shared/lib/uuid';
 import { SerializedError } from '@/common/error';
 

@@ -15,11 +15,7 @@ export default new ToolExtension(
     },
   },
   {
-    init: ({ pathname }) => {
-      return pathname.startsWith('/plugin');
-    },
-    afterRun: () => {
-      return '';
-    },
+    init: ({ pathname }) => pathname.startsWith('/plugin'),
+    afterRun: () => '',
   }
 );

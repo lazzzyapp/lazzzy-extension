@@ -1,6 +1,5 @@
 import { DocumentService, CreateDocumentRequest } from './../../index';
-import { AxiosInstance } from 'axios';
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import md5 from '@web-clipper/shared/lib/md5';
 import {
   OneNoteNotebooksResponse,
@@ -10,8 +9,7 @@ import {
   OneNoteRefreshTokenResponse,
 } from './interface';
 import _ from 'lodash';
-import { Repository, UserInfo } from '../interface';
-import { UnauthorizedError } from '../interface';
+import { Repository, UserInfo, UnauthorizedError } from '../interface';
 import showdown from 'showdown';
 import config from '@/config';
 import { stringify } from 'qs';
@@ -65,14 +63,14 @@ export default class YuqueDocumentService implements DocumentService<OneNoteBack
       '/v1.0/me/onenote/notebooks??expand=sections,sectionGroups'
     );
     this.repositories = _.flatten(
-      response.data.value.map(({ id: groupId, displayName: groupName, sections }) => {
-        return sections.map(({ id, displayName: name }) => ({
+      response.data.value.map(({ id: groupId, displayName: groupName, sections }) =>
+        sections.map(({ id, displayName: name }) => ({
           name,
           id,
           groupId,
           groupName,
-        }));
-      })
+        }))
+      )
     );
     return this.repositories;
   };

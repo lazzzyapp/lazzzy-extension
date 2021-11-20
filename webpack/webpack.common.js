@@ -1,3 +1,4 @@
+/* eslint-disable no-implicit-globals */
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -57,7 +58,6 @@ module.exports = {
       common: resolve('src/common/'),
       components: resolve('src/components/'),
       browserActions: resolve('src/browser/actions/'),
-      pageActions: resolve('src/actions'),
       extensions: resolve('src/extensions/'),
     },
     extensions: ['.ts', '.tsx', '.js', 'less'],

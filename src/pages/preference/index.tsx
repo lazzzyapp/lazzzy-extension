@@ -31,11 +31,9 @@ const { Route } = router;
 
 const TabPane = Tabs.TabPane;
 
-const mapStateToProps = ({ account: { accounts } }: GlobalStore) => {
-  return {
-    accounts,
-  };
-};
+const mapStateToProps = ({ account: { accounts } }: GlobalStore) => ({
+  accounts,
+});
 type PageStateProps = ReturnType<typeof mapStateToProps>;
 
 const tabs = [

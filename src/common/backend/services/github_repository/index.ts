@@ -2,8 +2,8 @@ import { ServiceMeta } from '../interface';
 import Service from './service';
 import Form from './form';
 
-export default () => {
-  return {
+export default () =>
+  ({
     name: 'Github Repository',
     icon: 'github_repository',
     type: 'github_repository',
@@ -13,5 +13,4 @@ export default () => {
     permission: {
       origins: ['https://api.github.com/*'],
     },
-  } as ServiceMeta;
-};
+  } as ServiceMeta);

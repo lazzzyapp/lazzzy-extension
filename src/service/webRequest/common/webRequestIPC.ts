@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-useless-constructor */
+/* eslint-disable no-empty-function */
 import {
   IWebRequestService,
   WebRequestBlockOption,
@@ -5,7 +8,7 @@ import {
   RequestInBackgroundOptions,
 } from '@/service/common/webRequest';
 import { IServerChannel, IChannel } from '@/service/common/ipc';
-
+import chrome from 'sinon-chrome/apps';
 export class WebRequestChannel implements IServerChannel {
   constructor(private service: IWebRequestService) {}
 

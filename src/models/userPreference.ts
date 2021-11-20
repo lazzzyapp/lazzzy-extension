@@ -22,8 +22,8 @@ import {
   asyncSetLocaleToStorage,
   initServices,
   asyncSetIconColor,
-} from 'pageActions/userPreference';
-import { initTabInfo, changeData, asyncChangeAccount } from 'pageActions/clipper';
+} from '@/actions/userPreference';
+import { initTabInfo, changeData, asyncChangeAccount } from '@/actions/clipper';
 import { DvaModelBuilder, removeActionNamespace } from 'dva-model-creator';
 import { UserPreferenceStore } from 'common/types';
 import { getServices, getImageHostingServices, imageHostingServiceFactory } from 'common/backend';
@@ -114,7 +114,7 @@ builder
   .takeEvery(asyncEditImageHosting.started, function*(payload, { call, put }) {
     const { id, value, closeModal } = payload;
     try {
-      //@ts-ignore
+      // @ts-ignore
       const imageHostingList = yield call(storage.editImageHostingById, id, {
         ...value,
         id,
@@ -199,7 +199,7 @@ builder
     }
 
     if (run) {
-      //@ts-ignore
+      // @ts-ignore
       result = yield call(contentScriptService.runScript, id, 'run');
     }
     const state: GlobalStore = yield select(state => state);
@@ -240,11 +240,9 @@ builder
           React,
           pangu,
           config,
-          ocr: async r => {
-            return Container.get(IBackendService).ocr(r);
-          },
+          ocr: async r => Container.get(IBackendService).ocr(r),
         };
-        //@ts-ignore
+        // @ts-ignore
         result = yield call(afterRun, context);
       } catch (error) {
         message.error(error.message);
@@ -343,13 +341,11 @@ builder
       }
     });
   })
-  .case(initServices, (state, { imageHostingServicesMeta, servicesMeta }) => {
-    return {
-      ...state,
-      imageHostingServicesMeta,
-      servicesMeta,
-    };
-  });
+  .case(initServices, (state, { imageHostingServicesMeta, servicesMeta }) => ({
+    ...state,
+    imageHostingServicesMeta,
+    servicesMeta,
+  }));
 
 builder.subscript(function trackLoadPage({ history }) {
   history.listen(e => {

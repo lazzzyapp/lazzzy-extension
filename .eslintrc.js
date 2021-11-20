@@ -18,12 +18,18 @@ module.exports = {
       modules: true,
     },
   },
+  globals: {
+    angular: true,
+    window: true,
+    chrome: true,
+  },
   env: {
     browser: true,
     node: true,
     commonjs: true,
     es6: true,
     jest: true,
+    jquery: true,
   },
   /**
    * @locale en-US
@@ -48,6 +54,7 @@ module.exports = {
      * @off explain why parameter set to what it is in language of locale.
      */
     '@typescript-eslint',
+    'jquery',
   ],
   rules: {
     'for-direction': 'error',
@@ -242,15 +249,15 @@ module.exports = {
     'no-restricted-globals': 'off',
     'no-shadow': 'off',
     'no-shadow-restricted-names': 'error',
-    'no-undef': [
+    /*     'no-undef': [
       'error',
       {
         typeof: false,
       },
-    ],
+    ], */
     'no-undef-init': 'error',
     'no-undefined': 'error',
-    'no-unused-vars': [
+    /*     'no-unused-vars': [
       'error',
       {
         vars: 'all',
@@ -261,7 +268,7 @@ module.exports = {
         caughtErrors: 'all',
         caughtErrorsIgnorePattern: '^_',
       },
-    ],
+    ], */
     'callback-return': 'off',
     'global-require': 'off',
     'handle-callback-err': 'error',
@@ -482,13 +489,13 @@ module.exports = {
     'template-tag-spacing': ['error', 'never'],
     'unicode-bom': ['error', 'never'],
     'wrap-regex': 'off',
-    'arrow-body-style': [
+    /*     'arrow-body-style': [
       'error',
       'as-needed',
       {
         requireReturnForObjectLiteral: false,
       },
-    ],
+    ], */
     'arrow-parens': 'off',
     'arrow-spacing': [
       'error',
@@ -519,7 +526,7 @@ module.exports = {
     'no-restricted-imports': 'off',
     'no-this-before-super': 'error',
     'no-useless-computed-key': 'error',
-    'no-useless-constructor': 'error',
+    // 'no-useless-constructor': 'error',
     'no-useless-rename': 'error',
     'no-var': 'error',
     'object-shorthand': 'off',
@@ -548,7 +555,7 @@ module.exports = {
      * @description  put description in language defined in locale
      * @off explain why parameter set to what it is in language of locale.
      */
-    // arrow-body-style': 'off',
+    'arrow-body-style': 'off',
     /**
      * @locale en-US
      * @description  put description in language defined in locale
@@ -572,13 +579,13 @@ module.exports = {
      * @description  put description in language defined in locale
      * @off explain why parameter set to what it is in language of locale.
      */
-    // 'no-unused-vars': 'off',
+    'no-unused-vars': 'off',
     /**
      * @locale en-US
      * @description  put description in language defined in locale
      * @off explain why parameter set to what it is in language of locale.
      */
-    // 'no-useless-constructor': 'off',
+    'no-useless-constructor': 'off',
     /**
      * @locale en-US
      * @description  put description in language defined in locale
@@ -602,7 +609,7 @@ module.exports = {
      * @description  put description in language defined in locale
      * @off explain why parameter set to what it is in language of locale.
      */
-    // 'no-undef': 'off',
+    'no-undef': 'off',
     /**
      * @locale en-US
      * @description  put description in language defined in locale
@@ -656,7 +663,7 @@ module.exports = {
      * @description  put description in language defined in locale
      * @off explain why parameter set to what it is in language of locale.
      */
-    '@typescript-eslint/member-ordering': 'error',
+    '@typescript-eslint/member-ordering': 'off',
     /**
      * @locale en-US
      * @description  put description in language defined in locale

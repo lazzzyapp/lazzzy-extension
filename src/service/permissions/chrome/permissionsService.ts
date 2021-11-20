@@ -1,7 +1,7 @@
-import { Permissions } from '@/service/common/permissions';
-import { IPermissionsService } from '@/service/common/permissions';
+/* eslint-disable no-redeclare */
+import { Permissions, IPermissionsService } from '@/service/common/permissions';
 import { Service } from 'typedi';
-
+import chrome from 'sinon-chrome/apps';
 class PermissionsService implements IPermissionsService {
   contains(p: Permissions) {
     return new Promise<boolean>(r => {

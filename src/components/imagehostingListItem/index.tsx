@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as React from 'react';
 import { List, Avatar } from 'antd';
 import styles from './index.less';

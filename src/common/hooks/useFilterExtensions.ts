@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
-import { SerializedExtensionInfo } from '@/extensions/common';
-import { ExtensionType } from '@/extensions/common';
+import { SerializedExtensionInfo, ExtensionType } from '@/extensions/common';
 
-const useFilterExtensions = <T extends SerializedExtensionInfo>(extensions: T[]) => {
-  return useMemo(() => {
+const useFilterExtensions = <T extends SerializedExtensionInfo>(extensions: T[]) =>
+  useMemo(() => {
     const toolExtensions: T[] = [];
     const clipExtensions: T[] = [];
     extensions.forEach(o => {
@@ -15,6 +14,5 @@ const useFilterExtensions = <T extends SerializedExtensionInfo>(extensions: T[])
     });
     return [toolExtensions, clipExtensions];
   }, [extensions]);
-};
 
 export default useFilterExtensions;

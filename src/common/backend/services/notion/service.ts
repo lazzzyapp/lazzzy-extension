@@ -1,14 +1,13 @@
-import { CompleteStatus } from './../interface';
-import { UnauthorizedError } from './../interface';
-import { DocumentService, CreateDocumentRequest } from '../../index';
-import { AxiosInstance } from 'axios';
-import axios from 'axios';
+/* eslint-disable no-redeclare */
+import { CompleteStatus, UnauthorizedError } from './../interface';
+import axios, { AxiosInstance } from 'axios';
 import { generateUuid } from '@web-clipper/shared/lib/uuid';
 import localeService from '@/common/locales';
 import { NotionRepository, NotionUserContent } from './types';
 import { IWebRequestService } from '@/service/common/webRequest';
 import Container from 'typedi';
-import { ICookieService } from '@/service/common/cookie';
+import { ICookieService, ICookieServiceInterface } from '@/service/common/cookie';
+import { DocumentService, CreateDocumentRequest } from '@/common/backend/services/interface';
 
 const PAGE = 'page';
 const COLLECTION_VIEW_PAGE = 'collection_view_page';
@@ -19,17 +18,13 @@ export default class NotionDocumentService implements DocumentService {
   private repositories: NotionRepository[];
   private userContent?: NotionUserContent;
   private webRequestService: IWebRequestService;
-  private cookieService: ICookieService;
+  private cookieService: ICookieServiceInterface;
 
   constructor() {
     const request = axios.create({
       baseURL: origin,
       timeout: 10000,
-      transformResponse: [
-        (data): any => {
-          return JSON.parse(data);
-        },
-      ],
+      transformResponse: [(data): any => JSON.parse(data)],
       withCredentials: true,
     });
     this.request = request;
@@ -54,9 +49,7 @@ export default class NotionDocumentService implements DocumentService {
     );
   }
 
-  getId = () => {
-    return 'notion';
-  };
+  getId = () => 'notion';
 
   getUserInfo = async () => {
     if (!this.userContent) {

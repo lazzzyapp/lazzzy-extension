@@ -6,12 +6,10 @@ interface Props {
   className?: string;
 }
 
-const Section: React.FC<Props> = ({ title, children, className }) => {
-  return (
-    <div className={className}>
-      {title && <h1 className={styles.sectionTitle}>{title}</h1>}
-      {children}
-    </div>
-  );
-};
+const Section: React.FC<Props> = ({ title, children, className }) => (
+  <div className={className}>
+    {title && <h1 className={styles.sectionTitle}>{title}</h1>}
+    {children}
+  </div>
+);
 export default Section;

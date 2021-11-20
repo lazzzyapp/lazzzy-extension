@@ -6,12 +6,15 @@ import {
   RequestInBackgroundOptions,
 } from '@/service/common/webRequest';
 import request from 'umi-request';
+import chrome from 'sinon-chrome/apps';
+(global as any).chrome = chrome;
 
 export const WEB_REQUEST_BLOCK_HEADER = 'lazzzy_web_request';
 
 export class BackgroundWebRequestService implements IWebRequestService {
   private handlerMap: Map<string, any>;
 
+  // eslint-disable-next-line no-unused-vars
   constructor(private extraInfoSpec: string[]) {
     this.handlerMap = new Map<string, any>();
   }
@@ -25,13 +28,13 @@ export class BackgroundWebRequestService implements IWebRequestService {
 
     const handler = (request: chrome.webRequest.WebRequestHeadersDetails) => {
       const originHeaders = request.requestHeaders ?? [];
-      if (originHeaders.findIndex(o => o.name === WEB_REQUEST_BLOCK_HEADER) === -1) {
+      if (originHeaders.findIndex((o: any) => o.name === WEB_REQUEST_BLOCK_HEADER) === -1) {
         return;
       }
       const headers = originHeaders
-        .filter(header => {
-          return !targetHeaders.find(o => o.name === header.name.toLocaleLowerCase());
-        })
+        .filter(
+          (header: any) => !targetHeaders.find(o => o.name === header.name.toLocaleLowerCase())
+        )
         .concat(targetHeaders);
 
       return {

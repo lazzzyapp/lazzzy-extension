@@ -1,5 +1,4 @@
-import { TrackEventCategory } from './common/track';
-import { ITrackService } from './common/track';
+import { TrackEventCategory, ITrackService } from './common/track';
 
 import { Service } from 'typedi';
 

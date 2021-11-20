@@ -1,3 +1,6 @@
+/* eslint-disable no-empty-function */
+/* eslint-disable no-useless-constructor */
+/* eslint-disable no-unused-vars */
 import { IContentScriptService } from '@/service/common/contentScript';
 import { IExtensionManifest } from './common';
 

@@ -11,7 +11,7 @@ export interface RemoteConfig {
   changelogLocale: string[];
 }
 
-export interface IConfigService {
+export interface IConfigServiceInterface {
   config?: RemoteConfig;
 
   isLatestVersion: boolean;
@@ -25,4 +25,4 @@ export interface IConfigService {
   load: () => Promise<void>;
 }
 
-export const IConfigService = new Token<IConfigService>();
+export const IConfigService = new Token<IConfigServiceInterface>();

@@ -8,6 +8,7 @@ import { IExtensionWithId } from '@/extensions/common';
 
 type ToolExtensionsProps = {
   extensions: IExtensionWithId[];
+  // eslint-disable-next-line no-unused-vars
   onClick: (router: IExtensionWithId) => void;
 };
 

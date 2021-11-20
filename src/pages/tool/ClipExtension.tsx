@@ -11,6 +11,7 @@ type PageProps = {
   hasEditor: boolean;
   extensions: IExtensionWithId[];
   pathname: string;
+  // eslint-disable-next-line no-unused-vars
   onClick: (router: string) => void;
 };
 

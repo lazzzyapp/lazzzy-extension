@@ -47,12 +47,10 @@ export default class Link extends ToolExtension<any> {
         },
       },
       {
-        run: async context => {
-          return {
-            TITLE: context.document.title,
-            URL: context.document.URL,
-          };
-        },
+        run: async context => ({
+          TITLE: context.document.title,
+          URL: context.document.URL,
+        }),
         afterRun: async context => {
           const config: { template: string } = context.config!;
           return localeService.format(

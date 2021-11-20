@@ -1,8 +1,6 @@
 import { IPermissionsService } from './../../common/permissions';
-import { RequestMethod } from 'umi-request';
 import { extend } from 'umi-request';
-import { IRequestService, TRequestOption } from '@/service/common/request';
-import { IBasicRequestService } from '@/service/common/request';
+import { IRequestService, TRequestOption, IBasicRequestService } from '@/service/common/request';
 import Container, { Service } from 'typedi';
 class BasicRequestService implements IRequestService {
   private requestMethod: RequestMethod;

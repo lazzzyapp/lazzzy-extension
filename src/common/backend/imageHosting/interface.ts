@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Repository } from '../services/interface';
 
 export interface ImageHostingServiceConstructAble {

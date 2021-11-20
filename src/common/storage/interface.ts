@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { ImageHosting } from 'common/types';
 export interface PreferenceStorage {
   imageHosting: ImageHosting[];
@@ -15,19 +16,14 @@ export interface CommonStorage {
 export interface TypedCommonStorageInterface {
   getPreference: () => Promise<PreferenceStorage>;
 
-  /** --------默认插件--------- */
-
   setDefaultPluginId: (id: string | null) => Promise<void>;
 
   getDefaultPluginId: () => Promise<string | undefined | null>;
-
-  /** --------编辑器显示行号--------- */
 
   setShowLineNumber: (value: boolean) => Promise<void>;
 
   getShowLineNumber: () => Promise<boolean>;
 
-  /** --------实时渲染--------- */
   setLiveRendering: (value: boolean) => Promise<void>;
 
   getLiveRendering: () => Promise<boolean>;
@@ -35,8 +31,6 @@ export interface TypedCommonStorageInterface {
   setIconColor: (value: string) => Promise<void>;
 
   getIconColor: () => Promise<string>;
-
-  /** --------图床--------- */
 
   addImageHosting: (imageHosting: ImageHosting) => Promise<ImageHosting[]>;
 

@@ -1,3 +1,5 @@
+/* eslint-disable no-redeclare */
+/* eslint-disable no-unused-vars */
 import { IExtensionWithId, IContextMenusWithId } from '@/extensions/common';
 import { Token } from 'typedi';
 

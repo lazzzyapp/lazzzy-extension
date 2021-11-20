@@ -51,51 +51,49 @@ const ReachableContext = React.createContext<{
   // eslint-disable-next-line no-undefined
 }>({ manifest: null });
 
-const config = () => {
-  return {
-    width: 800,
-    content: (
-      <>
-        <ReachableContext.Consumer>
-          {({ manifest }) => {
-            const config = manifest!.config;
-            const extensionId: string = manifest!.extensionId as string;
-            const defaultValue =
-              Container.get(IExtensionService).getExtensionConfig(extensionId) ||
-              toJS(config?.default);
-            const normalForm = createForm({
-              validateFirst: true,
-              initialValues: defaultValue as any,
-              effects: () => {
-                onFormValuesChange(form => {
-                  if (form.mounted) {
-                    Container.get(IExtensionService).setExtensionConfig(extensionId, form.values);
-                  }
-                });
-              },
-            });
-            return (
-              <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                <div style={{ width: '600px' }}>
-                  <Form form={normalForm} layout="vertical">
-                    <SchemaField schema={config!.scheme} />
-                  </Form>
-                  <Button
-                    onClick={() => {
-                      normalForm.setValues(toJS(config?.default), 'overwrite');
-                    }}
-                  >
-                    {localeService.format({ id: 'preference.extensions.form.reset' })}
-                  </Button>
-                </div>
+const config = () => ({
+  width: 800,
+  content: (
+    <>
+      <ReachableContext.Consumer>
+        {({ manifest }) => {
+          const config = manifest!.config;
+          const extensionId: string = manifest!.extensionId as string;
+          const defaultValue =
+            Container.get(IExtensionService).getExtensionConfig(extensionId) ||
+            toJS(config?.default);
+          const normalForm = createForm({
+            validateFirst: true,
+            initialValues: defaultValue as any,
+            effects: () => {
+              onFormValuesChange(form => {
+                if (form.mounted) {
+                  Container.get(IExtensionService).setExtensionConfig(extensionId, form.values);
+                }
+              });
+            },
+          });
+          return (
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+              <div style={{ width: '600px' }}>
+                <Form form={normalForm} layout="vertical">
+                  <SchemaField schema={config!.scheme} />
+                </Form>
+                <Button
+                  onClick={() => {
+                    normalForm.setValues(toJS(config?.default), 'overwrite');
+                  }}
+                >
+                  {localeService.format({ id: 'preference.extensions.form.reset' })}
+                </Button>
               </div>
-            );
-          }}
-        </ReachableContext.Consumer>
-      </>
-    ),
-  };
-};
+            </div>
+          );
+        }}
+      </ReachableContext.Consumer>
+    </>
+  ),
+});
 
 const ExtensionCard: React.FC<ExtensionCardProps> = ({ manifest, actions, className }) => {
   const extra: React.ReactNode[] = [manifest.version];

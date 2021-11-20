@@ -37,9 +37,7 @@ export class TypedCommonStorage implements TypedCommonStorageInterface {
   setDefaultPluginId = async (value: string | null) => {
     await this.store.set(keysOfStorage.defaultPluginId, value);
   };
-  getDefaultPluginId = async () => {
-    return this.store.get<string>(keysOfStorage.defaultPluginId);
-  };
+  getDefaultPluginId = async () => this.store.get<string>(keysOfStorage.defaultPluginId);
 
   setShowLineNumber = async (value: boolean) => {
     await this.store.set(keysOfStorage.showLineNumber, value);

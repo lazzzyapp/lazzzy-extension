@@ -6,6 +6,7 @@
   "editor.tabSize": 2,
   "files.insertFinalNewline": true,
   "cSpell.words": [
+    "antd",
     "builtins",
     "camelcase",
     "dida",
@@ -20,7 +21,9 @@
     "nonwords",
     "option",
     "plusplus",
-    "repos"
+    "Powerpack",
+    "repos",
+    "typedi"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true

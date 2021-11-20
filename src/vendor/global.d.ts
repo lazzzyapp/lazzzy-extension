@@ -12,11 +12,13 @@ type Unpack<T> = T extends Promise<infer U> ? U : T;
 type CallResult<T extends (...args: any[]) => any> = Unpack<ReturnType<T>>;
 
 interface Type<T> extends Function {
+  // eslint-disable-next-line no-unused-vars
   new (...args: any[]): T;
 }
 
-/// <reference path="../../node_modules/@types/chrome/index.d.ts"/>
+// <reference path="../../node_modules/@types/chrome/index.d.ts"/>
 
+// eslint-disable-next-line no-redeclare
 interface Window {
   LAZZZY_VERSION: string;
   _gaq: string[][];

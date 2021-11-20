@@ -1,3 +1,4 @@
+/* eslint-disable no-implicit-globals */
 const { generateVersion, getPackageJsonVersion } = require('./version');
 const { getCommitsCount } = require('./get-commits-count');
 

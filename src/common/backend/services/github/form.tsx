@@ -110,7 +110,7 @@ const GithubForm: React.FC<GithubFormProps & FormComponentProps> = ({
                   </span>
                 }
               >
-                <a href={GenerateNewTokenUrl} target={GenerateNewTokenUrl}>
+                <a title="New Token" href={GenerateNewTokenUrl} target={GenerateNewTokenUrl}>
                   <KeyOutlined />
                 </a>
               </Tooltip>

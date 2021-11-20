@@ -21,6 +21,7 @@ type PageOwnProps = {
   currentAccount: AccountPreference;
   visible: boolean;
   onCancel: () => void;
+  // eslint-disable-next-line no-unused-vars
   onEdit: (oldId: string, userInfo: any, newId: string) => void;
 };
 type PageProps = PageOwnProps & FormComponentProps;
@@ -28,7 +29,7 @@ type PageProps = PageOwnProps & FormComponentProps;
 const ModalTitle = () => (
   <div className={styles.modalTitle}>
     <FormattedMessage id="preference.accountList.addAccount" defaultMessage="Add Account" />
-    <a href={'https://www.yuque.com/yuqueclipper/help_cn/bind_account'} target="_blank">
+    <a title="Help" href={'https://github.com/lazzzyapp/lazzzy-extension/issues'} target="_blank">
       <QuestionCircleOutlined />
     </a>
   </div>

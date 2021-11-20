@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { IBackendService } from './../services/backend/common/backend';
 import { IStorageService } from '@web-clipper/shared/lib/storage';
 import { ILocalStorageService } from '@/service/common/storage';

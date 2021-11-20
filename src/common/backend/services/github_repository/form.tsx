@@ -95,7 +95,11 @@ const GithubForm: React.FC<GithubFormProps & FormComponentProps> = ({
                   </span>
                 }
               >
-                <a href={GenerateNewTokenUrl} target={GenerateNewTokenUrl}>
+                <a
+                  title="Generate New Token"
+                  href={GenerateNewTokenUrl}
+                  target={GenerateNewTokenUrl}
+                >
                   <KeyOutlined />
                 </a>
               </Tooltip>
@@ -118,6 +122,7 @@ const GithubForm: React.FC<GithubFormProps & FormComponentProps> = ({
               required: false,
             },
             {
+              // eslint-disable-next-line no-unused-vars
               validator: (_r: unknown, value: string, callback: (message?: string) => {}) => {
                 if (typeof value === 'string') {
                   if (value.startsWith('/')) {

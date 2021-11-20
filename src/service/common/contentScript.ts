@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 import { Token } from 'typedi';
 
 export interface IToggleConfig {
   pathname: string;
   query?: string;
 }
-export interface IContentScriptService {
+export interface IContentScriptServiceInterface {
   hide: () => Promise<void>;
   remove: () => Promise<void>;
   checkStatus: () => Promise<boolean>;
@@ -14,4 +15,4 @@ export interface IContentScriptService {
   getPageUrl: () => Promise<string>;
 }
 
-export const IContentScriptService = new Token<IContentScriptService>();
+export const IContentScriptService = new Token<IContentScriptServiceInterface>();

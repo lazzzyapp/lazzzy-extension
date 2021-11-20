@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-useless-constructor */
+/* eslint-disable no-empty-function */
 import { SerializedError } from '@/common/error';
 import { ITabService } from '@/service/common/tab';
 import {
@@ -5,9 +8,9 @@ import {
   IChannel,
   IPCMessageRequest,
   IPCMessageResponse,
+  ChannelClient,
 } from '@/service/common/ipc';
-import { ChannelClient } from '@/service/common/ipc';
-
+import chrome from 'sinon-chrome/apps';
 export class PopupIpcClient implements IChannelClient {
   getChannel(channelName: string) {
     return new ChannelClient(

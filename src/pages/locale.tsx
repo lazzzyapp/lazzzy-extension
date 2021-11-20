@@ -6,11 +6,9 @@ import { localesMap } from '@/common/locales';
 import { localeProvider } from '@/common/locales/antd';
 import { GlobalStore } from '@/common/types';
 
-const mapStateToProps = ({ userPreference: { locale } }: GlobalStore) => {
-  return {
-    locale,
-  };
-};
+const mapStateToProps = ({ userPreference: { locale } }: GlobalStore) => ({
+  locale,
+});
 type PageStateProps = ReturnType<typeof mapStateToProps>;
 
 const LocalWrapper: React.FC<PageStateProps> = ({ children, locale }) => {

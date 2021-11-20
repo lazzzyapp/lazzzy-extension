@@ -1,3 +1,4 @@
+/* eslint-disable no-implicit-globals */
 import React, { useEffect, useMemo } from 'react';
 import { connect } from 'dva';
 import { parse } from 'qs';
@@ -9,8 +10,9 @@ import { FormattedMessage } from 'react-intl';
 import { FormComponentProps } from '@ant-design/compatible/lib/form';
 import useVerifiedAccount from '@/common/hooks/useVerifiedAccount';
 import ImageHostingSelect from '@/components/ImageHostingSelect';
-import { ImageHostingWithMeta } from '@/common/hooks/useFilterImageHostingServices';
-import useFilterImageHostingServices from '@/common/hooks/useFilterImageHostingServices';
+import useFilterImageHostingServices, {
+  ImageHostingWithMeta,
+} from '@/common/hooks/useFilterImageHostingServices';
 import { asyncAddAccount } from '@/actions/account';
 import { isEqual } from 'lodash';
 import RepositorySelect from '@/components/RepositorySelect';
@@ -25,13 +27,11 @@ interface PageQuery {
 
 const mapStateToProps = ({
   userPreference: { servicesMeta, imageHosting, imageHostingServicesMeta },
-}: GlobalStore) => {
-  return {
-    servicesMeta,
-    imageHosting,
-    imageHostingServicesMeta,
-  };
-};
+}: GlobalStore) => ({
+  servicesMeta,
+  imageHosting,
+  imageHostingServicesMeta,
+});
 type PageStateProps = ReturnType<typeof mapStateToProps>;
 type PageProps = PageStateProps & DvaRouterProps & FormComponentProps;
 

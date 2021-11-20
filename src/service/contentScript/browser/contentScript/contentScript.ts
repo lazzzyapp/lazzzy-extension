@@ -1,5 +1,5 @@
-import { IToggleConfig } from '@/service/common/contentScript';
-import { IContentScriptService } from '@/service/common/contentScript';
+/* eslint-disable no-empty-function */
+import { IToggleConfig, IContentScriptService } from '@/service/common/contentScript';
 import { Service, Inject } from 'typedi';
 import styles from '@/service/contentScript/browser/contentScript/contentScript.less';
 import * as browser from '@web-clipper/chrome-promise';

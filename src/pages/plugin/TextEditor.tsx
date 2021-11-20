@@ -1,9 +1,8 @@
 import React from 'react';
-import { Dispatch } from 'redux';
-import { bindActionCreators } from 'redux';
+import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'dva';
-import { changeData } from 'pageActions/clipper';
-import { asyncRunExtension } from 'pageActions/userPreference';
+import { changeData } from '@/actions/clipper';
+import { asyncRunExtension } from '@/actions/userPreference';
 import * as HyperMD from 'hypermd';
 import { EditorContainer } from 'components/container';
 import { isUndefined } from 'common/object';
@@ -19,12 +18,10 @@ const useActions = {
 const mapStateToProps = ({
   clipper: { clipperData },
   userPreference: { liveRendering },
-}: GlobalStore) => {
-  return {
-    liveRendering,
-    clipperData,
-  };
-};
+}: GlobalStore) => ({
+  liveRendering,
+  clipperData,
+});
 type PageOwnProps = {
   pathname: string;
   search?: string;
@@ -54,7 +51,7 @@ class LazzzyPluginPage extends React.Component<PageProps, { markdown: string }> 
       });
     }
     if (isUndefined(data) && search) {
-      const content = parse(search.slice(1));
+      let content = parse(search.slice(1));
       this.props.changeData({
         data: content.markdown || '',
         pathName: this.props.pathname,
@@ -65,7 +62,7 @@ class LazzzyPluginPage extends React.Component<PageProps, { markdown: string }> 
       return content.markdown || '';
     }
     if (search && !isUndefined(data)) {
-      const content = parse(search.slice(1));
+      content = parse(search.slice(1));
       if (content.markdown !== this.state.markdown) {
         this.setState({
           markdown: (content.markdown as string) || '',
@@ -126,7 +123,10 @@ class LazzzyPluginPage extends React.Component<PageProps, { markdown: string }> 
   render() {
     return (
       <EditorContainer>
-        <textarea id={editorId} />
+        <label>
+          Editor
+          <textarea id={editorId} />
+        </label>
       </EditorContainer>
     );
   }

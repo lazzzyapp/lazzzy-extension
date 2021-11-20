@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export interface CreateDocumentRequest {
   title: string;
   content: string;
@@ -17,49 +18,19 @@ export interface UserInfo {
 }
 
 export interface Repository {
-  /**
-   * 仓库 ID
-   */
   id: string;
-  /**
-   * 仓库名
-   */
   name: string;
-  /**
-   * 团队 ID
-   */
   groupId: string;
-  /**
-   * 团队 名称
-   */
   groupName: string;
   disabled?: boolean;
 }
 
 export interface ServiceMeta {
-  /**
-   * Name of Backend Service
-   */
   name: string;
-  /**
-   * icon
-   */
   icon: string;
-  /**
-   * Type of Backend Service
-   */
   type: string;
-  /**
-   * Backend Service
-   */
   service: Type<DocumentService>;
-  /**
-   * 主页
-   */
   homePage?: string;
-  /**
-   * 配置表单
-   */
   form?: any;
   complete?: any;
   oauthUrl?: string;

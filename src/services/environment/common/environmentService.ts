@@ -1,4 +1,7 @@
-import { IBasicRequestService, IRequestService } from '@/service/common/request';
+/* eslint-disable no-empty-function */
+import { IBasicRequestService } from '@/service/common/request';
+import { IRequestService } from '@/service/common/request/service';
+
 import { ILocaleService } from '@/service/common/locale';
 import { Inject, Service } from 'typedi';
 import { IEnvironmentService, IEnvironmentServiceInterface } from './environment';
@@ -7,8 +10,11 @@ const privacyLocale = ['en-US'];
 const changelogLocale = ['en-US'];
 
 export class EnvironmentService implements IEnvironmentServiceInterface {
+  // eslint-disable-next-line no-useless-constructor
   constructor(
+    // eslint-disable-next-line no-unused-vars
     @Inject(ILocaleService) private localeService: ILocaleService,
+    // eslint-disable-next-line no-unused-vars
     @Inject(IBasicRequestService) private basicRequestService: IRequestService
   ) {}
 

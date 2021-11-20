@@ -1,3 +1,4 @@
+/* eslint-disable no-implicit-globals */
 import { observable } from 'mobx';
 import { generateUuid } from '@web-clipper/shared/lib/uuid';
 
@@ -12,6 +13,7 @@ const cache = new Map<any, any>();
 export function loadingStatus<T>(
   instance: T
 ): {
+  // eslint-disable-next-line no-unused-vars
   [P in FunctionKeys<T>]: boolean;
 } {
   if (!cache.has(instance)) {
@@ -39,7 +41,7 @@ function LoadingHoc(uuidKey: string, fn: Function) {
     execCount = execCountCache;
     try {
       loadingMap.set(uuidKey, true);
-      //@ts-ignore
+      // @ts-ignore
       return await fn.apply(this, arguments);
     } catch (err) {
       throw err;

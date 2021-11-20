@@ -5,8 +5,7 @@ import { BUILT_IN_IMAGE_HOSTING_ID } from '@/common/backend/imageHosting/interfa
 import { updateLazzzyHeader } from './../actions/clipper';
 import { asyncRunExtension } from './../actions/userPreference';
 import { CompleteStatus } from '@/common/backend/interface';
-import { CreateDocumentRequest } from '@/common/backend/services/interface';
-import { UnauthorizedError } from '@/common/backend/services/interface';
+import { CreateDocumentRequest, UnauthorizedError } from '@/common/backend/services/interface';
 import { GlobalStore, LazzzyStore } from '@/common/types';
 import { DvaModelBuilder, removeActionNamespace } from 'dva-model-creator';
 import update from 'immutability-helper';
@@ -17,7 +16,7 @@ import {
   asyncChangeAccount,
   changeData,
   watchActionChannel,
-} from 'pageActions/clipper';
+} from '@/actions/clipper';
 import backend, { documentServiceFactory, imageHostingServiceFactory } from 'common/backend';
 import { unpackAccountPreference } from '@/services/account/common';
 import { notification, Button } from 'antd';
@@ -44,7 +43,7 @@ const model = new DvaModelBuilder(defaultState, 'clipper')
   })
   .takeEvery(watchActionChannel, function*(_, { put, take }) {
     while (true) {
-      //@ts-ignore
+      // @ts-ignore
       const action = yield take(actionChannel);
       yield put(action);
     }
@@ -53,13 +52,11 @@ const model = new DvaModelBuilder(defaultState, 'clipper')
     const selector = ({
       userPreference: { imageHosting, servicesMeta },
       account: { accounts },
-    }: GlobalStore) => {
-      return {
-        accounts,
-        imageHosting,
-        servicesMeta,
-      };
-    };
+    }: GlobalStore) => ({
+      accounts,
+      imageHosting,
+      servicesMeta,
+    });
     const selectState: ReturnType<typeof selector> = yield select(selector);
     const { accounts, imageHosting } = selectState;
     const currentAccount = accounts.find(o => o.id === payload.id);
@@ -75,7 +72,7 @@ const model = new DvaModelBuilder(defaultState, 'clipper')
     const documentService = documentServiceFactory(type, info);
     const permissionsService = Container.get(IPermissionsService);
     if (selectState.servicesMeta[type]?.permission) {
-      //@ts-ignore
+      // @ts-ignore
       const hasPermissions = yield call(
         permissionsService.contains,
         selectState.servicesMeta[type]?.permission!
@@ -151,6 +148,7 @@ const model = new DvaModelBuilder(defaultState, 'clipper')
         const imageHostingIndex = imageHosting.findIndex(o => o.id === account.imageHosting);
         if (imageHostingIndex !== -1) {
           const accountImageHosting = imageHosting[imageHostingIndex];
+          // eslint-disable-next-line no-redeclare
           const imageHostingService = imageHostingServiceFactory(
             accountImageHosting.type,
             accountImageHosting.info
@@ -235,12 +233,10 @@ const model = new DvaModelBuilder(defaultState, 'clipper')
       }
       yield put.resolve(asyncRunExtension.started({ pathname, extension: iterator }));
     }
-    const { data, url } = yield select((g: GlobalStore) => {
-      return {
-        url: g.clipper.url,
-        data: g.clipper.clipperData[pathname],
-      };
-    });
+    const { data, url } = yield select((g: GlobalStore) => ({
+      url: g.clipper.url,
+      data: g.clipper.clipperData[pathname],
+    }));
     let createDocumentRequest: CreateDocumentRequest | null = null;
     createDocumentRequest = {
       repositoryId,
@@ -268,8 +264,8 @@ const model = new DvaModelBuilder(defaultState, 'clipper')
   })
   .case(
     asyncChangeAccount.done,
-    (state, { params: { id }, result: { repositories, currentImageHostingService } }) => {
-      return update(state, {
+    (state, { params: { id }, result: { repositories, currentImageHostingService } }) =>
+      update(state, {
         currentAccountId: {
           $set: id,
         },
@@ -283,8 +279,7 @@ const model = new DvaModelBuilder(defaultState, 'clipper')
         currentImageHostingService: {
           $set: currentImageHostingService,
         },
-      });
-    }
+      })
   )
   .case(selectRepository, (state, { repositoryId }) => {
     const currentRepository = state.repositories.find(o => o.id === repositoryId);
@@ -320,14 +315,14 @@ const model = new DvaModelBuilder(defaultState, 'clipper')
     ...state,
     clipperHeaderForm,
   }))
-  .case(changeData, (state, { data, pathName }) => {
-    return update(state, {
+  .case(changeData, (state, { data, pathName }) =>
+    update(state, {
       clipperData: {
         [pathName]: {
           $set: data,
         },
       },
-    });
-  });
+    })
+  );
 
 export default model.build();

@@ -20,7 +20,7 @@ export default new TextExtension(
         container.appendChild(
           $(data)
             .clone()
-            .get(0)
+            .get(0)!
         );
         return turndown.turndown(container);
       } catch (error) {

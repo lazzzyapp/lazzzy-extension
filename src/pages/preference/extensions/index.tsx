@@ -5,8 +5,7 @@ import useFilterExtensions from '@/common/hooks/useFilterExtensions';
 import { FormattedMessage } from 'react-intl';
 import ExtensionCard from '@/components/ExtensionCard';
 import styles from './index.less';
-import { IExtensionWithId } from '@/extensions/common';
-import { ExtensionType } from '@/extensions/common';
+import { IExtensionWithId, ExtensionType } from '@/extensions/common';
 import IconFont from '@/components/IconFont';
 import Container from 'typedi';
 import { IExtensionService, IExtensionContainer } from '@/service/common/extension';
@@ -21,15 +20,13 @@ const Page: React.FC = () => {
     defaultExtensionId,
     extensions,
     contextMenus,
-  } = useObserver(() => {
-    return {
-      defaultExtensionId: extensionService.DefaultExtensionId,
-      enabledAutomaticExtensionIds: extensionService.EnabledAutomaticExtensionIds,
-      disabledExtensions: extensionService.DisabledExtensionIds,
-      extensions: extensionContainer.extensions,
-      contextMenus: extensionContainer.contextMenus,
-    };
-  });
+  } = useObserver(() => ({
+    defaultExtensionId: extensionService.DefaultExtensionId,
+    enabledAutomaticExtensionIds: extensionService.EnabledAutomaticExtensionIds,
+    disabledExtensions: extensionService.DisabledExtensionIds,
+    extensions: extensionContainer.extensions,
+    contextMenus: extensionContainer.contextMenus,
+  }));
   const [toolExtensions, clipExtensions] = useFilterExtensions(extensions);
   const handleSetDefault = (extensionId: string) => {
     extensionService.toggleDefault(extensionId);

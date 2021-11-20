@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as React from 'react';
 import { StarOutlined } from '@ant-design/icons';
 import { Button } from 'antd';

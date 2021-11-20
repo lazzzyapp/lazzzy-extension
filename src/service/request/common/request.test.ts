@@ -6,9 +6,7 @@ import { RequestHelper } from './request';
 
 describe('test RequestHelper', () => {
   it('test baseURL', () => {
-    const mockRequestService = new MockRequestService(() => {
-      return '';
-    });
+    const mockRequestService = new MockRequestService(() => '');
     const request = new RequestHelper({
       baseURL: 'https://api.lazzzy.app/',
       request: mockRequestService,
@@ -34,9 +32,7 @@ describe('test RequestHelper', () => {
   });
 
   it('test post put', () => {
-    const mockRequestService = new MockRequestService(() => {
-      return '';
-    });
+    const mockRequestService = new MockRequestService(() => '');
     const request = new RequestHelper({
       baseURL: 'https://api.lazzzy.app/',
       request: mockRequestService,
@@ -69,9 +65,7 @@ describe('test RequestHelper', () => {
   });
 
   it('test header', () => {
-    const mockRequestService = new MockRequestService(() => {
-      return '';
-    });
+    const mockRequestService = new MockRequestService(() => '');
     const request = new RequestHelper({
       baseURL: 'https://api.lazzzy.app/',
       headers: {
@@ -110,9 +104,7 @@ describe('test RequestHelper', () => {
 
 describe('test params', () => {
   it('support overwrite params', () => {
-    const mockRequestService = new MockRequestService(() => {
-      return '';
-    });
+    const mockRequestService = new MockRequestService(() => '');
     const request = new RequestHelper({
       baseURL: 'https://api.lazzzy.app/',
       params: {
@@ -135,9 +127,7 @@ describe('test params', () => {
   });
 
   it('support add params', () => {
-    const mockRequestService = new MockRequestService(() => {
-      return '';
-    });
+    const mockRequestService = new MockRequestService(() => '');
     const request = new RequestHelper({
       baseURL: 'https://api.lazzzy.app/',
       params: {

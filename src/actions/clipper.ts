@@ -1,5 +1,6 @@
 import { LazzzyHeaderForm } from 'common/modelTypes/clipper';
 import { Repository, CompleteStatus, CreateDocumentRequest } from 'common/backend/index';
+
 import { actionCreatorFactory } from 'dva-model-creator';
 
 const actionCreator = actionCreatorFactory('clipper');

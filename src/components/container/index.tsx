@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './index.less';
 import { CloseOutlined } from '@ant-design/icons';
 
-const Container: React.FC = ({ children }) => {
-  return <div className={styles.mainContainer}>{children}</div>;
-};
+const Container: React.FC = ({ children }) => (
+  <div className={styles.mainContainer}>{children}</div>
+);
 
 export interface ToolContainerProps {
   onClickCloseButton?: () => void;
@@ -41,10 +41,10 @@ export class ToolContainer extends React.Component<ToolContainerProps> {
   }
 }
 
-export const CenterContainer: React.FC = ({ children }) => {
-  return <div className={styles.centerContainer}>{children}</div>;
-};
+export const CenterContainer: React.FC = ({ children }) => (
+  <div className={styles.centerContainer}>{children}</div>
+);
 
-export const EditorContainer: React.FC = ({ children }) => {
-  return <div className={styles.editorContainer}>{children}</div>;
-};
+export const EditorContainer: React.FC = ({ children }) => (
+  <div className={styles.editorContainer}>{children}</div>
+);

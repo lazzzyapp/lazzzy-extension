@@ -1,10 +1,6 @@
+/* eslint-disable no-redeclare */
 import { Token } from 'typedi';
-export interface PowerpackUserInfo {
-  name: string;
-  email: string;
-  avatar_url: string;
-  expire_date: string;
-}
+import { PowerpackUserInfo } from './user';
 
 export interface IPowerpackService {
   userInfo: PowerpackUserInfo | null;

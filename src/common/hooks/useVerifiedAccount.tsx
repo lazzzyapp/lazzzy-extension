@@ -1,6 +1,6 @@
+import React from 'react';
 import { UserPreferenceStore } from '@/common/types';
 import { FormComponentProps } from '@ant-design/compatible/lib/form';
-import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { omit, isEqual } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 import { message } from 'antd';
@@ -11,6 +11,7 @@ type UseVerifiedAccountProps = FormComponentProps & {
   initAccount?: any;
 };
 
+// eslint-disable-next-line no-implicit-globals
 function useDeepCompareMemoize<T>(value: T) {
   const ref = React.useRef<T>();
   if (!isEqual(value, ref.current)) {
@@ -20,7 +21,7 @@ function useDeepCompareMemoize<T>(value: T) {
 }
 
 const useVerifiedAccount = ({ form, services, initAccount }: UseVerifiedAccountProps) => {
-  const [type, _setType] = useState<string>(
+  const [type, _setType] = React.useState<string>(
     initAccount ? initAccount.type : Object.values(services)[0].type
   );
   const service = services[type];
@@ -47,7 +48,7 @@ const useVerifiedAccount = ({ form, services, initAccount }: UseVerifiedAccountP
     }
   );
 
-  const loadAccount = useCallback(() => {
+  const loadAccount = React.useCallback(() => {
     form.validateFields((error, values) => {
       if (error) {
         return;
@@ -64,7 +65,7 @@ const useVerifiedAccount = ({ form, services, initAccount }: UseVerifiedAccountP
     id: data?.id ?? null,
   };
 
-  const serviceForm = useMemo(() => {
+  const serviceForm = React.useMemo(() => {
     if (!service.form) {
       return null;
     }
@@ -76,10 +77,9 @@ const useVerifiedAccount = ({ form, services, initAccount }: UseVerifiedAccountP
         loadAccount={loadAccount}
       />
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accountStatus.verified, form, initAccount, loadAccount, service.form]);
 
-  const okText = useMemo(() => {
+  const okText = React.useMemo(() => {
     if (loading) {
       return <FormattedMessage id="preference.accountList.verifying" defaultMessage="Verifying" />;
     }
@@ -90,15 +90,18 @@ const useVerifiedAccount = ({ form, services, initAccount }: UseVerifiedAccountP
     );
   }, [accountStatus.verified, loading]);
 
-  const oauthLink = useMemo(() => {
-    return service.oauthUrl ? (
-      <a href={service.oauthUrl} target="_blank">
-        <FormattedMessage id="preference.accountList.login" defaultMessage="Login" />
-      </a>
-    ) : null;
+  const oauthLink = React.useMemo(() => {
+    if (!service.oauthUrl) {
+      return service.oauthUrl ? (
+        <a title="Login" href={service.oauthUrl} target="_blank">
+          <FormattedMessage id="preference.accountList.login" defaultMessage="Login" />
+        </a>
+      ) : null;
+    }
+    return null;
   }, [service.oauthUrl]);
 
-  const _formInfo = useMemo(() => {
+  const _formInfo = React.useMemo(() => {
     const values = form.getFieldsValue();
     const { defaultRepositoryId, type: curT, imageHosting, ...info } = values;
     if (type !== curT) {
@@ -108,10 +111,10 @@ const useVerifiedAccount = ({ form, services, initAccount }: UseVerifiedAccountP
   }, [form, type]);
 
   const formInfo = useDeepCompareMemoize(_formInfo);
-  const verifiedRef = useRef(accountStatus.verified);
+  const verifiedRef = React.useRef(accountStatus.verified);
   verifiedRef.current = accountStatus.verified;
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!verifiedRef.current || !formInfo) {
       return;
     }

@@ -25,9 +25,7 @@ export default class GithubImageHostingService implements ImageHostingService {
     return this.config.accessToken;
   }
 
-  uploadImage = async ({ data }: UploadImageRequest) => {
-    return this.uploadAsBase64(data);
-  };
+  uploadImage = async ({ data }: UploadImageRequest) => this.uploadAsBase64(data);
 
   uploadImageUrl = async (url: string) => {
     const imageBlob = await Container.get(IBasicRequestService).download(url);
@@ -53,8 +51,9 @@ export default class GithubImageHostingService implements ImageHostingService {
     const [username, repo] = this.config.repo.split('/');
     if (isUndefined(this.config.savePath)) this.config.savePath = '';
     if (this.config.savePath.startsWith('/')) this.config.savePath.substr(1);
-    if (!this.config.savePath.endsWith('/') && this.config.savePath.length > 0)
+    if (!this.config.savePath.endsWith('/') && this.config.savePath.length > 0) {
       this.config.savePath += '/';
+    }
 
     const fileName = this.generateFilename(data);
     const folderName = this.date

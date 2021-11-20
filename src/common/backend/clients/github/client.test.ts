@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { MockRequestService } from '@/__test__/utils';
 import { GithubClient } from './client';
 import { IRepository } from './types';

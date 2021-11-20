@@ -14,11 +14,11 @@ export type DvaRouterProps = {
   dispatch: Dispatch<any>;
 } & RouteComponentProps;
 
-interface DvaLoadingState {
+/* interface DvaLoadingState {
   global: boolean;
   models: Record<string, boolean | undefined>;
   effects: Record<string, boolean | undefined>;
-}
+} */
 
 export interface GlobalStore {
   account: AccountStore;

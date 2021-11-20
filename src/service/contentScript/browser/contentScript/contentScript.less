@@ -1,4 +1,4 @@
-.toolFrame {
+.tool-frame {
   position: fixed !important;
   right: 0 !important;
   top: 0 !important;
@@ -16,12 +16,13 @@
   height: 100%;
   z-index: 2147483646;
   border: none;
+
   :global {
     .lazzzy-loading {
       position: fixed;
       right: 10px;
       top: 10px;
-      box-shadow: rgba(0, 0, 0, 0.2) 0 0 12px 0;
+      box-shadow: rgb(0 0 0 / 20%) 0 0 12px 0;
       background: white;
       width: 324px;
       height: 150px;
@@ -63,6 +64,7 @@
       0% {
         transform: scale(1);
       }
+
       25% {
         transform: scale(2);
       }

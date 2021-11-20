@@ -15,12 +15,8 @@ export default new ToolExtension(
     },
   },
   {
-    init: ({ pathname }) => {
-      return pathname.startsWith('/plugin');
-    },
-    run: ({ document }) => {
-      return document.title;
-    },
+    init: ({ pathname }) => pathname.startsWith('/plugin'),
+    run: ({ document }) => document.title,
     afterRun: ({ createAndDownloadFile, data, result }) => {
       createAndDownloadFile(`${result || 'content'}.md`, data);
       return data;

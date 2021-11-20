@@ -10,13 +10,13 @@ import Container from 'typedi';
 import { IConfigService } from '@/service/common/config';
 import { IPreferenceService } from '@/service/common/preference';
 
-const mapStateToProps = ({ userPreference: { locale, liveRendering, iconColor } }: GlobalStore) => {
-  return {
-    locale,
-    liveRendering,
-    iconColor,
-  };
-};
+const mapStateToProps = ({
+  userPreference: { locale, liveRendering, iconColor },
+}: GlobalStore) => ({
+  locale,
+  liveRendering,
+  iconColor,
+});
 type PageStateProps = ReturnType<typeof mapStateToProps>;
 
 type PageProps = PageStateProps & DvaRouterProps;
@@ -55,10 +55,11 @@ const Base: React.FC<PageProps> = props => {
       description: (
         <FormattedMessage
           id="preference.basic.configLanguage.description"
-          defaultMessage="My native language is Chinese,Welcome to submit a translation on GitHub"
+          defaultMessage="Please add translations on Github"
           values={{
             GitHub: (
               <a
+                rel="noopener noreferrer"
                 href="https://github.com/lazzzyapp/lazzzy-extension/tree/master/src/common/locales/data"
                 target="_blank"
               >
@@ -142,15 +143,20 @@ const Base: React.FC<PageProps> = props => {
     return originConfigs.concat({
       key: 'update',
       action: (
-        <a href="https://github.com/lazzzyapp/lazzzy-extension/releases" target="_blank">
-          <FormattedMessage id="preference.basic.update.button" defaultMessage="Install Update" />
+        <a
+          title="Check releaes"
+          href="https://github.com/lazzzyapp/lazzzy-extension/releases"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FormattedMessage id="preference.basic.update.button" defaultMessage="Check Releases" />
         </a>
       ),
-      title: <FormattedMessage id="preference.basic.update.title" defaultMessage="Has Update" />,
+      title: <FormattedMessage id="preference.basic.update.title" defaultMessage="Updates" />,
       description: (
         <FormattedMessage
           id="preference.basic.update.description"
-          defaultMessage="Because the review takes a week, the chrome version will fall behind."
+          defaultMessage="For nightly released versions please checkout the releases on Github"
         />
       ),
     });

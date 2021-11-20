@@ -16,8 +16,8 @@ const useFilterImageHostingServices = ({
   backendServiceType,
   imageHostingServices,
   imageHostingServicesMap,
-}: Props) => {
-  return imageHostingServices
+}: Props) =>
+  imageHostingServices
     .map(o => {
       const meta = imageHostingServicesMap[o.type];
       if (!meta) {
@@ -32,6 +32,5 @@ const useFilterImageHostingServices = ({
       return { imageHostingServices: o, meta };
     })
     .filter((o): o is ImageHostingWithMeta => !!o);
-};
 
 export default useFilterImageHostingServices;

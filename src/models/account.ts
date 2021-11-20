@@ -48,9 +48,7 @@ model
   }));
 
 model.takeEvery(asyncAddAccount.started, function*(payload, { select, call }) {
-  const selector = ({ account: { accounts } }: GlobalStore) => {
-    return { accounts };
-  };
+  const selector = ({ account: { accounts } }: GlobalStore) => ({ accounts });
   const { accounts }: ReturnType<typeof selector> = yield select(selector);
   const { info, imageHosting, defaultRepositoryId, type, userInfo, callback, id } = payload;
   const userPreference: AccountPreference = {

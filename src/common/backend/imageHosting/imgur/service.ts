@@ -15,18 +15,14 @@ export default class ImgurImageHostingService implements ImageHostingService {
     this.config = config;
   }
 
-  getId = () => {
-    return this.config.clientId;
-  };
+  getId = () => this.config.clientId;
 
   uploadImage = async ({ data }: UploadImageRequest) => {
     const blob = Base64ImageToBlob(data);
     return this.uploadBlob(blob);
   };
 
-  uploadImageUrl = async (url: string) => {
-    return this.uploadBlob(url);
-  };
+  uploadImageUrl = async (url: string) => this.uploadBlob(url);
 
   private uploadBlob = async (blob: Blob | string): Promise<string> => {
     const formData = new FormData();

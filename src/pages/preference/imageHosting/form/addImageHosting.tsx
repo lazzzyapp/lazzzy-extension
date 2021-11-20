@@ -14,6 +14,7 @@ type PageOwnProps = {
   imageHostingServicesMeta: Record<string, ImageHostingServiceMeta>;
   visible: boolean;
   onAddAccount: () => void;
+  // eslint-disable-next-line no-unused-vars
   onEditAccount: (id: string) => void;
   onCancel: () => void;
 };

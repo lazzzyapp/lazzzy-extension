@@ -1,15 +1,15 @@
 import { IResponse } from '@/common/types';
 import { ILocalStorageService } from '@/service/common/storage';
-import { PowerpackUserInfo } from '@/service/common/powerpack';
 import { IPowerpackService } from '@/service/common/powerpack';
+import { PowerpackUserInfo } from '@/service/common/powerpack/user';
+import { IExtendRequestHelper, IBasicRequestService } from '@/service/common/request';
 import { RequestHelper } from '@/service/request/common/request';
-import { IExtendRequestHelper } from '@/service/common/request';
-import { IBasicRequestService, IRequestService } from '@/service/common/request';
+import { IRequestService } from '@/service/common/request/service';
 import { ILocaleService } from '@/service/common/locale';
 import { Inject, Container } from 'typedi';
 import {
   SendToKindleRequestBody,
-  IBackendService,
+  IBackendServiceInterface,
   OCRRequestBody,
   PostMailRequestBody,
   LazzzyRemoteConfig,
@@ -17,13 +17,14 @@ import {
 import config from '@/config';
 import { generateUuid } from '@web-clipper/shared/lib/uuid';
 
-export class BackendService implements IBackendService {
+export class BackendService implements IBackendServiceInterface {
   private request: IExtendRequestHelper;
   constructor(
     @Inject(ILocaleService) localeService: ILocaleService,
+    // eslint-disable-next-line no-unused-vars
     @Inject(IBasicRequestService) private basicRequestService: IRequestService
   ) {
-    //TODO handle 401
+    // TODO handle 401
     this.request = new RequestHelper({
       baseURL: `${config.serverHost}/api/`,
       request: this.basicRequestService,

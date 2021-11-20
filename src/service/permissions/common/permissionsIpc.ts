@@ -1,6 +1,10 @@
+/* eslint-disable no-useless-constructor */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-empty-function */
+// eslint-disable-next-line no-redeclare
 import { IPermissionsService, Permissions } from '@/service/common/permissions';
 import { IServerChannel, IChannel } from '@/service/common/ipc';
-
+import chrome from 'sinon-chrome/apps';
 export class PermissionsChannel implements IServerChannel {
   constructor(private service: IPermissionsService) {}
 
@@ -26,14 +30,11 @@ export class PermissionsChannel implements IServerChannel {
 export class PermissionsChannelClient implements IPermissionsService {
   constructor(private channel: IChannel) {}
 
-  remove = async (permissions: Permissions): Promise<boolean> => {
-    return this.channel.call('remove', permissions);
-  };
+  remove = async (permissions: Permissions): Promise<boolean> =>
+    this.channel.call('remove', permissions);
 
-  contains = async (permissions: Permissions): Promise<boolean> => {
-    return this.channel.call('contains', permissions);
-  };
-  request = async (permissions: Permissions): Promise<boolean> => {
-    return this.channel.call('request', permissions);
-  };
+  contains = async (permissions: Permissions): Promise<boolean> =>
+    this.channel.call('contains', permissions);
+  request = async (permissions: Permissions): Promise<boolean> =>
+    this.channel.call('request', permissions);
 }

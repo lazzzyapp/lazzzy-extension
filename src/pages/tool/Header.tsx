@@ -30,12 +30,13 @@ const LazzzyHeader: React.FC<PageProps> = props => {
   } = props;
   const formValue = getFieldsValue() as LazzzyHeaderForm;
   const ref = useRef<LazzzyHeaderForm>(formValue);
-  const { loading, clipperHeaderForm } = useSelector((g: GlobalStore) => {
-    return {
+  const { loading, clipperHeaderForm } = useSelector(
+    (g: GlobalStore) => ({
       loading: g.loading.effects[asyncCreateDocument.started.type],
       clipperHeaderForm: g.clipper.clipperHeaderForm,
-    };
-  }, isEqual);
+    }),
+    isEqual
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
