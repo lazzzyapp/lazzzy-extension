@@ -9,7 +9,7 @@ import localeService from '@/common/locales';
 import { LOCAL_USER_PREFERENCE_LOCALE_KEY } from './../common/modelTypes/userPreference';
 import storage from '@/common/storage';
 import * as antd from 'antd';
-import { GlobalStore } from '@/common/types';
+import { UserPreferenceStore, GlobalStore } from '@/common/types';
 import update from 'immutability-helper';
 import {
   asyncSetEditorLiveRendering,
@@ -25,10 +25,12 @@ import {
 } from '@/actions/userPreference';
 import { initTabInfo, changeData, asyncChangeAccount } from '@/actions/clipper';
 import { DvaModelBuilder, removeActionNamespace } from 'dva-model-creator';
-import { UserPreferenceStore } from '@/common/types';
-import { getServices, getImageHostingServices, imageHostingServiceFactory } from '@/common/backend';
+import backend, {
+  getServices,
+  getImageHostingServices,
+  imageHostingServiceFactory,
+} from '@/backend';
 import { ToolContext } from '@/extensions/common';
-import backend from '@/common/backend/index';
 import { loadImage } from '@/common/blob';
 import { routerRedux } from 'dva';
 import { localStorageService, syncStorageService } from '@/common/chrome/storage';

@@ -58,7 +58,7 @@ interface CopyToClipboardOptions {
 
 interface OCRRequest {
   image: string;
-  language_type: 'CHN_ENG' | 'ENG' | 'JAP' | 'GER';
+  language_type: 'ENG' | 'ENG' | 'JAP' | 'GER';
 }
 export interface ToolContext<T, Out> {
   locale: string;

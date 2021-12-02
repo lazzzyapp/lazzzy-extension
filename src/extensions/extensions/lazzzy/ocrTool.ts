@@ -50,7 +50,7 @@ export default new ToolExtension<SelectAreaPosition>(
       canvas.width = swidth;
       ctx!.drawImage(img, sx, sy, swidth, sheight, 0, 0, swidth, sheight);
       const image = canvas.toDataURL('image/jpeg');
-      return `${data}\n${await ocr({ image, language_type: 'CHN_ENG' })}`;
+      return `${data}\n${await ocr({ image, language_type: 'ENG' })}`;
     },
     destroy: async context => {
       const { toggleLazzzy, toggleLoading } = context;

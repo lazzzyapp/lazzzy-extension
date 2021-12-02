@@ -50,7 +50,7 @@ export default new TextExtension<SelectAreaPosition>(
       canvas.width = swidth;
       ctx!.drawImage(img, sx, sy, swidth, sheight, 0, 0, swidth, sheight);
       const image = canvas.toDataURL('image/jpeg');
-      const res = await ocr({ image, language_type: 'CHN_ENG' });
+      const res = await ocr({ image, language_type: 'ENG' });
       return res;
     },
     destroy: async context => {
