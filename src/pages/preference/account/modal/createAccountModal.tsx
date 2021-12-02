@@ -6,7 +6,7 @@ import '@ant-design/compatible/assets/index.less';
 import { Modal, Select, Divider } from 'antd';
 import { FormComponentProps } from '@ant-design/compatible/lib/form';
 import styles from './index.less';
-import { ImageHostingServiceMeta, BUILT_IN_IMAGE_HOSTING_ID } from '@/common/backend';
+import { ImageHostingServiceMeta, BUILT_IN_IMAGE_HOSTING_ID } from '@/backend';
 import { UserPreferenceStore, ImageHosting } from '@/common/types';
 import { FormattedMessage } from 'react-intl';
 import useVerifiedAccount from '@/common/hooks/useVerifiedAccount';

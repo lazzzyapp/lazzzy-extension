@@ -1,6 +1,6 @@
 import React, { useMemo, useState, forwardRef, useCallback } from 'react';
 import { Select } from 'antd';
-import { Repository } from '@/common/backend';
+import { Repository } from '@/backend';
 import { SelectProps } from 'antd/lib/select';
 import { debounce } from 'lodash';
 

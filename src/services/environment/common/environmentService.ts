@@ -1,5 +1,5 @@
 /* eslint-disable no-empty-function */
-import { IBasicRequestService } from '@/service/common/request';
+import { IBasicRequestService } from '@/service/common/request/service';
 import { IRequestService } from '@/service/common/request/service';
 
 import { ILocaleService } from '@/service/common/locale';

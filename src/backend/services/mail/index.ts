@@ -1,4 +1,4 @@
-import { ServiceMeta } from '@/common/backend';
+import { ServiceMeta } from '@/backend';
 import localeService from '@/common/locales';
 import Service from './service';
 import form from './form';

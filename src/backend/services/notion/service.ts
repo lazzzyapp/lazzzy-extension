@@ -7,7 +7,7 @@ import { NotionRepository, NotionUserContent } from './types';
 import { IWebRequestService } from '@/service/common/webRequest';
 import Container from 'typedi';
 import { ICookieService, ICookieServiceInterface } from '@/service/common/cookie';
-import { DocumentService, CreateDocumentRequest } from '@/common/backend/services/interface';
+import { DocumentService, CreateDocumentRequest } from '@/backend/services/interface';
 
 const PAGE = 'page';
 const COLLECTION_VIEW_PAGE = 'collection_view_page';

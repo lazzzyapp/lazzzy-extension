@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { IRequestService, TRequestOption } from '@/service/common/request';
+import { IRequestService } from '@/service/common/request/service';
+import { TRequestOption } from '@/service/common/request/option';
 type TMockRequestServiceHandler = (url: string, options?: TRequestOption) => any;
 
 export class MockRequestService implements IRequestService {

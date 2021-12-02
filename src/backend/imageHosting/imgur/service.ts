@@ -1,4 +1,4 @@
-import { IBasicRequestService } from '@/service/common/request';
+import { IBasicRequestService } from '@/service/common/request/service';
 import { RequestHelper } from '@/service/request/common/request';
 import { UploadImageRequest, ImageHostingService } from '../interface';
 import { Base64ImageToBlob } from '@/common/blob';

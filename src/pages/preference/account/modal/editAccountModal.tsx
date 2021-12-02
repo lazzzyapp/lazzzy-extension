@@ -5,14 +5,14 @@ import '@ant-design/compatible/assets/index.less';
 import { Modal, Select } from 'antd';
 import { FormComponentProps } from '@ant-design/compatible/lib/form';
 import styles from './index.less';
-import { ImageHostingServiceMeta } from '@/common/backend';
+import { ImageHostingServiceMeta } from '@/backend';
 import { AccountPreference, UserPreferenceStore, ImageHosting } from '@/common/types';
 import { FormattedMessage } from 'react-intl';
 import ImageHostingSelect from '@/components/ImageHostingSelect';
 import useFilterImageHostingServices from '@/common/hooks/useFilterImageHostingServices';
 import useVerifiedAccount from '@/common/hooks/useVerifiedAccount';
 import RepositorySelect from '@/components/RepositorySelect';
-import { BUILT_IN_IMAGE_HOSTING_ID } from '@/common/backend/imageHosting/interface';
+import { BUILT_IN_IMAGE_HOSTING_ID } from '@/backend/imageHosting/interface';
 
 type PageOwnProps = {
   imageHostingServicesMeta: Record<string, ImageHostingServiceMeta>;

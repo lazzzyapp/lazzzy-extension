@@ -1,4 +1,4 @@
-import { UserInfo } from '@/common/backend/services/interface';
+import { UserInfo } from '@/backend/services/interface';
 import { AccountPreference } from '@/common/types';
 import { actionCreatorFactory } from 'dva-model-creator';
 

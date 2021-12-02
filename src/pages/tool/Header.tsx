@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'dva';
 import { GlobalStore, LazzzyHeaderForm } from '@/common/types';
 import { updateLazzzyHeader, asyncCreateDocument } from '@/actions/clipper';
 import { isEqual } from 'lodash';
-import { ServiceMeta, Repository } from '@/common/backend';
+import { ServiceMeta, Repository } from '@/backend';
 import classNames from 'classnames';
 import localeService from '@/common/locales';
 

@@ -1,4 +1,4 @@
-import { ServiceMeta, ImageHostingServiceMeta } from '@/common/backend';
+import { ServiceMeta, ImageHostingServiceMeta } from '@/backend';
 
 export interface UserPreferenceStore {
   locale: string;

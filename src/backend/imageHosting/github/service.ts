@@ -4,7 +4,7 @@ import { UploadImageRequest, ImageHostingService } from '../interface';
 import { isUndefined } from 'lodash';
 import { GithubClient } from '../../clients/github/client';
 import Container from 'typedi';
-import { IBasicRequestService } from '@/service/common/request';
+import { IBasicRequestService } from '@/service/common/request/service';
 import { GithubImageHostingOption } from './type';
 import localeService from '@/common/locales';
 

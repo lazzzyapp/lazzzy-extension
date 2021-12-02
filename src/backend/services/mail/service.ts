@@ -1,5 +1,5 @@
 import { Container } from 'typedi';
-import { CompleteStatus } from '@/common/backend/interface';
+import { CompleteStatus } from '@/backend/interface';
 import { PostMailRequestBody, IBackendService } from '@/services/backend/common/backend';
 import { DocumentService, CreateDocumentRequest } from '../../index';
 import showdown from 'showdown';

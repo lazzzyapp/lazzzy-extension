@@ -1,4 +1,4 @@
-import { IRequestService } from '@/service/common/request';
+import { IRequestService } from '@/service/common/request/service';
 
 export interface IGithubClientOptions {
   token: string;

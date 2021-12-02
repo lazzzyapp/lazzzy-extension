@@ -3,7 +3,7 @@ import {
   Repository,
   CompleteStatus,
   CreateDocumentRequest,
-} from '@/common/backend/services/interface';
+} from '@/backend/services/interface';
 
 export interface LazzzyHeaderForm {
   [key: string]: string | number;

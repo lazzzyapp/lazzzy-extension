@@ -8,7 +8,7 @@ import { IRequestService } from './service';
 import { RequestInterceptor } from './interceptor';
 export type Method = 'get' | 'post' | 'put';
 
-export interface IExtendRequestHelper {
+export interface IExtendRequestIHelperOptions {
   post: <T>(
     url: string,
     options: Omit<IPostRequestOptions, 'method' | 'requestType'>

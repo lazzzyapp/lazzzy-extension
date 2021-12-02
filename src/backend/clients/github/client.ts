@@ -1,4 +1,4 @@
-import { IExtendRequestHelper } from '@/service/common/request';
+import { IExtendRequestHelper } from '@/service/common/request/service';
 import { RequestHelper } from '@/service/request/common/request';
 import { stringify } from 'qs';
 import {

@@ -1,4 +1,4 @@
-import { CompleteStatus } from '@/common/backend/interface';
+import { CompleteStatus } from '@/backend/interface';
 import {
   GithubBackendServiceConfig,
   GithubUserInfoResponse,

@@ -2,7 +2,7 @@ import { IResponse } from '@/common/types';
 import { ILocalStorageService } from '@/service/common/storage';
 import { IPowerpackService } from '@/service/common/powerpack';
 import { PowerpackUserInfo } from '@/service/common/powerpack/user';
-import { IExtendRequestHelper, IBasicRequestService } from '@/service/common/request';
+import { IExtendRequestHelper, IBasicRequestService } from '@/service/common/request/service';
 import { RequestHelper } from '@/service/request/common/request';
 import { IRequestService } from '@/service/common/request/service';
 import { ILocaleService } from '@/service/common/locale';

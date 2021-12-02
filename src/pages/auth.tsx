@@ -16,7 +16,7 @@ import useFilterImageHostingServices, {
 import { asyncAddAccount } from '@/actions/account';
 import { isEqual } from 'lodash';
 import RepositorySelect from '@/components/RepositorySelect';
-import { BUILT_IN_IMAGE_HOSTING_ID } from '@/common/backend/imageHosting/interface';
+import { BUILT_IN_IMAGE_HOSTING_ID } from '@/backend/imageHosting/interface';
 import Container from 'typedi';
 import { ITabService } from '@/service/common/tab';
 

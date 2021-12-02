@@ -1,4 +1,4 @@
-import { CompleteStatus } from '@/common/backend/interface';
+import { CompleteStatus } from '@/backend/interface';
 import { DocumentService, CreateDocumentRequest } from '../../index';
 
 export default class GithubDocumentService implements DocumentService {

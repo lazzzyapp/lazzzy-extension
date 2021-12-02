@@ -1,4 +1,4 @@
-import { ServiceMeta } from '@/common/backend';
+import { ServiceMeta } from '@/backend';
 import Service from './service';
 
 export default (): ServiceMeta => ({

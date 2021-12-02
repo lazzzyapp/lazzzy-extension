@@ -1,16 +1,13 @@
 /* eslint-disable no-empty-function */
-import {
-  IGetFormRequestOptions,
-  IHelperOptions,
-  IPostFormRequestOptions,
-  IPostRequestOptions,
-  RequestInterceptor,
-  TRequestOption,
-  IExtendRequestHelper,
-  IPutRequestOptions,
-} from '@/service/common/request';
+import { IPutRequestOptions } from '@/service/common/request/put';
+import { IExtendRequestIHelperOptions, IHelperOptions } from '@/service/common/request';
+import { TRequestOption } from '@/service/common/request/option';
+import { RequestInterceptor } from '@/service/common/request/interceptor';
+import { IPostRequestOptions } from '@/service/common/request/post';
+import { IPostFormRequestOptions } from '@/service/common/request/post/form';
+import { IGetFormRequestOptions } from '@/service/common/request/get/form';
 
-export class RequestHelper implements IExtendRequestHelper {
+export class RequestHelper implements IExtendRequestIHelperOptions {
   constructor(private options: IHelperOptions) {}
 
   post<T>(url: string, options: Omit<IPostRequestOptions, 'method' | 'requestType'>) {

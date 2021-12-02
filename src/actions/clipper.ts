@@ -1,5 +1,5 @@
 import { LazzzyHeaderForm } from '@/common/modelTypes/clipper';
-import { Repository, CompleteStatus, CreateDocumentRequest } from '@/common/backend/index';
+import { Repository, CompleteStatus, CreateDocumentRequest } from '@/backend/index';
 
 import { actionCreatorFactory } from 'dva-model-creator';
 

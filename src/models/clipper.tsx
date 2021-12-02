@@ -1,11 +1,11 @@
 import { Container } from 'typedi';
 import React from 'react';
 import { IPermissionsService } from '@/service/common/permissions';
-import { BUILT_IN_IMAGE_HOSTING_ID } from '@/common/backend/imageHosting/interface';
+import { BUILT_IN_IMAGE_HOSTING_ID } from '@/backend/imageHosting/interface';
 import { updateLazzzyHeader } from './../actions/clipper';
 import { asyncRunExtension } from './../actions/userPreference';
-import { CompleteStatus } from '@/common/backend/interface';
-import { CreateDocumentRequest, UnauthorizedError } from '@/common/backend/services/interface';
+import { CompleteStatus } from '@/backend/interface';
+import { CreateDocumentRequest, UnauthorizedError } from '@/backend/services/interface';
 import { GlobalStore, LazzzyStore } from '@/common/types';
 import { DvaModelBuilder, removeActionNamespace } from 'dva-model-creator';
 import update from 'immutability-helper';
@@ -17,7 +17,7 @@ import {
   changeData,
   watchActionChannel,
 } from '@/actions/clipper';
-import backend, { documentServiceFactory, imageHostingServiceFactory } from '@/common/backend';
+import backend, { documentServiceFactory, imageHostingServiceFactory } from '@/backend';
 import { unpackAccountPreference } from '@/services/account/common';
 import { notification, Button } from 'antd';
 import { routerRedux } from 'dva';
