@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import locale from '@/common/locales';
 import IconFont from '@/components/IconFont';
 import { GithubClient } from '../../clients/github/client';
-import { IBasicRequestService } from '@/service/common/request/service';
+import { IBasicRequestService } from '@/service/common/request';
 import Container from 'typedi';
 import {
   IBranch,

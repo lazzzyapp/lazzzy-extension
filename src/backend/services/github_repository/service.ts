@@ -65,7 +65,7 @@ export default class GithubRepositoryDocumentService implements DocumentService 
     return result;
   };
 
-  createDocument = async (info: GithubCreateDocumentRequest): Promise<CompleteStatus> => {
+  createDocument: any = async (info: GithubCreateDocumentRequest): Promise<CompleteStatus> => {
     if (!this.repositories) {
       this.getRepositories();
     }
