@@ -1,0 +1,10 @@
+lib/
+dist/
+coverage/
+node_modules/
+chrome/js/icon.js
+releases/
+config/
+.history
+**snap
+DS_Store
