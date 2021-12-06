@@ -2148,18 +2148,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chrome@*":
-  version "0.0.164"
-  resolved "https://registry.npmjs.org/@types/chrome/-/chrome-0.0.164.tgz"
-  integrity sha512-/EvjbfcowiA+f8Fwv5PSzxHhnAgjIx50Bjy1zQQYYwxlbJ+rI07CXMhrxwz4jUZlxLjnn/kugNQBjZIN58pKyg==
-  dependencies:
-    "@types/filesystem" "*"
-    "@types/har-format" "*"
-
-"@types/chrome@^0.0.141":
-  version "0.0.141"
-  resolved "https://registry.npmjs.org/@types/chrome/-/chrome-0.0.141.tgz"
-  integrity sha512-0bYsCxGKo9xdrNHiqWRjPVygDRfKA2EczhXJmKjkfBF+KQc0BFKejtdFV28ygcVH3RTjGZ+ccoJ3bb8wKFacbw==
+"@types/chrome@*", "@types/chrome@^0.0.168":
+  version "0.0.168"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.168.tgz#e92df6601acc07427845a58b5bc62be4330d9b5f"
+  integrity sha512-kMA+5H9PSO7kEixgFgehp8xxzBV5qR9hyLCCt8j4/BIf5SJXXtVB6ik2uycU8PHgfFtMDgIC5/qQZplifYon2g==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
