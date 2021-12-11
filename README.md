@@ -23,14 +23,6 @@
 
 - [GoogleDocs](https://www.docs.google.com)
 - [Notability]()
-- [Joplin](https://joplinapp.org/)
-- [Server Chan](http://sc.ftqq.com/3.version)
-- [dida365](https://dida365.com/)
-- [baklib](https://www.baklib-free.com/)
-- [wolai](https://www.wolai.com/)
-- [Leanote](https://github.com/leanote/leanote)
-- [Flomo](https://flomoapp.com/)
-- [Youdao](https://note.youdao.com/)
 
 ### Install
 
