@@ -1,4 +1,3 @@
-/* eslint-disable no-implicit-globals */
 import React, { useEffect, useMemo } from 'react';
 import { connect } from 'dva';
 import { parse } from 'qs';
@@ -8,15 +7,15 @@ import '@ant-design/compatible/assets/index.less';
 import { Modal, Select } from 'antd';
 import { FormattedMessage } from 'react-intl';
 import { FormComponentProps } from '@ant-design/compatible/lib/form';
-import useVerifiedAccount from '@/common/hooks/useVerifiedAccount';
+import useVerifiedAccount from '@/hooks/useVerifiedAccount';
 import ImageHostingSelect from '@/components/ImageHostingSelect';
 import useFilterImageHostingServices, {
   ImageHostingWithMeta,
-} from '@/common/hooks/useFilterImageHostingServices';
+} from '@/hooks/useFilterImageHostingServices';
 import { asyncAddAccount } from '@/actions/account';
 import { isEqual } from 'lodash';
 import RepositorySelect from '@/components/RepositorySelect';
-import { BUILT_IN_IMAGE_HOSTING_ID } from '@/common/backend/imageHosting/interface';
+import { BUILT_IN_IMAGE_HOSTING_ID } from '@/backend/imageHosting/interface';
 import Container from 'typedi';
 import { ITabService } from '@/service/common/tab';
 
@@ -27,11 +26,13 @@ interface PageQuery {
 
 const mapStateToProps = ({
   userPreference: { servicesMeta, imageHosting, imageHostingServicesMeta },
-}: GlobalStore) => ({
-  servicesMeta,
-  imageHosting,
-  imageHostingServicesMeta,
-});
+}: GlobalStore) => {
+  return {
+    servicesMeta,
+    imageHosting,
+    imageHostingServicesMeta,
+  };
+};
 type PageStateProps = ReturnType<typeof mapStateToProps>;
 type PageProps = PageStateProps & DvaRouterProps & FormComponentProps;
 

@@ -7,26 +7,26 @@ export default new TextExtension(
     version: '0.0.1',
     description: 'Manual selection page element.',
     i18nManifest: {
-      'en-US': { name: 'Manual Selection' },
+      'zh-CN': { name: '手动选取' },
     },
   },
   {
     run: async context => {
-      const { turndown, Highlighter, toggleLazzzy, $ } = context;
-      toggleLazzzy();
+      const { turndown, Highlighter, toggleClipper, $ } = context;
+      toggleClipper();
       try {
         const data = await new Highlighter().start();
-        const container = document.createElement('div');
+        let container = document.createElement('div');
         container.appendChild(
           $(data)
             .clone()
-            .get(0)!
+            .get(0)
         );
         return turndown.turndown(container);
       } catch (error) {
         throw error;
       } finally {
-        toggleLazzzy();
+        toggleClipper();
       }
     },
   }

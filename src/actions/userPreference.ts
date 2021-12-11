@@ -1,6 +1,6 @@
-import { IExtensionWithId } from '../extensions/common';
+import { IExtensionWithId } from '@/extensions/common';
 import { ImageHosting, GlobalStore } from '@/common/types';
-import { PreferenceStorage } from 'common/storage/interface';
+import { PreferenceStorage } from '@/storage/interface';
 import { actionCreatorFactory } from 'dva-model-creator';
 
 const actionCreator = actionCreatorFactory('userPreference');

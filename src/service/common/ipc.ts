@@ -1,21 +1,20 @@
-/* eslint-disable no-unused-vars */
 import { generateUuid } from '@web-clipper/shared/lib/uuid';
 import { SerializedError } from '@/common/error';
 
 export interface IServerChannel<C = any> {
-  call: <T = any>(context: C, command: string, arg?: any) => Promise<T>;
+  call<T = any>(context: C, command: string, arg?: any): Promise<T>;
 }
 
 export interface IChannel {
-  call: <T>(command: string, arg?: any) => Promise<T>;
+  call<T>(command: string, arg?: any): Promise<T>;
 }
 
 export interface IChannelClient {
-  getChannel: (channelName: string) => IChannel;
+  getChannel(channelName: string): IChannel;
 }
 
 export interface IChannelServer {
-  registerChannel: (channelName: string, channel: IServerChannel) => void;
+  registerChannel(channelName: string, channel: IServerChannel): void;
 }
 
 export interface IPCMessageRequest<T = any> {

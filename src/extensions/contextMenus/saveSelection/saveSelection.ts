@@ -1,5 +1,5 @@
-import { IContextMenuContext, ContextMenuExtension } from '../../contextMenus';
-import localeService from '@/common/locales';
+import { ContextMenuExtension, IContextMenuContext } from '../../contextMenus';
+import localeService from '@/locales';
 import { stringify } from 'qs';
 
 class ContextMenu extends ContextMenuExtension {
@@ -38,7 +38,6 @@ class ContextMenu extends ContextMenuExtension {
     });
   }
 
-  // eslint-disable-next-line no-undef
   async run(tab: chrome.tabs.Tab, context: IContextMenuContext): Promise<void> {
     await context.initContentScriptService(tab.id!);
     const content = await context.contentScriptService.getSelectionMarkdown();

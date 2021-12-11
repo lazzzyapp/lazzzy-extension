@@ -1,10 +1,15 @@
-export interface LazzzyConfiguration {
+export interface LazzzyAppConfiguration {
   resource: {
     host: string;
     privacy: string;
     changelog: string;
   };
-  onenote_oauth: {
+  yuque_oauth: {
+    clientId: string;
+    callback: string;
+    scope: string;
+  };
+  onenote: {
     clientId: string;
     callback: string;
   };

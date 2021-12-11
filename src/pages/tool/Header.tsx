@@ -7,12 +7,12 @@ import Section from '@/components/section';
 import { FormattedMessage } from 'react-intl';
 import styles from './index.less';
 import { useSelector, useDispatch } from 'dva';
-import { GlobalStore, LazzzyHeaderForm } from '@/common/types';
-import { updateLazzzyHeader, asyncCreateDocument } from '@/actions/clipper';
+import { GlobalStore, ClipperHeaderForm } from '@/common/types';
+import { updateClipperHeader, asyncCreateDocument } from '@/actions/clipper';
 import { isEqual } from 'lodash';
-import { ServiceMeta, Repository } from '@/common/backend';
+import { ServiceMeta, Repository } from '@/backend';
 import classNames from 'classnames';
-import localeService from '@/common/locales';
+import localeService from '@/locales';
 
 type PageProps = FormComponentProps & {
   pathname: string;
@@ -20,7 +20,7 @@ type PageProps = FormComponentProps & {
   currentRepository?: Repository;
 };
 
-const LazzzyHeader: React.FC<PageProps> = props => {
+const ClipperHeader: React.FC<PageProps> = props => {
   const {
     form: { getFieldDecorator, validateFields, getFieldsValue, setFieldsValue },
     form,
@@ -28,15 +28,14 @@ const LazzzyHeader: React.FC<PageProps> = props => {
     service,
     currentRepository,
   } = props;
-  const formValue = getFieldsValue() as LazzzyHeaderForm;
-  const ref = useRef<LazzzyHeaderForm>(formValue);
-  const { loading, clipperHeaderForm } = useSelector(
-    (g: GlobalStore) => ({
+  const formValue = getFieldsValue() as ClipperHeaderForm;
+  const ref = useRef<ClipperHeaderForm>(formValue);
+  const { loading, clipperHeaderForm } = useSelector((g: GlobalStore) => {
+    return {
       loading: g.loading.effects[asyncCreateDocument.started.type],
       clipperHeaderForm: g.clipper.clipperHeaderForm,
-    }),
-    isEqual
-  );
+    };
+  }, isEqual);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,7 +49,7 @@ const LazzzyHeader: React.FC<PageProps> = props => {
     if (isEqual(ref.current, formValue)) {
       return;
     }
-    dispatch(updateLazzzyHeader(formValue));
+    dispatch(updateClipperHeader(formValue));
     ref.current = formValue;
   }, [dispatch, formValue]);
 
@@ -106,4 +105,4 @@ const LazzzyHeader: React.FC<PageProps> = props => {
   );
 };
 
-export default Form.create<PageProps>()(LazzzyHeader);
+export default Form.create<PageProps>()(ClipperHeader);

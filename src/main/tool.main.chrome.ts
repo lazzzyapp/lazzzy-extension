@@ -12,7 +12,7 @@ import '@/service/request/tool/basic';
 import '@/service/config/browser/configService';
 import '@/service/powerpackService';
 import '@/service/trackService';
-import localeService from '@/common/locales';
+import localeService from '@/locales';
 Container.set(ILocaleService, localeService);
 import '@/service/extension/browser/extensionService';
 import '@/service/extension/browser/extensionContainer';

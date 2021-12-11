@@ -1,5 +1,3 @@
-/* eslint-disable no-redeclare */
-/* eslint-disable no-unused-vars */
 import { Token } from 'typedi';
 
 export interface WebBlockHeader {
@@ -20,11 +18,11 @@ export interface RequestInBackgroundOptions {
 }
 
 export interface IWebRequestService {
-  startChangeHeader: (option: WebRequestBlockOption) => Promise<WebBlockHeader>;
+  startChangeHeader(option: WebRequestBlockOption): Promise<WebBlockHeader>;
 
-  end: (webBlockHeader: WebBlockHeader) => Promise<void>;
+  end(webBlockHeader: WebBlockHeader): Promise<void>;
 
-  requestInBackground: <T>(url: string, options?: RequestInBackgroundOptions) => Promise<T>;
+  requestInBackground<T>(url: string, options?: RequestInBackgroundOptions): Promise<T>;
 }
 
 export const IWebRequestService = new Token<IWebRequestService>();

@@ -2,7 +2,7 @@ const { generateManifest } = require('./manifest');
 
 const FIREFOX_MANIFEST_STORE = {
   name: 'lazzzy',
-  version: '1.0.0',
+  version: '0.0.1',
   commands: {
     'toggle-feature-foo': { suggested_key: { default: 'Alt+S' }, description: 'Test' },
   },
@@ -12,6 +12,7 @@ const FIREFOX_MANIFEST_STORE = {
     'webRequest',
     'webRequestBlocking',
     'storage',
+    'https://lazzzy.app/*',
     'https://api.lazzzy.app/*',
     'https://resource.lazzzy.app/*',
     'cookies',
@@ -21,13 +22,13 @@ const FIREFOX_MANIFEST_STORE = {
 
 const FIREFOX_MANIFEST_DEVELOPMENT = {
   name: 'lazzzy',
-  version: '1.0.0',
+  version: '0.0.1',
   commands: {
     'toggle-feature-foo': { suggested_key: { default: 'Alt+S' }, description: 'Test' },
   },
   applications: {
     gecko: {
-      id: 'web-clipper@web-clipper',
+      id: 'lazzzyapp@lazzzy-extension',
     },
   },
   permissions: [
@@ -36,6 +37,7 @@ const FIREFOX_MANIFEST_DEVELOPMENT = {
     'webRequest',
     'webRequestBlocking',
     'storage',
+    'https://lazzzy.app/*',
     'https://api.lazzzy.app/*',
     'https://resource.lazzzy.app/*',
     'cookies',
@@ -45,22 +47,17 @@ const FIREFOX_MANIFEST_DEVELOPMENT = {
 
 const CHROME_MANIFEST = {
   name: 'lazzzy',
-  version: '1.0.0',
+  version: '0.0.1',
   permissions: [
     'activeTab',
     'storage',
+    'https://lazzzy.app/*',
     'https://api.lazzzy.app/*',
     'https://resource.lazzzy.app/*',
     'contextMenus',
   ],
   commands: { 'toggle-feature-foo': { suggested_key: { default: 'Alt+S' }, description: 'Test' } },
-  optional_permissions: [
-    'cookies',
-    '<all_urls>',
-    'webRequest',
-    'webRequestBlocking',
-    'pageCapture',
-  ],
+  optional_permissions: ['cookies', '<all_urls>', 'webRequest', 'webRequestBlocking'],
 };
 
 describe('test generateManifest', () => {
@@ -69,7 +66,7 @@ describe('test generateManifest', () => {
       generateManifest({
         publishToStore: true,
         targetBrowser: 'Firefox',
-        basicManifest: { name: 'lazzzy', version: '1.0.0' },
+        basicManifest: { name: 'lazzzy', version: '0.0.1' },
       })
     ).toEqual(FIREFOX_MANIFEST_STORE);
   });
@@ -79,7 +76,7 @@ describe('test generateManifest', () => {
       generateManifest({
         publishToStore: false,
         targetBrowser: 'Firefox',
-        basicManifest: { name: 'lazzzy', version: '1.0.0' },
+        basicManifest: { name: 'lazzzy', version: '0.0.1' },
       })
     ).toEqual(FIREFOX_MANIFEST_DEVELOPMENT);
   });
@@ -89,7 +86,7 @@ describe('test generateManifest', () => {
       generateManifest({
         publishToStore: false,
         targetBrowser: 'Chrome',
-        basicManifest: { name: 'lazzzy', version: '1.0.0' },
+        basicManifest: { name: 'lazzzy', version: '0.0.1' },
       })
     ).toEqual(CHROME_MANIFEST);
 
@@ -97,7 +94,7 @@ describe('test generateManifest', () => {
       generateManifest({
         publishToStore: true,
         targetBrowser: 'Chrome',
-        basicManifest: { name: 'lazzzy', version: '1.0.0' },
+        basicManifest: { name: 'lazzzy', version: '0.0.1' },
       })
     ).toEqual(CHROME_MANIFEST);
   });

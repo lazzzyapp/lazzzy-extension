@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import * as React from 'react';
 import { List, Avatar } from 'antd';
 import styles from './index.less';
@@ -32,7 +31,9 @@ export default class Page extends React.Component<PageProps> {
   render() {
     const {
       name,
-      remark = <FormattedMessage id="component.imagehostingListItem.noDescription" />,
+      remark = (
+        <FormattedMessage id="component.imagehostingListItem.noDescription"></FormattedMessage>
+      ),
       icon,
     } = this.props;
     let avatar;

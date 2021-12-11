@@ -1,11 +1,11 @@
 import React from 'react';
 import { QuestionCircleOutlined, StarOutlined } from '@ant-design/icons';
 import { Row, Col, Typography, Tooltip, Empty, Switch } from 'antd';
-import useFilterExtensions from '@/common/hooks/useFilterExtensions';
+import useFilterExtensions from '@/hooks/useFilterExtensions';
 import { FormattedMessage } from 'react-intl';
 import ExtensionCard from '@/components/ExtensionCard';
 import styles from './index.less';
-import { IExtensionWithId, ExtensionType } from '@/extensions/common';
+import { ExtensionType, IExtensionWithId } from '@/extensions/common';
 import IconFont from '@/components/IconFont';
 import Container from 'typedi';
 import { IExtensionService, IExtensionContainer } from '@/service/common/extension';
@@ -20,13 +20,15 @@ const Page: React.FC = () => {
     defaultExtensionId,
     extensions,
     contextMenus,
-  } = useObserver(() => ({
-    defaultExtensionId: extensionService.DefaultExtensionId,
-    enabledAutomaticExtensionIds: extensionService.EnabledAutomaticExtensionIds,
-    disabledExtensions: extensionService.DisabledExtensionIds,
-    extensions: extensionContainer.extensions,
-    contextMenus: extensionContainer.contextMenus,
-  }));
+  } = useObserver(() => {
+    return {
+      defaultExtensionId: extensionService.DefaultExtensionId,
+      enabledAutomaticExtensionIds: extensionService.EnabledAutomaticExtensionIds,
+      disabledExtensions: extensionService.DisabledExtensionIds,
+      extensions: extensionContainer.extensions,
+      contextMenus: extensionContainer.contextMenus,
+    };
+  });
   const [toolExtensions, clipExtensions] = useFilterExtensions(extensions);
   const handleSetDefault = (extensionId: string) => {
     extensionService.toggleDefault(extensionId);
@@ -91,7 +93,7 @@ const Page: React.FC = () => {
         <FormattedMessage id="preference.extensions.contextMenus" />
       </Typography.Title>
       <Row gutter={10}>
-        {contextMenus.length === 0 && <Empty />}
+        {contextMenus.length === 0 && <Empty></Empty>}
         {contextMenus.map(e => {
           const Factory = e.contextMenu;
           const contextMenus = new Factory();
@@ -108,7 +110,7 @@ const Page: React.FC = () => {
                     onClick={() => extensionService.toggleDisableExtension(e.id)}
                   />,
                 ]}
-              />
+              ></ExtensionCard>
             </Col>
           );
         })}
@@ -116,25 +118,25 @@ const Page: React.FC = () => {
       <Typography.Title level={3}>
         <FormattedMessage
           id="preference.extensions.toolExtensions"
-          defaultMessage="Tool Extensions"
+          defaultMessage="Webpage Tools"
         />
       </Typography.Title>
       <Row gutter={10}>
-        {toolExtensions.length === 0 && <Empty />}
+        {toolExtensions.length === 0 && <Empty></Empty>}
         {toolExtensions.map(e => (
           <Col key={e.id} span={12}>
             <ExtensionCard
               className={styles.extensionCard}
               manifest={e.manifest}
               actions={cardActions(e)}
-            />
+            ></ExtensionCard>
           </Col>
         ))}
       </Row>
       <Typography.Title level={3}>
         <FormattedMessage
           id="preference.extensions.clipExtensions"
-          defaultMessage="Clip Extensions"
+          defaultMessage="Lazzzy Extensions"
         />
         <Tooltip
           title={
@@ -154,7 +156,7 @@ const Page: React.FC = () => {
               className={styles.extensionCard}
               manifest={e.manifest}
               actions={cardActions(e)}
-            />
+            ></ExtensionCard>
           </Col>
         ))}
       </Row>

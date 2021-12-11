@@ -8,7 +8,7 @@ Container.set(ILocalStorageService, localStorageService);
 Container.set(ISyncStorageService, syncStorageService);
 import { IChannelServer } from '@/service/common/ipc';
 import { ContentScriptChannel } from '@/service/contentScript/common/contentScriptIPC';
-import localeService from '@/common/locales';
+import localeService from '@/locales';
 Container.set(ILocaleService, localeService);
 import '@/service/extension/browser/extensionContainer';
 import { IContentScriptService } from '@/service/common/contentScript';

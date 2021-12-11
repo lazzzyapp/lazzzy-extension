@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import * as React from 'react';
 import { StarOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
@@ -12,9 +11,9 @@ interface PageProps {
   name: string;
   avatar: string;
   description?: string;
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
-  onSetDefaultAccount: (id: string) => void;
+  onEdit(id: string): void;
+  onDelete(id: string): void;
+  onSetDefaultAccount(id: string): void;
 }
 
 export default class Page extends React.Component<PageProps> {
@@ -48,7 +47,7 @@ export default class Page extends React.Component<PageProps> {
         </div>
         <div className={styles.operation}>
           <Button className={styles.editButton} type="primary" onClick={this.handleEdit}>
-            <FormattedMessage id="component.accountItem.edit" />
+            <FormattedMessage id="component.accountItem.edit"></FormattedMessage>
           </Button>
           <Button type="primary" danger onClick={this.handleDelete}>
             <FormattedMessage id="component.accountItem.delete" />

@@ -1,4 +1,4 @@
-import { hasUpdate } from './index';
+import { hasUpdate } from './version';
 
 describe('test version', function() {
   it('test hasUpdate', function() {

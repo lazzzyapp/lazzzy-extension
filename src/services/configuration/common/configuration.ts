@@ -1,16 +1,16 @@
 import { Token } from 'typedi';
 
-export interface ILazzzyConfiguration {
-  google_oauth: {
+export interface ILazzzyAppConfiguration {
+  yuque_oauth: {
     clientId: string;
     callback: string;
     scope: string;
   };
 }
-export interface IConfigurationServiceInterface {
-  getConfiguration: () => ILazzzyConfiguration;
+export interface IConfigurationService {
+  getConfiguration(): ILazzzyAppConfiguration;
 
-  init: () => void;
+  init(): void;
 }
 
-export const IConfigurationService = new Token<IConfigurationServiceInterface>();
+export const IConfigurationService = new Token<IConfigurationService>();

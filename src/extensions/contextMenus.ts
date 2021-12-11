@@ -1,6 +1,3 @@
-/* eslint-disable no-empty-function */
-/* eslint-disable no-useless-constructor */
-/* eslint-disable no-unused-vars */
 import { IContentScriptService } from '@/service/common/contentScript';
 import { IExtensionManifest } from './common';
 
@@ -16,13 +13,13 @@ interface IContextMenuExtensionManifest extends IExtensionManifest {
 
 export interface IContextMenuExtension {
   readonly manifest: IContextMenuExtensionManifest;
-  run: (id: chrome.tabs.Tab, context: IContextMenuContext) => Promise<void>;
+  run(id: chrome.tabs.Tab, context: IContextMenuContext): Promise<void>;
 }
 
 export interface IContextMenuContext {
   config: unknown;
   contentScriptService: IContentScriptService;
-  initContentScriptService: (id: number) => Promise<void>;
+  initContentScriptService(id: number): Promise<void>;
 }
 
 export abstract class ContextMenuExtension implements IContextMenuExtension {

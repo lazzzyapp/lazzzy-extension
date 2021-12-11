@@ -5,31 +5,37 @@ import '@ant-design/compatible/assets/index.less';
 import { Modal, Select } from 'antd';
 import { FormComponentProps } from '@ant-design/compatible/lib/form';
 import styles from './index.less';
-import { ImageHostingServiceMeta } from 'common/backend';
+import { ImageHostingServiceMeta } from '@/backend';
 import { AccountPreference, UserPreferenceStore, ImageHosting } from '@/common/types';
 import { FormattedMessage } from 'react-intl';
 import ImageHostingSelect from '@/components/ImageHostingSelect';
-import useFilterImageHostingServices from '@/common/hooks/useFilterImageHostingServices';
-import useVerifiedAccount from '@/common/hooks/useVerifiedAccount';
+import useFilterImageHostingServices from '@/hooks/useFilterImageHostingServices';
+import useVerifiedAccount from '@/hooks/useVerifiedAccount';
 import RepositorySelect from '@/components/RepositorySelect';
-import { BUILT_IN_IMAGE_HOSTING_ID } from '@/common/backend/imageHosting/interface';
+import { BUILT_IN_IMAGE_HOSTING_ID } from '@/backend/imageHosting/interface';
 
 type PageOwnProps = {
-  imageHostingServicesMeta: Record<string, ImageHostingServiceMeta>;
+  imageHostingServicesMeta: {
+    [type: string]: ImageHostingServiceMeta;
+  };
   servicesMeta: UserPreferenceStore['servicesMeta'];
   imageHosting: ImageHosting[];
   currentAccount: AccountPreference;
   visible: boolean;
-  onCancel: () => void;
-  // eslint-disable-next-line no-unused-vars
-  onEdit: (oldId: string, userInfo: any, newId: string) => void;
+  onCancel(): void;
+  onEdit(oldId: string, userInfo: any, newId: string): void;
 };
 type PageProps = PageOwnProps & FormComponentProps;
 
 const ModalTitle = () => (
   <div className={styles.modalTitle}>
     <FormattedMessage id="preference.accountList.addAccount" defaultMessage="Add Account" />
-    <a title="Help" href={'https://github.com/lazzzyapp/lazzzy-extension/issues'} target="_blank">
+    <a
+      title="link"
+      rel="noopener noreferrer"
+      href={'https://github.com/lazzzyapp/lazzzy-extension/issues'}
+      target="_blank"
+    >
       <QuestionCircleOutlined />
     </a>
   </div>
@@ -50,8 +56,10 @@ const Page: React.FC<PageProps> = ({
     type,
     accountStatus: { verified, repositories, userInfo, id },
     verifyAccount,
+    loadAccount,
     serviceForm,
     verifying,
+    okText: verifyText,
   } = useVerifiedAccount({
     form,
     services: servicesMeta,
@@ -87,14 +95,19 @@ const Page: React.FC<PageProps> = ({
     <Modal
       visible={visible}
       title={<ModalTitle />}
-      okText={okText}
+      okText={verified ? okText : verifyText}
       okType="primary"
       okButtonProps={{
         loading: verifying,
-        disabled: !verified,
       }}
       onCancel={onCancel}
-      onOk={() => onEdit(currentAccount.id, userInfo, id!)}
+      onOk={() => {
+        if (verified) {
+          onEdit(currentAccount.id, userInfo, id!);
+        } else {
+          loadAccount();
+        }
+      }}
     >
       <Form labelCol={{ span: 7, offset: 0 }} wrapperCol={{ span: 17 }}>
         <Form.Item
@@ -142,7 +155,7 @@ const Page: React.FC<PageProps> = ({
             <ImageHostingSelect
               disabled={!verified}
               supportedImageHostingServices={supportedImageHostingServices}
-            />
+            ></ImageHostingSelect>
           )}
         </Form.Item>
       </Form>

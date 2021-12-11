@@ -1,7 +1,7 @@
 import Section from './index';
 import React from 'react';
 import { render } from 'enzyme';
-import '@wojtekmaj/enzyme-adapter-react-17';
+import 'enzyme-adapter-react-16';
 
 describe('test Section', () => {
   it.skip('should render correct', () => {

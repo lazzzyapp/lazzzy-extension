@@ -16,7 +16,9 @@ class Test {
   public actionBeforeLoadingCount = 0;
 
   @loading
-  exec = (time: number) => new Promise(r => setTimeout(r, time));
+  exec = (time: number) => {
+    return new Promise(r => setTimeout(r, time));
+  };
 
   @action
   @loading

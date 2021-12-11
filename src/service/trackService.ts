@@ -1,4 +1,4 @@
-import { TrackEventCategory, ITrackService } from './common/track';
+import { ITrackService, TrackEventCategory } from './common/track';
 
 import { Service } from 'typedi';
 
@@ -18,7 +18,7 @@ class TrackService implements ITrackService {
     // }
   }
 
-  toggle(): void {
+  toggle() {
     this.enable = !this.enable;
   }
 

@@ -1,5 +1,3 @@
-/* eslint-disable no-implicit-globals */
-/* eslint-disable no-unused-vars */
 import TurndownService from 'turndown';
 import { IHighlighter } from '@web-clipper/highlight';
 import { IAreaSelector } from '@web-clipper/area-selector';
@@ -27,7 +25,7 @@ export interface ContentScriptContext {
   turndown: TurndownService;
   Highlighter: Type<IHighlighter>;
   AreaSelector: Type<IAreaSelector>;
-  toggleLazzzy: () => void;
+  toggleClipper: () => void;
   toggleLoading: () => void;
   Readability: any;
   document: Document;
@@ -35,7 +33,7 @@ export interface ContentScriptContext {
 }
 
 export interface Message {
-  info: (content: string) => void;
+  info(content: string): void;
 }
 
 export interface UploadImageRequest {
@@ -43,11 +41,11 @@ export interface UploadImageRequest {
 }
 
 export interface ImageHostingService {
-  getId: () => string;
+  getId(): string;
 
-  uploadImage: (request: UploadImageRequest) => Promise<string>;
+  uploadImage(request: UploadImageRequest): Promise<string>;
 
-  uploadImageUrl: (url: string) => Promise<string>;
+  uploadImageUrl(url: string): Promise<string>;
 }
 
 interface CopyToClipboardOptions {
@@ -58,7 +56,7 @@ interface CopyToClipboardOptions {
 
 interface OCRRequest {
   image: string;
-  language_type: 'CHN_ENG' | 'ENG' | 'JAP' | 'GER';
+  language_type: 'ENG' | 'JAP' | 'GER';
 }
 export interface ToolContext<T, Out> {
   locale: string;
@@ -78,10 +76,25 @@ export interface ToolContext<T, Out> {
 }
 
 export interface IExtensionLifeCycle<T, U> {
-  init?: (context: InitContext) => boolean;
-  run?: (context: ContentScriptContext) => Promise<T> | T;
-  afterRun?: (context: ToolContext<T, U>) => Promise<U> | U;
-  destroy?: (context: ContentScriptContext) => void;
+  /**
+   * 插件被加载之前
+   */
+  init?(context: InitContext): boolean;
+
+  /**
+   * 执行插件
+   */
+  run?(context: ContentScriptContext): Promise<T> | T;
+
+  /**
+   * 执行插件后
+   */
+  afterRun?(context: ToolContext<T, U>): Promise<U> | U;
+
+  /**
+   * 清理环境
+   */
+  destroy?(context: ContentScriptContext): void;
 }
 
 export interface IExtensionManifest {
@@ -107,18 +120,17 @@ export interface IExtensionManifest {
 
   readonly config?: {
     scheme: ISchema;
-    default: Record<string, string | string[]>;
+    default: { [key: string]: string | string[] };
   };
 
-  readonly i18nManifest?: Record<
-    string,
-    {
+  readonly i18nManifest?: {
+    [key: string]: {
       readonly name?: string;
       readonly description?: string;
       readonly icon?: string;
       readonly keywords?: string[];
-    }
-  >;
+    };
+  };
 }
 
 export enum ExtensionType {
@@ -192,7 +204,7 @@ export class ToolExtension<T = string> extends AbstractExtension<T, string> {
 
 export interface IContextMenuContext {
   contentScriptService: IContentScriptService;
-  initContentScriptService: (id: number) => Promise<void>;
+  initContentScriptService(id: number): Promise<void>;
 }
 
 export interface IContextMenuExtensionFactory {

@@ -25,7 +25,7 @@ const Page: React.FC<DvaRouterProps> = () => {
     }
   }, [history]);
 
-  return <div />;
+  return <div></div>;
 };
 
 export default Page;

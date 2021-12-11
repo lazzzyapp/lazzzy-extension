@@ -9,7 +9,7 @@ import { IExtensionContainer } from '@/service/common/extension';
 
 const { Redirect } = router;
 
-const LazzzyPluginPage: React.FC<DvaRouterProps> = props => {
+const ClipperPluginPage: React.FC<DvaRouterProps> = props => {
   const {
     history: {
       location: { pathname, search },
@@ -21,12 +21,12 @@ const LazzzyPluginPage: React.FC<DvaRouterProps> = props => {
   }
   const extension = extensions.find(o => o.router === pathname);
   if (!extension) {
-    return <Redirect to="/" />;
+    return <Redirect to="/"></Redirect>;
   }
   if (extension.type === ExtensionType.Text) {
     return <TextEditor extension={extension} pathname={pathname} search={search} />;
   }
-  return <Redirect to="/" />;
+  return <Redirect to="/"></Redirect>;
 };
 
-export default connect()(LazzzyPluginPage);
+export default connect()(ClipperPluginPage);

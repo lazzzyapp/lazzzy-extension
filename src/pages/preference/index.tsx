@@ -12,6 +12,9 @@ import {
   ToolOutlined,
   UserOutlined,
   SettingOutlined,
+  WarningOutlined,
+  DiffOutlined,
+  RocketOutlined,
 } from '@ant-design/icons';
 
 import { Tabs, Badge, message } from 'antd';
@@ -19,10 +22,9 @@ import { FormattedMessage } from 'react-intl';
 import Base from './base';
 import { DvaRouterProps, GlobalStore } from '@/common/types';
 import Changelog from './changelog';
-import IconFont from '@/components/IconFont';
 import Powerpack from './powerpack';
 import Privacy from './privacy';
-import locale from '@/common/locales';
+import locale from '@/locales';
 import Container from 'typedi';
 import { IConfigService } from '@/service/common/config';
 import { useObserver } from 'mobx-react';
@@ -31,9 +33,11 @@ const { Route } = router;
 
 const TabPane = Tabs.TabPane;
 
-const mapStateToProps = ({ account: { accounts } }: GlobalStore) => ({
-  accounts,
-});
+const mapStateToProps = ({ account: { accounts } }: GlobalStore) => {
+  return {
+    accounts,
+  };
+};
 type PageStateProps = ReturnType<typeof mapStateToProps>;
 
 const tabs = [
@@ -65,19 +69,19 @@ const tabs = [
   },
   {
     path: 'powerpack',
-    icon: <IconFont type="powerpack" />,
-    title: <FormattedMessage id="preference.tab.powerpack" defaultMessage="Powerpack" />,
+    icon: <RocketOutlined />,
+    title: <FormattedMessage id="preference.tab.powerpack" defaultMessage="Upgrades" />,
     component: Powerpack,
   },
   {
     path: 'privacy',
-    icon: <IconFont type="privacy" />,
+    icon: <WarningOutlined />,
     title: <FormattedMessage id="preference.tab.privacy" defaultMessage="Privacy policy" />,
     component: Privacy,
   },
   {
     path: 'changelog',
-    icon: <IconFont type="changelog" />,
+    icon: <DiffOutlined />,
     title: <FormattedMessage id="preference.tab.changelog" defaultMessage="Changelog" />,
     component: Changelog,
   },
@@ -95,7 +99,8 @@ const Preference: React.FC<PageProps> = ({
       message.error(
         locale.format({
           id: 'preference.bind.message',
-          defaultMessage: 'You need to bind an account before you can use it.',
+          defaultMessage:
+            'Lazzzy requires you signin to one of your notes application to continue.',
         })
       );
       return;

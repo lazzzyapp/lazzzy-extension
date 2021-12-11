@@ -3,7 +3,7 @@ import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.less';
 import { Modal, Select, Input } from 'antd';
 import { FormComponentProps } from '@ant-design/compatible/lib/form';
-import { ImageHostingServiceMeta } from '../../../../common/backend';
+import { ImageHostingServiceMeta } from '@/backend';
 import { ImageHosting } from '@/common/types';
 import { FormattedMessage } from 'react-intl';
 import Container from 'typedi';
@@ -11,12 +11,11 @@ import { IPermissionsService } from '@/service/common/permissions';
 
 type PageOwnProps = {
   currentImageHosting?: ImageHosting | null;
-  imageHostingServicesMeta: Record<string, ImageHostingServiceMeta>;
+  imageHostingServicesMeta: { [type: string]: ImageHostingServiceMeta };
   visible: boolean;
-  onAddAccount: () => void;
-  // eslint-disable-next-line no-unused-vars
-  onEditAccount: (id: string) => void;
-  onCancel: () => void;
+  onAddAccount(): void;
+  onEditAccount(id: string): void;
+  onCancel(): void;
 };
 
 type PageProps = PageOwnProps & FormComponentProps;
@@ -103,7 +102,9 @@ const AddImageHostingModal: React.FC<PageProps> = props => {
         </Form.Item>
         {getImageHostingForm(initImageHosting.info)}
         <Form.Item
-          label={<FormattedMessage id="preference.imageHosting.remark" defaultMessage="Remark" />}
+          label={
+            <FormattedMessage id="preference.imageHosting.remark" defaultMessage="Description" />
+          }
         >
           {getFieldDecorator('remark', {
             initialValue: initImageHosting.remark,

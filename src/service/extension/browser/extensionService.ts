@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   LOCAL_EXTENSIONS_ENABLE_AUTOMATIC_EXTENSIONS_KEY,
   LOCAL_EXTENSIONS_DISABLED_EXTENSIONS_KEY,
@@ -72,7 +71,7 @@ class ExtensionService implements IExtensionService {
   }
 
   private async toggleStorageData(key: string, id: string) {
-    const extensions = JSON.parse(this.localStorageService.get(key, '[]')) as string[];
+    let extensions = JSON.parse(this.localStorageService.get(key, '[]')) as string[];
     const newExtensions = extensions.filter(o => o !== id);
     if (newExtensions.length === extensions.length) {
       newExtensions.push(id);

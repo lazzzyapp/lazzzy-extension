@@ -1,10 +1,7 @@
-import { hasUpdate } from '@/common/version';
+import { hasUpdate } from '@/common/version/version';
 import config from '@/config';
-import {
-  RemoteConfig as _RemoteConfig,
-  IConfigServiceInterface,
-  IConfigService,
-} from '@/service/common/config';
+import { IConfigService } from '@/service/common/config';
+import { RemoteConfig as _RemoteConfig } from '@/service/common/RemoteConfig';
 import { Service } from 'typedi';
 import packageJson from '@/../package.json';
 import localConfig from '@/../config.json';
@@ -14,7 +11,7 @@ import * as browser from '@web-clipper/chrome-promise';
 
 type RemoteConfig = _RemoteConfig;
 
-class BrowserConfigService implements IConfigServiceInterface {
+class BrowserConfigService implements IConfigService {
   @observable
   public isLatestVersion: boolean = true;
 

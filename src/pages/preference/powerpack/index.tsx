@@ -15,23 +15,23 @@ const feature = [
   {
     icon: 'mail',
     id: 'preference.powerpack.feature.saveToEmail',
-    defaultMessage: 'Save To Email',
+    defaultMessage: 'Send To Email',
     description: 'preference.powerpack.feature.saveToEmail.description',
-    descriptionDefaultMessage: 'Save web page to specified email',
+    descriptionDefaultMessage: 'Send a web page via email',
   },
   {
     icon: 'ocr',
     id: 'preference.powerpack.feature.ocr',
     defaultMessage: 'OCR',
     description: 'preference.powerpack.feature.ocr.description',
-    descriptionDefaultMessage: 'Recognize text in pictures',
+    descriptionDefaultMessage: 'Detect words in pictures',
   },
   {
     icon: 'kindle',
     id: 'preference.powerpack.feature.sendToKindle',
     defaultMessage: 'Send To Kindle',
     description: 'preference.powerpack.feature.sendToKindle.description',
-    descriptionDefaultMessage: 'Save web pages to kindle for reading',
+    descriptionDefaultMessage: 'Save a webpage to your kindle to read later',
   },
   {
     icon: 'coffee',
@@ -70,7 +70,7 @@ const Powerpack: React.FC = () => {
     };
   });
   if (loading) {
-    return <Skeleton />;
+    return <Skeleton></Skeleton>;
   }
 
   if (userInfo) {
@@ -92,9 +92,7 @@ const Powerpack: React.FC = () => {
             <Button
               key="upgrade"
               type="link"
-              href={`https://lazzzy.app/powerpack?guest_email=${encodeURIComponent(
-                userInfo.email
-              )}`}
+              href={`https:/lazzzy.app/powerpack?guest_email=${encodeURIComponent(userInfo.email)}`}
               target="_blank"
             >
               <FormattedMessage id="preference.powerpack.upgrade" />
@@ -145,10 +143,7 @@ const Powerpack: React.FC = () => {
             />
           </h2>
           <h3>
-            <FormattedMessage
-              id="preference.powerpack.free.trial"
-              defaultMessage="Free trial for 7 days !"
-            />
+            <FormattedMessage id="preference.powerpack.free.trial" />
           </h3>
           <div>
             <Button href={githubOauthUrl} target="_blank">
@@ -179,7 +174,7 @@ const Powerpack: React.FC = () => {
                 <IconFont
                   type={o.icon}
                   style={{ fontSize: 48, border: '1px solid #e4e4e4', padding: 8 }}
-                />
+                ></IconFont>
               </Col>
               <Col span={19}>
                 <div style={{ fontSize: 16 }}>

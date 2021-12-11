@@ -7,16 +7,16 @@ export default new ToolExtension(
     version: '0.0.1',
     description: 'Delete selected page elements.',
     i18nManifest: {
-      'en-US': { name: 'Delete Element', description: 'Delete the selected page element.' },
+      'zh-CN': { name: '删除元素', description: '删除选择的页面元素。' },
     },
   },
   {
     run: async context => {
-      const { $, Highlighter, toggleLazzzy } = context;
-      toggleLazzzy();
+      const { $, Highlighter, toggleClipper } = context;
+      toggleClipper();
       const data = await new Highlighter().start();
       $(data).remove();
-      toggleLazzzy();
+      toggleClipper();
     },
   }
 );

@@ -3,8 +3,8 @@ import {
   asyncAddImageHosting,
   asyncDeleteImageHosting,
   asyncEditImageHosting,
-} from '@/actions/userPreference';
-import { Dispatch, bindActionCreators } from 'redux';
+} from 'pageActions/userPreference';
+import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'dva';
 import styles from './index.less';
 import AddImageHosting from './form/addImageHosting';
@@ -27,10 +27,12 @@ const useActions = {
 
 const mapStateToProps = ({
   userPreference: { imageHostingServicesMeta, imageHosting },
-}: GlobalStore) => ({
-  imageHostingServicesMeta,
-  imageHosting,
-});
+}: GlobalStore) => {
+  return {
+    imageHostingServicesMeta,
+    imageHosting,
+  };
+};
 type PageState = {
   showAddImageHostingModal: boolean;
   currentImageHosting?: null | ImageHosting;
@@ -161,5 +163,5 @@ class Page extends React.Component<PageProps, PageState> {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-  // @ts-ignore
+  //@ts-ignore
 )(Form.create<PageProps>()(Page));

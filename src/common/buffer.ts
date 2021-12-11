@@ -1,14 +1,10 @@
-/* eslint-disable no-implicit-globals */
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-redeclare */
 /* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable no-dupe-class-members */
 /* eslint-disable no-param-reassign */
-/* ---------------------------------------------------------------------------------------------
+/*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
- *-------------------------------------------------------------------------------------------- */
+ *--------------------------------------------------------------------------------------------*/
 
 import * as strings from './strings';
 
@@ -96,7 +92,7 @@ export class VSBuffer {
     // IMPORTANT: use subarray instead of slice because TypedArray#slice
     // creates shallow copy and NodeBuffer#slice doesn't. The use of subarray
     // ensures the same, performant, behaviour.
-    return new VSBuffer(this.buffer.subarray(start! /* bad lib.d.ts */, end));
+    return new VSBuffer(this.buffer.subarray(start! /*bad lib.d.ts*/, end));
   }
 
   set(array: VSBuffer, offset?: number): void;

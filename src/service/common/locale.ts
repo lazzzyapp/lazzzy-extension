@@ -1,11 +1,10 @@
-/* eslint-disable no-redeclare */
-/* eslint-disable no-unused-vars */
 import { Token } from 'typedi';
 import { MessageDescriptor } from 'react-intl';
 
 export interface ILocaleService {
   locale: string;
-  init: () => Promise<void>;
-  format: (descriptor: MessageDescriptor) => string;
+  init(): Promise<void>;
+  format(descriptor: MessageDescriptor): string;
 }
-export const ILocaleService = new Token<ILocaleService>('locale');
+
+export const ILocaleService = new Token<ILocaleService>('locales');

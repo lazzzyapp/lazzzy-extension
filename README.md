@@ -8,7 +8,7 @@
       <img src="https://github.com/lazzzyapp/lazzzy-extension/workflows/Release%20resource/badge.svg" alt="Release resource status">
     </a>
     <a href="https://codecov.io/gh/lazzzyapp/lazzzy-extension">
-      <img src="https://img.shields.io/codecov/c/github/lazzzyapp/lazzzy-extension/master.svg?style=flat-square" alt="Codecov">
+      <img src="https://img.shields.io/codecov/c/github/lazzzyapp/lazzzy-extension/main.svg?style=flat-square" alt="Codecov">
     </a>
 </p>
 

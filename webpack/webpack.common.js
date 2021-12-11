@@ -1,4 +1,3 @@
-/* eslint-disable no-implicit-globals */
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -58,6 +57,7 @@ module.exports = {
       common: resolve('src/common/'),
       components: resolve('src/components/'),
       browserActions: resolve('src/browser/actions/'),
+      pageActions: resolve('src/actions'),
       extensions: resolve('src/extensions/'),
     },
     extensions: ['.ts', '.tsx', '.js', 'less'],
@@ -166,7 +166,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      LAZZZY_VERSION: JSON.stringify(basicManifest.version),
+      LAZZZY_EXTENSION_VERSION: JSON.stringify(basicManifest.version),
     }),
     process.env.NODE_ENV === 'development'
       ? new ExtensionReloader({
@@ -191,12 +191,12 @@ module.exports = {
     ),
     new CopyWebpackPlugin([
       {
-        from: resolve('chrome/js'),
+        from: resolve('src/assets/js'),
         to: resolve('dist'),
         ignore: ['.*'],
       },
       {
-        from: resolve('chrome/icons'),
+        from: resolve('src/assets/icons'),
         to: resolve('dist'),
         ignore: ['.*'],
       },
@@ -206,7 +206,7 @@ module.exports = {
       extra: manifestExtra,
     }),
     new HtmlWebpackPlugin({
-      title: 'Lazzzy',
+      title: 'Lazzzy Extension',
       filename: resolve('dist/tool.html'),
       chunks: ['tool'],
       template: 'src/index.html',

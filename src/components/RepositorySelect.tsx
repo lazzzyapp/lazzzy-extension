@@ -1,17 +1,16 @@
 import React, { useMemo, useState, forwardRef, useCallback } from 'react';
 import { Select } from 'antd';
-import { Repository } from 'common/backend';
+import { Repository } from '@/backend';
 import { SelectProps } from 'antd/lib/select';
 import { debounce } from 'lodash';
 
-type RepositoryInGroup = Record<
-  string,
-  {
+interface RepositoryInGroup {
+  [groupId: string]: {
     groupId: string;
     groupName: string;
     repositories: Repository[];
-  }
->;
+  };
+}
 
 interface RepositorySelectProps extends SelectProps<string> {
   repositories: Repository[];
@@ -20,6 +19,7 @@ interface RepositorySelectProps extends SelectProps<string> {
 const RepositorySelect: React.FC<RepositorySelectProps> = ({ repositories, ...props }, ref) => {
   const [searchKey, _setSearchKey] = useState<string>();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const setSearchKey = useCallback(debounce(_setSearchKey, repositories.length > 100 ? 500 : 0), [
     _setSearchKey,
     repositories,
@@ -33,7 +33,7 @@ const RepositorySelect: React.FC<RepositorySelectProps> = ({ repositories, ...pr
           return;
         }
       }
-      const group = repositoryInGroup[o.groupId];
+      let group = repositoryInGroup[o.groupId];
       if (group) {
         group.repositories.push(o);
       } else {

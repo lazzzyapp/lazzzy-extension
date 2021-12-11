@@ -3,9 +3,9 @@ import { FormComponentProps } from '@ant-design/compatible/lib/form';
 import { Form } from '@ant-design/compatible';
 import { FormattedMessage } from 'react-intl';
 import { Checkbox, Button } from 'antd';
-import usePowerpack from '@/common/hooks/usePowerpack';
-import i18n from '@/common/locales';
-type PowerpackFormProps = FormComponentProps;
+import usePowerpack from '@/hooks/usePowerpack';
+import i18n from '@/locales';
+interface PowerpackFormProps extends FormComponentProps {}
 
 const PowerpackForm: React.FC<PowerpackFormProps> = ({ form: { getFieldDecorator } }) => {
   const { bought, boughtPowerpack, expired } = usePowerpack();

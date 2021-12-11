@@ -1,6 +1,7 @@
 import { IPermissionsService } from './../../common/permissions';
-import { extend } from 'umi-request';
-import { IRequestService, TRequestOption, IBasicRequestService } from '@/service/common/request';
+import { extend, RequestMethod } from 'umi-request';
+import { IBasicRequestService, TRequestOption } from '@/service/common/request';
+import { IRequestService } from '@/service/common/IRequestService';
 import Container, { Service } from 'typedi';
 class BasicRequestService implements IRequestService {
   private requestMethod: RequestMethod;
@@ -12,11 +13,11 @@ class BasicRequestService implements IRequestService {
     const permissionsService = Container.get(IPermissionsService);
     await permissionsService.request({ origins: [`${new URL(url).origin}/*`] });
     return new Promise<Blob>(resolve => {
-      const oReq = new XMLHttpRequest();
+      let oReq = new XMLHttpRequest();
       oReq.open('GET', url, true);
       oReq.responseType = 'blob';
       oReq.onload = function() {
-        const blob = oReq.response;
+        let blob = oReq.response;
         resolve(blob);
       };
       oReq.send();

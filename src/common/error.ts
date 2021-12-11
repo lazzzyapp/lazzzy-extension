@@ -1,6 +1,3 @@
-/* eslint-disable no-redeclare */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-implicit-globals */
 export interface SerializedError {
   readonly $isError: true;
   readonly name: string;
@@ -12,7 +9,7 @@ export function transformErrorForSerialization(error: Error): SerializedError;
 export function transformErrorForSerialization(error: any): any;
 export function transformErrorForSerialization(error: any): any {
   if (error instanceof Error) {
-    const { name, message } = error;
+    let { name, message } = error;
     const stack: string = (<any>error).stacktrace || (<any>error).stack;
     return {
       $isError: true,

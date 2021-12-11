@@ -2,13 +2,15 @@ import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { ConfigProvider } from 'antd';
 import { connect } from 'dva';
-import { localesMap } from '@/common/locales';
-import { localeProvider } from '@/common/locales/antd';
+import { localesMap } from '@/locales';
+import { localeProvider } from '@/locales/antd';
 import { GlobalStore } from '@/common/types';
 
-const mapStateToProps = ({ userPreference: { locale } }: GlobalStore) => ({
-  locale,
-});
+const mapStateToProps = ({ userPreference: { locale } }: GlobalStore) => {
+  return {
+    locale,
+  };
+};
 type PageStateProps = ReturnType<typeof mapStateToProps>;
 
 const LocalWrapper: React.FC<PageStateProps> = ({ children, locale }) => {

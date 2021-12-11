@@ -1,6 +1,3 @@
-/* eslint-disable no-useless-constructor */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-empty-function */
 import { IContentScriptService, IToggleConfig } from '@/service/common/contentScript';
 import { IServerChannel, IChannel } from '@/service/common/ipc';
 
@@ -39,14 +36,27 @@ export class ContentScriptChannel implements IServerChannel {
 export class ContentScriptChannelClient implements IContentScriptService {
   constructor(private channel: IChannel) {}
 
-  remove = async (): Promise<void> => this.channel.call('remove');
+  remove = async (): Promise<void> => {
+    return this.channel.call('remove');
+  };
 
-  runScript = async (id: string, lifeCycle: 'run' | 'destroy'): Promise<void> =>
-    this.channel.call('runScript', [id, lifeCycle]);
+  runScript = async (id: string, lifeCycle: 'run' | 'destroy'): Promise<void> => {
+    return this.channel.call('runScript', [id, lifeCycle]);
+  };
 
-  hide = async (): Promise<void> => this.channel.call('hide');
-  checkStatus = async (): Promise<boolean> => this.channel.call('checkStatus');
-  toggle = async (config?: IToggleConfig): Promise<void> => this.channel.call('toggle', [config]);
-  getSelectionMarkdown = async (): Promise<string> => this.channel.call('getSelectionMarkdown');
-  getPageUrl = async (): Promise<string> => this.channel.call('getPageUrl');
+  hide = async (): Promise<void> => {
+    return this.channel.call('hide');
+  };
+  checkStatus = async (): Promise<boolean> => {
+    return this.channel.call('checkStatus');
+  };
+  toggle = async (config?: IToggleConfig): Promise<void> => {
+    return this.channel.call('toggle', [config]);
+  };
+  getSelectionMarkdown = async (): Promise<string> => {
+    return this.channel.call('getSelectionMarkdown');
+  };
+  getPageUrl = async (): Promise<string> => {
+    return this.channel.call('getPageUrl');
+  };
 }
