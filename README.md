@@ -10,6 +10,7 @@
     <a href="https://codecov.io/gh/lazzzyapp/lazzzy-extension">
       <img src="https://img.shields.io/codecov/c/github/lazzzyapp/lazzzy-extension/main.svg?style=flat-square" alt="Codecov">
     </a>
+    <a href="https://wakatime.com/badge/user/15adb570-25ec-4042-9ca6-9450ff22130e/project/38452b38-b7bf-448b-b3f2-2a6899b3b42c"><img src="https://wakatime.com/badge/user/15adb570-25ec-4042-9ca6-9450ff22130e/project/38452b38-b7bf-448b-b3f2-2a6899b3b42c.svg" alt="wakatime"></a>
 </p>
 
 ### Supported Websites
@@ -23,14 +24,6 @@
 
 - [GoogleDocs](https://www.docs.google.com)
 - [Notability]()
-- [Joplin](https://joplinapp.org/)
-- [Server Chan](http://sc.ftqq.com/3.version)
-- [dida365](https://dida365.com/)
-- [baklib](https://www.baklib-free.com/)
-- [wolai](https://www.wolai.com/)
-- [Leanote](https://github.com/leanote/leanote)
-- [Flomo](https://flomoapp.com/)
-- [Youdao](https://note.youdao.com/)
 
 ### Install
 
@@ -56,8 +49,8 @@ ps: Because the review takes a week, the version will fall behind.
 ### Develop
 
 ```bash
-git clone https://github.com/lazzzapp/lazzzy-extention.git
-cd lazzzy-extention
+git clone https://github.com/lazzzapp/lazzzy-extension.git
+cd lazzzy-extension
 yarn
 yarn dev # Chrome
 yarn dev:ff # Firefox
