@@ -1,5 +1,5 @@
-import { IExtendRequestHelper } from '@/service/common/request/service';
-import { RequestHelper } from '@/service/request/common/request';
+import { IExtendRequestHelper } from '@/service/common/request';
+import { RequestHelper } from '@/service/request';
 import { stringify } from 'qs';
 import {
   ICreateIssueOptions,
@@ -33,13 +33,6 @@ export class GithubClient {
     });
   }
 
-  static get generateNewTokenUrl() {
-    return `https://github.com/settings/tokens/new?${stringify({
-      scopes: 'repo',
-      description: 'Lazzzy',
-    })}`;
-  }
-
   createIssue = async (options: ICreateIssueOptions) => {
     const data = { title: options.title, body: options.body, labels: options.labels };
     const response = await this.request.post<ICreateIssueResponse>(
@@ -49,7 +42,9 @@ export class GithubClient {
     return response;
   };
 
-  getUserInfo = () => this.request.get<IGithubUserInfoResponse>('user');
+  getUserInfo = () => {
+    return this.request.get<IGithubUserInfoResponse>('user');
+  };
 
   queryAll = async <O extends IPageQuery, T>(
     args: TOmitPage<O>,
@@ -75,8 +70,8 @@ export class GithubClient {
    *
    * @see https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#create-or-update-file-contents
    */
-  uploadFile = (options: IUploadFileOptions) =>
-    this.request.put<IUploadFileResponse>(
+  uploadFile = (options: IUploadFileOptions) => {
+    return this.request.put<IUploadFileResponse>(
       `repos/${options.owner}/${options.repo}/contents/${options.path}`,
       {
         data: {
@@ -86,17 +81,25 @@ export class GithubClient {
         },
       }
     );
+  };
 
-  listBranch = (options: IListBranchesOptions) =>
-    this.request.get<IBranch[]>(
+  listBranch = (options: IListBranchesOptions) => {
+    return this.request.get<IBranch[]>(
       `repos/${options.owner}/${options.repo}/branches?${stringify({
         protected: options.protected,
         per_page: options.per_page,
         page: options.page,
       })}`
     );
-  getRepos = (options: IGetGithubRepositoryOptions) =>
-    this.request.get<IRepository[]>(
+  };
+
+  /**
+   *
+   * @see https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#list-repositories-for-the-authenticated-user
+   * @param options IGetGithubRepositoryOptions
+   */
+  getRepos = (options: IGetGithubRepositoryOptions) => {
+    return this.request.get<IRepository[]>(
       `user/repos?${stringify({
         affiliation: options.affiliation,
         per_page: options.per_page,
@@ -104,4 +107,12 @@ export class GithubClient {
         page: options.page,
       })}`
     );
+  };
+
+  static get generateNewTokenUrl() {
+    return `https://github.com/settings/tokens/new?${stringify({
+      scopes: 'repo',
+      description: 'Lazzzy Extension',
+    })}`;
+  }
 }

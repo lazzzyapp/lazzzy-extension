@@ -11,7 +11,7 @@ import userPreference from '@/models/userPreference';
 import createLoading from 'dva-loading';
 import LocalWrapper from './locale';
 import { localStorageService, syncStorageService } from '@/common/chrome/storage';
-import localeService from '@/common/locales';
+import localeService from '@/locales';
 import AuthPage from '@/pages/auth';
 import LoginPage from '@/pages/login';
 import account from '@/models/account';
@@ -31,7 +31,6 @@ import { IBackendService } from '@/services/backend/common/backend';
 import { PowerpackService } from '@/service/powerpackService';
 const { Route, Switch, Router, withRouter } = router;
 
-// eslint-disable-next-line no-implicit-globals
 function withTool(WrappedComponent: any): any {
   return () => {
     const ToolWith = withRouter(Tool as any);
@@ -39,8 +38,8 @@ function withTool(WrappedComponent: any): any {
 
     return (
       <React.Fragment>
-        <ToolWith />
-        <WrappedComponentWith />
+        <ToolWith></ToolWith>
+        <WrappedComponentWith></WrappedComponentWith>
       </React.Fragment>
     );
   };
@@ -67,21 +66,23 @@ export default async () => {
   });
   app.use(createLoading());
 
-  app.router(router => (
-    <LocalWrapper>
-      <Router history={router!.history}>
-        <Switch>
-          <Route exact path="/" component={Tool} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/auth" component={AuthPage} />
-          <Route exact path="/complete" component={Complete} />
-          <Route path="/editor" component={withTool(PluginPage)} />
-          <Route path="/preference/:id" component={withTool(preference)} />
-          <Route path="/plugins/:id" component={withTool(PluginPage)} />
-        </Switch>
-      </Router>
-    </LocalWrapper>
-  ));
+  app.router(router => {
+    return (
+      <LocalWrapper>
+        <Router history={router!.history}>
+          <Switch>
+            <Route exact path="/" component={Tool} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/auth" component={AuthPage} />
+            <Route exact path="/complete" component={Complete} />
+            <Route path="/editor" component={withTool(PluginPage)} />
+            <Route path="/preference/:id" component={withTool(preference)} />
+            <Route path="/plugins/:id" component={withTool(PluginPage)} />
+          </Switch>
+        </Router>
+      </LocalWrapper>
+    );
+  });
 
   app.model(account);
   app.model(clipper);

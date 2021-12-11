@@ -4,12 +4,12 @@ import { IContentScriptService } from '@/service/common/contentScript';
 import { ITabService } from '@/service/common/tab';
 import { Container } from 'typedi';
 import React from 'react';
-import { getLanguage } from './../common/locales';
-import localeService from '@/common/locales';
+import { getLanguage } from './../locales';
+import localeService from '@/locales';
 import { LOCAL_USER_PREFERENCE_LOCALE_KEY } from './../common/modelTypes/userPreference';
-import storage from '@/common/storage';
+import storage from '@/storage';
 import * as antd from 'antd';
-import { UserPreferenceStore, GlobalStore } from '@/common/types';
+import { GlobalStore } from '@/common/types';
 import update from 'immutability-helper';
 import {
   asyncSetEditorLiveRendering,
@@ -22,16 +22,14 @@ import {
   asyncSetLocaleToStorage,
   initServices,
   asyncSetIconColor,
-} from '@/actions/userPreference';
-import { initTabInfo, changeData, asyncChangeAccount } from '@/actions/clipper';
+} from 'pageActions/userPreference';
+import { initTabInfo, changeData, asyncChangeAccount } from 'pageActions/clipper';
 import { DvaModelBuilder, removeActionNamespace } from 'dva-model-creator';
-import backend, {
-  getServices,
-  getImageHostingServices,
-  imageHostingServiceFactory,
-} from '@/backend';
+import { UserPreferenceStore } from 'common/types';
+import { getServices, getImageHostingServices, imageHostingServiceFactory } from '@/backend';
 import { ToolContext } from '@/extensions/common';
-import { loadImage } from '@/common/blob';
+import backend from '@/backend/index';
+import { loadImage } from 'common/blob';
 import { routerRedux } from 'dva';
 import { localStorageService, syncStorageService } from '@/common/chrome/storage';
 import { initAccounts } from '@/actions/account';
@@ -116,7 +114,7 @@ builder
   .takeEvery(asyncEditImageHosting.started, function*(payload, { call, put }) {
     const { id, value, closeModal } = payload;
     try {
-      // @ts-ignore
+      //@ts-ignore
       const imageHostingList = yield call(storage.editImageHostingById, id, {
         ...value,
         id,
@@ -201,14 +199,14 @@ builder
     }
 
     if (run) {
-      // @ts-ignore
+      //@ts-ignore
       result = yield call(contentScriptService.runScript, id, 'run');
     }
     const state: GlobalStore = yield select(state => state);
     const data = state.clipper.clipperData[pathname];
 
     function createAndDownloadFile(fileName: string, content: string | Blob) {
-      const aTag = document.createElement('a');
+      let aTag = document.createElement('a');
       let blob: Blob;
       if (typeof content === 'string') {
         blob = new Blob([content]);
@@ -242,9 +240,11 @@ builder
           React,
           pangu,
           config,
-          ocr: async r => Container.get(IBackendService).ocr(r),
+          ocr: async r => {
+            return Container.get(IBackendService).ocr(r);
+          },
         };
-        // @ts-ignore
+        //@ts-ignore
         result = yield call(afterRun, context);
       } catch (error) {
         message.error(error.message);
@@ -343,11 +343,13 @@ builder
       }
     });
   })
-  .case(initServices, (state, { imageHostingServicesMeta, servicesMeta }) => ({
-    ...state,
-    imageHostingServicesMeta,
-    servicesMeta,
-  }));
+  .case(initServices, (state, { imageHostingServicesMeta, servicesMeta }) => {
+    return {
+      ...state,
+      imageHostingServicesMeta,
+      servicesMeta,
+    };
+  });
 
 builder.subscript(function trackLoadPage({ history }) {
   history.listen(e => {

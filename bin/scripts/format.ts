@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 export function format() {
-  const localsPath = path.resolve(__dirname, '../../src/common/locales/data');
+  const localsPath = path.resolve(__dirname, '../../src/locales/data');
   const files = fs.readdirSync(localsPath);
 
   const sortedKeys = Object.keys(

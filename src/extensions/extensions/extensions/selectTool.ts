@@ -7,7 +7,7 @@ export default new ToolExtension(
     version: '0.0.1',
     description: 'Manual selection page element.',
     i18nManifest: {
-      'en-US': { name: 'Manual Selection' },
+      'zh-CN': { name: '手动选取' },
     },
   },
   {
@@ -18,15 +18,15 @@ export default new ToolExtension(
       return true;
     },
     run: async context => {
-      const { turndown, Highlighter, toggleLazzzy } = context;
-      toggleLazzzy();
+      const { turndown, Highlighter, toggleClipper } = context;
+      toggleClipper();
       try {
         const data = await new Highlighter().start();
         return turndown.turndown(data);
       } catch (error) {
         throw error;
       } finally {
-        toggleLazzzy();
+        toggleClipper();
       }
     },
     afterRun: context => {

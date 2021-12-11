@@ -1,10 +1,5 @@
-/* eslint-disable no-unused-vars */
-export interface CreateDocumentRequest {
-  title: string;
-  content: string;
-  url?: string;
-  repositoryId: string;
-}
+import { Repository } from './Repository';
+import { CreateDocumentRequest } from './CreateDocumentRequest';
 
 export interface CompleteStatus {
   href?: string;
@@ -17,20 +12,30 @@ export interface UserInfo {
   description?: string;
 }
 
-export interface Repository {
-  id: string;
-  name: string;
-  groupId: string;
-  groupName: string;
-  disabled?: boolean;
-}
-
 export interface ServiceMeta {
+  /**
+   * Name of Backend Service
+   */
   name: string;
+  /**
+   * icon
+   */
   icon: string;
+  /**
+   * Type of Backend Service
+   */
   type: string;
+  /**
+   * Backend Service
+   */
   service: Type<DocumentService>;
+  /**
+   * Home Page
+   */
   homePage?: string;
+  /**
+   * Homepage Config Form
+   */
   form?: any;
   complete?: any;
   oauthUrl?: string;
@@ -39,15 +44,15 @@ export interface ServiceMeta {
 }
 
 export interface DocumentService<T = any> {
-  getId: () => string;
+  getId(): string;
 
-  getRepositories: () => Promise<Repository[]>;
+  getRepositories(): Promise<Repository[]>;
 
-  createDocument: (request: CreateDocumentRequest) => Promise<CompleteStatus | void>;
+  createDocument(request: CreateDocumentRequest): Promise<CompleteStatus | void>;
 
-  getUserInfo: () => Promise<UserInfo>;
+  getUserInfo(): Promise<UserInfo>;
 
-  refreshToken?: (info: T) => Promise<T>;
+  refreshToken?(info: T): Promise<T>;
 }
 
 interface ErrorOptions {

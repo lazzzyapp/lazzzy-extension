@@ -4,13 +4,10 @@ export default new TextExtension(
   {
     name: 'Full Page',
     version: '0.0.1',
-    description: 'Save Full Page and turn into a Markdown file.',
+    description: 'Save Full Page and turn ro Markdown.',
     icon: 'copy',
     i18nManifest: {
-      'en-US': {
-        name: 'Make It Markdown',
-        description: 'Save Full Page and turn into a Markdown file',
-      },
+      'zh-CN': { name: '整个页面', description: '把整个页面元素转换为 Markdown' },
     },
   },
   {

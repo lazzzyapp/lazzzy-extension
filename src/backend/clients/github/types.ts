@@ -1,4 +1,4 @@
-import { IRequestService } from '@/service/common/request/service';
+import { IRequestService } from '@/service/common/IRequestService';
 
 export interface IGithubClientOptions {
   token: string;
@@ -39,10 +39,6 @@ export interface IUploadFileResponse {
   };
 }
 
-export interface IPageQuery {
-  per_page: number;
-  page: number;
-}
 export interface IListBranchesOptions extends IPageQuery {
   owner: string;
   repo: string;
@@ -54,9 +50,13 @@ export interface IBranch {
   protected: boolean;
 }
 
+export interface IPageQuery {
+  per_page: number;
+  page: number;
+}
+
 export type TOmitPage<T> = Omit<T, 'page' | 'per_page'>;
 
-// eslint-disable-next-line no-unused-vars
 export type TPageRequest<O extends IPageQuery, R> = (option: O) => Promise<R[]>;
 
 export interface IGetGithubRepositoryOptions extends IPageQuery {

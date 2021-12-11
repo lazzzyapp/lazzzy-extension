@@ -8,7 +8,7 @@ module.exports = {
     '@/__test__/(.*)': '<rootDir>/src/__test__/$1',
     '^actions/(.*)': '<rootDir>/src/store/actions/$1',
   },
-  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+  setupFilesAfterEnv: ['<rootDir>/tests/setupTests.ts'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },

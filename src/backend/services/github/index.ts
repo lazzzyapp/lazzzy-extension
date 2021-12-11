@@ -3,8 +3,8 @@ import Service from './service';
 import Form from './form';
 import headerForm from './headerForm';
 
-export default () =>
-  ({
+export default () => {
+  return {
     name: 'Github',
     icon: 'github',
     type: 'github',
@@ -15,4 +15,5 @@ export default () =>
     permission: {
       origins: ['https://api.github.com/*'],
     },
-  } as ServiceMeta);
+  } as ServiceMeta;
+};

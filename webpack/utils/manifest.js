@@ -1,4 +1,3 @@
-/* eslint-disable no-implicit-globals */
 const { generateVersion, getPackageJsonVersion } = require('./version');
 const { getCommitsCount } = require('./get-commits-count');
 
@@ -6,9 +5,9 @@ const getBasicManifest = () => {
   const packageVersion = getPackageJsonVersion();
   const commitsCount = getCommitsCount();
   const version = generateVersion({ version: packageVersion, commitsCount });
-  let name = 'Lazzzy';
+  let name = 'Lazzzy Extension';
   if (version !== packageVersion) {
-    name = 'Lazzzy Beta';
+    name = 'Lazzzy Extension Beta';
   }
   return { version, name };
 };
@@ -28,6 +27,7 @@ function generateManifest(options) {
       permissions: [
         'activeTab',
         'storage',
+        'https://lazzzy.app/*',
         'https://api.lazzzy.app/*',
         'https://resource.lazzzy.app/*',
         'contextMenus',
@@ -40,13 +40,7 @@ function generateManifest(options) {
           description: 'Test',
         },
       },
-      optional_permissions: [
-        'cookies',
-        '<all_urls>',
-        'webRequest',
-        'webRequestBlocking',
-        'pageCapture',
-      ],
+      optional_permissions: ['cookies', '<all_urls>', 'webRequest', 'webRequestBlocking'],
     };
   }
   if (targetBrowser === 'Firefox') {
@@ -55,7 +49,7 @@ function generateManifest(options) {
       extra = {
         applications: {
           gecko: {
-            id: 'web-clipper@web-clipper',
+            id: 'lazzzyapp@lazzzy-extension',
           },
         },
       };
@@ -77,6 +71,7 @@ function generateManifest(options) {
         'webRequest',
         'webRequestBlocking',
         'storage',
+        'https://lazzzy.app/*',
         'https://api.lazzzy.app/*',
         'https://resource.lazzzy.app/*',
         'cookies',

@@ -4,9 +4,9 @@ import { UploadImageRequest, ImageHostingService } from '../interface';
 import { isUndefined } from 'lodash';
 import { GithubClient } from '../../clients/github/client';
 import Container from 'typedi';
-import { IBasicRequestService } from '@/service/common/request/service';
+import { IBasicRequestService } from '@/service/common/request';
 import { GithubImageHostingOption } from './type';
-import localeService from '@/common/locales';
+import localeService from '@/locales';
 
 export default class GithubImageHostingService implements ImageHostingService {
   private config: GithubImageHostingOption;
@@ -25,7 +25,9 @@ export default class GithubImageHostingService implements ImageHostingService {
     return this.config.accessToken;
   }
 
-  uploadImage = async ({ data }: UploadImageRequest) => this.uploadAsBase64(data);
+  uploadImage = async ({ data }: UploadImageRequest) => {
+    return this.uploadAsBase64(data);
+  };
 
   uploadImageUrl = async (url: string) => {
     const imageBlob = await Container.get(IBasicRequestService).download(url);

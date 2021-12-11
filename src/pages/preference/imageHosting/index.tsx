@@ -3,8 +3,8 @@ import {
   asyncAddImageHosting,
   asyncDeleteImageHosting,
   asyncEditImageHosting,
-} from '@/actions/userPreference';
-import { Dispatch, bindActionCreators } from 'redux';
+} from 'pageActions/userPreference';
+import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'dva';
 import styles from './index.less';
 import AddImageHosting from './form/addImageHosting';
@@ -14,7 +14,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.less';
 import { Button } from 'antd';
-import { GlobalStore, ImageHosting } from '@/common/types';
+import { GlobalStore, ImageHosting } from 'common/types';
 import { FormattedMessage } from 'react-intl';
 import { asyncDeleteAccount } from '@/actions/account';
 
@@ -27,10 +27,12 @@ const useActions = {
 
 const mapStateToProps = ({
   userPreference: { imageHostingServicesMeta, imageHosting },
-}: GlobalStore) => ({
-  imageHostingServicesMeta,
-  imageHosting,
-});
+}: GlobalStore) => {
+  return {
+    imageHostingServicesMeta,
+    imageHosting,
+  };
+};
 type PageState = {
   showAddImageHostingModal: boolean;
   currentImageHosting?: null | ImageHosting;
@@ -161,5 +163,5 @@ class Page extends React.Component<PageProps, PageState> {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-  // @ts-ignore
+  //@ts-ignore
 )(Form.create<PageProps>()(Page));

@@ -5,14 +5,13 @@ import Section from 'components/section';
 import { FormattedMessage } from 'react-intl';
 import IconFont from '@/components/IconFont';
 import { IExtensionWithId } from '@/extensions/common';
-import localeService from '@/common/locales';
+import localeService from '@/locales';
 
 type PageProps = {
   hasEditor: boolean;
   extensions: IExtensionWithId[];
   pathname: string;
-  // eslint-disable-next-line no-unused-vars
-  onClick: (router: string) => void;
+  onClick(router: string): void;
 };
 
 const ClipExtensions: React.FC<PageProps> = ({ extensions, pathname, onClick, hasEditor }) => {
@@ -22,10 +21,7 @@ const ClipExtensions: React.FC<PageProps> = ({ extensions, pathname, onClick, ha
     }
   };
   return (
-    <Section
-      className={styles.section}
-      title={<FormattedMessage id="tool.clipExtensions" defaultMessage="Clip Extensions" />}
-    >
+    <Section className={styles.section} title={<FormattedMessage id="tool.clipExtensions" />}>
       {extensions.map(plugin => {
         const useThisPlugin = plugin.router === pathname;
         const buttonStyle = useThisPlugin ? { color: '#40a9ff' } : {};

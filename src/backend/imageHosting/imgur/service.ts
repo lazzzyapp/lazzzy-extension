@@ -1,5 +1,5 @@
-import { IBasicRequestService } from '@/service/common/request/service';
-import { RequestHelper } from '@/service/request/common/request';
+import { IBasicRequestService } from '@/service/common/request';
+import { RequestHelper } from '@/service/request';
 import { UploadImageRequest, ImageHostingService } from '../interface';
 import { Base64ImageToBlob } from '@/common/blob';
 import Container from 'typedi';
@@ -15,17 +15,21 @@ export default class ImgurImageHostingService implements ImageHostingService {
     this.config = config;
   }
 
-  getId = () => this.config.clientId;
+  getId = () => {
+    return this.config.clientId;
+  };
 
   uploadImage = async ({ data }: UploadImageRequest) => {
     const blob = Base64ImageToBlob(data);
     return this.uploadBlob(blob);
   };
 
-  uploadImageUrl = async (url: string) => this.uploadBlob(url);
+  uploadImageUrl = async (url: string) => {
+    return this.uploadBlob(url);
+  };
 
   private uploadBlob = async (blob: Blob | string): Promise<string> => {
-    const formData = new FormData();
+    let formData = new FormData();
     formData.append('image', blob);
     const request = new RequestHelper({ request: Container.get(IBasicRequestService) });
     const result = await request.postForm<{ data: { link: string } }>(

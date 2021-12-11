@@ -1,6 +1,5 @@
-import { LazzzyHeaderForm } from '@/common/modelTypes/clipper';
-import { Repository, CompleteStatus, CreateDocumentRequest } from '@/backend/index';
-
+import { ClipperHeaderForm } from '@/common/modelTypes/clipper';
+import { Repository, CompleteStatus, CreateDocumentRequest } from '@/backend';
 import { actionCreatorFactory } from 'dva-model-creator';
 
 const actionCreator = actionCreatorFactory('clipper');
@@ -35,4 +34,4 @@ export const changeData = actionCreator<{ data: any; pathName: string }>('CHANGE
 
 export const watchActionChannel = actionCreator('watchActionChannel');
 
-export const updateLazzzyHeader = actionCreator<LazzzyHeaderForm>('updateLazzzyHeader');
+export const updateClipperHeader = actionCreator<ClipperHeaderForm>('updateClipperHeader');

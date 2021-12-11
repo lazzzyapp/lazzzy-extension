@@ -1,6 +1,6 @@
 import { Container } from 'typedi';
 import { CompleteStatus } from '@/backend/interface';
-import { PostMailRequestBody, IBackendService } from '@/services/backend/common/backend';
+import { IBackendService, PostMailRequestBody } from '@/services/backend/common/backend';
 import { DocumentService, CreateDocumentRequest } from '../../index';
 import showdown from 'showdown';
 import { MailBackendServiceConfig } from './interface';
@@ -14,23 +14,29 @@ export default class MailDocumentService implements DocumentService {
     this.config = { to, home, html };
   }
 
-  getId = () => this.config.to;
+  getId = () => {
+    return this.config.to;
+  };
 
-  getUserInfo = async () => ({
-    name: 'mail',
-    avatar: '',
-    homePage: this.config.home,
-    description: `send to ${this.config.to}`,
-  });
+  getUserInfo = async () => {
+    return {
+      name: 'mail',
+      avatar: '',
+      homePage: this.config.home,
+      description: `send to ${this.config.to}`,
+    };
+  };
 
-  getRepositories = async () => [
-    {
-      id: 'mail',
-      name: `Send to ${this.config.to}`,
-      groupId: 'mail',
-      groupName: 'Mail',
-    },
-  ];
+  getRepositories = async () => {
+    return [
+      {
+        id: 'mail',
+        name: `Send to ${this.config.to}`,
+        groupId: 'mail',
+        groupName: 'Mail',
+      },
+    ];
+  };
 
   createDocument = async (info: CreateDocumentRequest): Promise<CompleteStatus> => {
     const postBody: PostMailRequestBody = {

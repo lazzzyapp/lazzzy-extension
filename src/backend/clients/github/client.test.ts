@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { MockRequestService } from '@/__test__/utils';
 import { GithubClient } from './client';
 import { IRepository } from './types';
@@ -6,7 +5,7 @@ import { IRepository } from './types';
 describe('test GithubClient', () => {
   test('test generateNewTokenUrl', () => {
     expect(GithubClient.generateNewTokenUrl).toEqual(
-      'https://github.com/settings/tokens/new?scopes=repo&description=Lazzzy'
+      'https://github.com/settings/tokens/new?scopes=repo&description=Lazzzy%20Extension'
     );
   });
 

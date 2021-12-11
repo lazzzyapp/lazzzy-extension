@@ -23,7 +23,7 @@ import { syncStorageService, localStorageService } from '@/common/chrome/storage
 import { IPreferenceService } from '@/service/common/preference';
 import '@/service/preference/browser/preferenceService';
 import { autorun } from 'mobx';
-import localeService from '@/common/locales';
+import localeService from '@/locales';
 Container.set(ILocaleService, localeService);
 import { LOCAL_USER_PREFERENCE_LOCALE_KEY } from '@/common/types';
 import { ILocalStorageService, ISyncStorageService } from '@/service/common/storage';
@@ -110,7 +110,7 @@ async function initContentScriptService(tabId: number) {
       await localeService.init();
     }
   });
-  // DEBT
+  //DEBT
   chrome.commands.onCommand.addListener(async e => {
     if (e === 'toggle-feature-foo') {
       const extensionService = Container.get(IExtensionService);
@@ -192,7 +192,7 @@ async function initContentScriptService(tabId: number) {
   browser.browserAction.onClicked.addListener(async tab => {
     const tabId = tab.id;
     if (!tabId) {
-      trackService.trackEvent('Load_Web_Lazzzy', packageJson.version, 'error');
+      trackService.trackEvent('Load_Lazzzy_Extension', packageJson.version, 'error');
       alert(
         localeService.format({
           id: 'backend.not.unavailable',
@@ -202,7 +202,7 @@ async function initContentScriptService(tabId: number) {
       );
       return;
     }
-    trackService.trackEvent('Load_Web_Lazzzy', packageJson.version, 'success');
+    trackService.trackEvent('Load_Lazzzy_Extension', packageJson.version, 'success');
     await initContentScriptService(tabId);
     contentScriptService.toggle();
   });

@@ -1,18 +1,17 @@
-/* eslint-disable no-unused-vars */
-import { Repository } from '../services/interface';
+import { Repository } from '../services/Repository';
 
 export interface ImageHostingServiceConstructAble {
   new (info: any): ImageHostingService;
 }
 
 export interface ImageHostingService {
-  getId: () => string;
+  getId(): string;
 
-  uploadImage: (request: UploadImageRequest) => Promise<string>;
+  uploadImage(request: UploadImageRequest): Promise<string>;
 
-  uploadImageUrl: (url: string) => Promise<string>;
+  uploadImageUrl(url: string): Promise<string>;
 
-  updateContext?: ({ currentRepository }: { currentRepository: Repository }) => void;
+  updateContext?({ currentRepository }: { currentRepository: Repository }): void;
 }
 
 export interface UploadImageRequest {

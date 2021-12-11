@@ -1,11 +1,9 @@
-/* eslint-disable no-implicit-globals */
-/* eslint-disable prettier/prettier */
 import React, { Fragment } from 'react';
 import { FormComponentProps } from '@ant-design/compatible/lib/form';
 import { Input, Select, Tooltip } from 'antd';
 import { Form } from '@ant-design/compatible';
 import { FormattedMessage } from 'react-intl';
-import locale from '@/common/locales';
+import locale from '@/locales';
 import IconFont from '@/components/IconFont';
 import { GithubClient } from '../../clients/github/client';
 import { IBasicRequestService } from '@/service/common/request';
@@ -98,9 +96,11 @@ export default ({ form: { getFieldDecorator }, info, form }: Props) => {
     initialState: {
       data: { init: false, repos: [] },
     },
-    onError: () => ({
-      data: { init: false, repos: [] },
-    }),
+    onError: () => {
+      return {
+        data: { init: false, repos: [] },
+      };
+    },
   });
   const currentRepo = form.getFieldValue('repo');
   const { data: branchResponse, loading: branchLoading } = useFetch(
@@ -112,12 +112,14 @@ export default ({ form: { getFieldDecorator }, info, form }: Props) => {
       }),
     [accessToken, currentRepo, reposResult],
     {
-      onError: () => ({
-        data: {
-          init: false,
-          branches: [],
-        },
-      }),
+      onError: () => {
+        return {
+          data: {
+            init: false,
+            branches: [],
+          },
+        };
+      },
       auto: true,
       initialState: {
         data: {
@@ -147,7 +149,11 @@ export default ({ form: { getFieldDecorator }, info, form }: Props) => {
             suffix={
               <Tooltip
                 title={
-                  <span>
+                  <span
+                    style={{
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
                     {locale.format({
                       id: 'backend.imageHosting.github.form.generateNewToken',
                     })}
@@ -155,7 +161,8 @@ export default ({ form: { getFieldDecorator }, info, form }: Props) => {
                 }
               >
                 <a
-                  title="Host"
+                  title="title"
+                  rel="nopener noreferrer"
                   href={GithubClient.generateNewTokenUrl}
                   target={GithubClient.generateNewTokenUrl}
                 >
@@ -182,11 +189,13 @@ export default ({ form: { getFieldDecorator }, info, form }: Props) => {
             onChange={() => form.setFields({ branch: null })}
             disabled={loading || !reposResult?.init}
             loading={loading}
-            options={reposResult?.repos?.map(o => ({
-              value: o.full_name,
-              key: o.full_name,
-              label: o.full_name,
-            }))}
+            options={reposResult?.repos?.map(o => {
+              return {
+                value: o.full_name,
+                key: o.full_name,
+                label: o.full_name,
+              };
+            })}
           />
         )}
       </Form.Item>
@@ -202,10 +211,12 @@ export default ({ form: { getFieldDecorator }, info, form }: Props) => {
             disabled={loading || !reposResult?.init || !branchResponse?.init}
             placeholder={branchResponse?.default_branch}
             loading={branchLoading}
-            options={branchResponse?.branches?.map((o: IBranch) => ({
-              value: o.name,
-              key: o.name,
-            }))}
+            options={branchResponse?.branches?.map((o: IBranch) => {
+              return {
+                value: o.name,
+                key: o.name,
+              };
+            })}
           />
         )}
       </Form.Item>

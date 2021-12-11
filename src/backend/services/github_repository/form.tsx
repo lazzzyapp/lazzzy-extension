@@ -6,7 +6,7 @@ import { FormComponentProps } from '@ant-design/compatible/lib/form';
 import React, { Fragment } from 'react';
 import { GithubBackendServiceConfig } from './interface';
 import { FormattedMessage } from 'react-intl';
-import locale from '@/common/locales';
+import locale from '@/locales';
 import { stringify } from 'qs';
 
 interface GithubFormProps {
@@ -16,7 +16,7 @@ interface GithubFormProps {
 
 const GenerateNewTokenUrl = `https://github.com/settings/tokens/new?${stringify({
   scopes: 'repo',
-  description: 'Lazzzy',
+  description: 'Lazzzy Extension',
 })}`;
 
 const visibilityOptions = [
@@ -96,7 +96,8 @@ const GithubForm: React.FC<GithubFormProps & FormComponentProps> = ({
                 }
               >
                 <a
-                  title="Generate New Token"
+                  title="title"
+                  rel="noopener noreferrer"
                   href={GenerateNewTokenUrl}
                   target={GenerateNewTokenUrl}
                 >
@@ -108,12 +109,7 @@ const GithubForm: React.FC<GithubFormProps & FormComponentProps> = ({
         )}
       </Form.Item>
       <Form.Item
-        label={
-          <FormattedMessage
-            id="backend.services.github.form.storageLocation.code.savePath"
-            defaultMessage="Save Path"
-          />
-        }
+        label={<FormattedMessage id="backend.services.github.form.storageLocation.code.savePath" />}
       >
         {getFieldDecorator('savePath', {
           initialValue: savePath,
@@ -122,11 +118,10 @@ const GithubForm: React.FC<GithubFormProps & FormComponentProps> = ({
               required: false,
             },
             {
-              // eslint-disable-next-line no-unused-vars
               validator: (_r: unknown, value: string, callback: (message?: string) => {}) => {
                 if (typeof value === 'string') {
                   if (value.startsWith('/')) {
-                    return callback('path cannot start with a slash');
+                    return callback('backend.services.github.form.storageLocation.issue');
                   }
                 }
                 return callback();

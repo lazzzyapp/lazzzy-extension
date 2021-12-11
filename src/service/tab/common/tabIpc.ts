@@ -1,7 +1,3 @@
-/* eslint-disable no-useless-constructor */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-empty-function */
-/* eslint-disable @typescript-eslint/consistent-type-imports */
 import {
   ITabService,
   Tab,
@@ -9,7 +5,6 @@ import {
   AbstractTabService,
 } from '@/service/common/tab';
 import { IServerChannel, IChannel } from '@/service/common/ipc';
-import { chrome } from 'sinon-chrome/apps';
 
 export class TabChannel implements IServerChannel {
   constructor(private service: ITabService) {}
@@ -42,16 +37,23 @@ export class TabChannelClient extends AbstractTabService {
     super();
   }
 
-  getCurrent = async (): Promise<Tab> => this.channel.call('getCurrent');
+  getCurrent = async (): Promise<Tab> => {
+    return this.channel.call('getCurrent');
+  };
 
-  remove = async (tabId: number): Promise<void> => this.channel.call('remove', tabId);
+  remove = async (tabId: number): Promise<void> => {
+    return this.channel.call('remove', tabId);
+  };
 
-  captureVisibleTab = async (option: CaptureVisibleTabOptions | number) =>
-    this.channel.call<string>('captureVisibleTab', option);
+  captureVisibleTab = async (option: CaptureVisibleTabOptions | number) => {
+    return this.channel.call<string>('captureVisibleTab', option);
+  };
 
-  sendMessage = async <T>(tabId: number, message: any) =>
-    this.channel.call<T>('sendMessage', [tabId, message]);
+  sendMessage = async <T>(tabId: number, message: any) => {
+    return this.channel.call<T>('sendMessage', [tabId, message]);
+  };
 
-  create = async (createProperties: chrome.tabs.CreateProperties) =>
-    this.channel.call<chrome.tabs.Tab>('create', createProperties);
+  create = async (createProperties: chrome.tabs.CreateProperties) => {
+    return this.channel.call<chrome.tabs.Tab>('create', createProperties);
+  };
 }

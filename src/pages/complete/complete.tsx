@@ -31,7 +31,12 @@ const Page: React.FC = () => {
   }
   const renderError = (
     <ToolContainer onClickCloseButton={closeTool}>
-      <a target="_blank" href="https://github.com/lazzzyapp/lazzzy-extension/issues">
+      <a
+        title="link"
+        rel="noopener noreferrer"
+        target="_blank"
+        href="https://github.com/lazzzyapp/lazzzy-extension/issues"
+      >
         <FormattedMessage id="page.complete.error" defaultMessage="Some Error" />
       </a>
     </ToolContainer>
@@ -48,7 +53,7 @@ const Page: React.FC = () => {
     <ToolContainer onClickCloseButton={closeTool} onClickMask={closeTool}>
       <Section title={<FormattedMessage id="page.complete.success" defaultMessage="Success" />}>
         {completeStatus?.href ? (
-          <a href={completeStatus.href} target="_blank">
+          <a title="link" rel="noopener noreferrer" href={completeStatus.href} target="_blank">
             <Button className={styles.jump} size="large" type="primary" block>
               <FormattedMessage
                 id="page.complete.message"
@@ -59,13 +64,13 @@ const Page: React.FC = () => {
           </a>
         ) : (
           <Button className={styles.jump} size="large" type="primary" block onClick={closeTool}>
-            <FormattedMessage id="page.complete.close" defaultMessage="Close Lazzzy" />
+            <FormattedMessage id="page.complete.close" defaultMessage="Close Lazzzy Extension" />
           </Button>
         )}
       </Section>
       {Complete && <Complete status={completeStatus}> </Complete>}
       <Section title={<FormattedMessage id="page.complete.share" defaultMessage="Share" />}>
-        <Share content={createDocumentRequest!.content} />
+        <Share content={createDocumentRequest!.content}></Share>
       </Section>
     </ToolContainer>
   );

@@ -27,7 +27,11 @@ export default class GithubDocumentService implements DocumentService {
         Authorization: `token ${config.accessToken}`,
       },
       timeout: 10000,
-      transformResponse: [(data): string => JSON.parse(data)],
+      transformResponse: [
+        (data): string => {
+          return JSON.parse(data);
+        },
+      ],
       withCredentials: true,
     });
     this.request = request;
@@ -35,7 +39,9 @@ export default class GithubDocumentService implements DocumentService {
     this.config = config;
   }
 
-  getId = () => md5(this.config.accessToken);
+  getId = () => {
+    return md5(this.config.accessToken);
+  };
 
   getUserInfo = async () => {
     const data = await this.request.get<GithubUserInfoResponse>('user');
@@ -85,8 +91,9 @@ export default class GithubDocumentService implements DocumentService {
     };
   };
 
-  getRepoLabels = async (repo: GithubRepository): Promise<GithubLabel[]> =>
-    (await this.request.get<GithubLabel[]>(`/repos/${repo.namespace}/labels`)).data;
+  getRepoLabels = async (repo: GithubRepository): Promise<GithubLabel[]> => {
+    return (await this.request.get<GithubLabel[]>(`/repos/${repo.namespace}/labels`)).data;
+  };
 
   private getGithubRepositories = async ({
     page,

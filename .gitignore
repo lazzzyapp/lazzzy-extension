@@ -9,10 +9,9 @@ tmp/
 .idea
 yarn-error.log
 dll/
-lazzzy_extention_chrome.zip
-lazzzy_extention_firefox.zip
-lazzzy-extension.zip
+lazzzy.zip
 .now
 release
 package-lock.json
 .eslintcache
+script/@web-clipper

@@ -1,28 +1,26 @@
-name: Release Lazzzy
+name: Release Lazzzy Extension
 
 on:
   push:
     tags-ignore:
       - '**-beta*'
       - '**-alpha*'
+
 jobs:
   build:
-    name: Release Lazzzy
+    name: Release Lazzzy Extension
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Install Yarn
-        run: |
-          npm install yarn
       - name: Install Dependencies
         run: |
           yarn
       - name: Build project
         run: |
-          yarn start
+          yarn run release
         env:
           DIST_TYPE: Release
           GITHUB_BRANCH: ${{ github.ref }}
@@ -43,8 +41,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release/lazzzy_extention_firefox.zip
-          asset_name: lazzzy_extention_firefox.zip
+          asset_path: ./release/lazzzy_extension_firefox.zip
+          asset_name: lazzzy_extension_firefox.zip
           asset_content_type: application/zip
       - name: Upload Chrome Release Asset
         id: upload-chrome-asset
@@ -53,6 +51,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release/lazzzy_extention_chrome.zip
-          asset_name: lazzzy_extention_chrome.zip
+          asset_path: ./release/lazzzy_extension_chrome.zip
+          asset_name: lazzzy_extension_chrome.zip
           asset_content_type: application/zip

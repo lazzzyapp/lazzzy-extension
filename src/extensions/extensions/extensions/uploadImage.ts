@@ -8,10 +8,7 @@ export default new ToolExtension(
     automatic: true,
     description: 'Upload images to image host.',
     i18nManifest: {
-      'en-US': {
-        name: 'Upload Image',
-        description: 'Upload the pictures in the article to the image host',
-      },
+      'zh-CN': { name: '上传图片', description: '把文章内图片上传到图床' },
     },
   },
   {
@@ -34,7 +31,7 @@ export default new ToolExtension(
           })
           .filter(o => o && !o.startsWith('https://cdn-pri.nlark.com'));
 
-        for (const image of images) {
+        for (let image of images) {
           try {
             const url = await imageService!.uploadImageUrl(image);
             foo = foo.replace(image, url);

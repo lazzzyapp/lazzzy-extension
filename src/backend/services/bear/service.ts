@@ -2,23 +2,29 @@ import { CompleteStatus } from '@/backend/interface';
 import { DocumentService, CreateDocumentRequest } from '../../index';
 
 export default class GithubDocumentService implements DocumentService {
-  getId = () => 'bear';
+  getId = () => {
+    return 'bear';
+  };
 
-  getUserInfo = async () => ({
-    name: 'BEAR',
-    avatar: '',
-    homePage: 'bear://x-callback-url/search',
-    description: 'Bear app',
-  });
+  getUserInfo = async () => {
+    return {
+      name: 'BEAR',
+      avatar: '',
+      homePage: 'bear://x-callback-url/search',
+      description: 'Bear app',
+    };
+  };
 
-  getRepositories = async () => [
-    {
-      id: 'bear',
-      name: 'Bear',
-      groupId: 'bear',
-      groupName: 'Bear',
-    },
-  ];
+  getRepositories = async () => {
+    return [
+      {
+        id: 'bear',
+        name: 'Bear',
+        groupId: 'bear',
+        groupName: 'Bear',
+      },
+    ];
+  };
 
   createDocument = async (info: CreateDocumentRequest): Promise<CompleteStatus> => {
     const url = `bear://x-callback-url/create?title=${encodeURIComponent(

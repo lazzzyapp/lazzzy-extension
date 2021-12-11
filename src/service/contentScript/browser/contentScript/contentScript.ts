@@ -1,5 +1,4 @@
-/* eslint-disable no-empty-function */
-import { IToggleConfig, IContentScriptService } from '@/service/common/contentScript';
+import { IContentScriptService, IToggleConfig } from '@/service/common/contentScript';
 import { Service, Inject } from 'typedi';
 import styles from '@/service/contentScript/browser/contentScript/contentScript.less';
 import * as browser from '@web-clipper/chrome-promise';
@@ -46,9 +45,9 @@ class ContentScriptService implements IContentScriptService {
     }
   }
   async getSelectionMarkdown() {
-    const selection = document.getSelection();
+    let selection = document.getSelection();
     if (selection?.rangeCount) {
-      const container = document.createElement('div');
+      let container = document.createElement('div');
       for (let i = 0, len = selection.rangeCount; i < len; ++i) {
         container.appendChild(selection.getRangeAt(i).cloneContents());
       }
@@ -63,11 +62,11 @@ class ContentScriptService implements IContentScriptService {
     return location.href;
   }
   async toggleLoading() {
-    const loadIngStyle = styles['lazzzy-loading-box'];
+    const loadIngStyle = styles['lazzzy-extension-loading-box'];
     if ($(`.${loadIngStyle}`).length === 0) {
       $('body').append(`
       <div class=${loadIngStyle}>
-        <div class="lazzzy-loading">
+        <div class="lazzzy-extension-loading">
           <div>
             <div class="line"></div>
             <div class="line"></div>
@@ -90,14 +89,14 @@ class ContentScriptService implements IContentScriptService {
       return;
     }
     await localStorageService.init();
-    const toggleLazzzy = () => {
+    const toggleClipper = () => {
       $(`.${styles.toolFrame}`).toggle();
     };
     const context: ContentScriptContext = {
       locale: localStorageService.get(LOCAL_USER_PREFERENCE_LOCALE_KEY, navigator.language),
       turndown: turndownService,
       Highlighter: Highlighter,
-      toggleLazzzy,
+      toggleClipper,
       Readability,
       document,
       AreaSelector,

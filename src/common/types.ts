@@ -2,7 +2,7 @@ import { AccountStore } from './modelTypes/account';
 import { RouteComponentProps } from 'react-router';
 import { Dispatch } from 'react';
 import { UserPreferenceStore } from '@/common/modelTypes/userPreference';
-import { LazzzyStore } from '@/common/modelTypes/clipper';
+import { ClipperStore } from '@/common/modelTypes/clipper';
 import { DvaLoadingState } from 'dva-loading';
 import { ExtensionStore } from './modelTypes/extensions';
 
@@ -14,15 +14,15 @@ export type DvaRouterProps = {
   dispatch: Dispatch<any>;
 } & RouteComponentProps;
 
-/* interface DvaLoadingState {
+interface DvaLoadingState {
   global: boolean;
-  models: Record<string, boolean | undefined>;
-  effects: Record<string, boolean | undefined>;
-} */
+  models: { [type: string]: boolean | undefined };
+  effects: { [type: string]: boolean | undefined };
+}
 
 export interface GlobalStore {
   account: AccountStore;
-  clipper: LazzzyStore;
+  clipper: ClipperStore;
   userPreference: UserPreferenceStore;
   loading: DvaLoadingState;
   extension: ExtensionStore;

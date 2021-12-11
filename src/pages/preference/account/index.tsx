@@ -4,19 +4,19 @@ import {
   asyncDeleteAccount,
   asyncUpdateDefaultAccountId,
   asyncUpdateAccount,
-} from '@/actions/account';
+} from 'pageActions/account';
 import { PlusOutlined } from '@ant-design/icons';
 import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.less';
 import { Button, Row, Col } from 'antd';
-import { Dispatch, bindActionCreators } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'dva';
-import AccountItem from '../../../components/accountItem';
+import AccountItem from '@/components/accountItem';
 import styles from './index.less';
 import EditAccountModal from './modal/editAccountModal';
 import { FormComponentProps } from '@ant-design/compatible/lib/form';
 import CreateAccountModal from './modal/createAccountModal';
-import { GlobalStore, AccountPreference } from '@/common/types';
+import { GlobalStore, AccountPreference } from 'common/types';
 import { FormattedMessage } from 'react-intl';
 import { asyncChangeAccount } from '@/actions/clipper';
 
@@ -32,14 +32,16 @@ const mapStateToProps = ({
   clipper: { currentAccountId },
   account: { accounts, defaultAccountId },
   userPreference: { servicesMeta, imageHostingServicesMeta, imageHosting },
-}: GlobalStore) => ({
-  currentAccountId,
-  imageHostingServicesMeta,
-  accounts,
-  defaultAccountId,
-  servicesMeta,
-  imageHosting,
-});
+}: GlobalStore) => {
+  return {
+    currentAccountId,
+    imageHostingServicesMeta,
+    accounts,
+    defaultAccountId,
+    servicesMeta,
+    imageHosting,
+  };
+};
 type PageState = {
   showAccountModal: boolean;
   currentAccount: null | AccountPreference;

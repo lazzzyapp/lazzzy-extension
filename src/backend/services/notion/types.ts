@@ -1,10 +1,9 @@
-import { Repository } from '../interface';
+import { Repository } from '../Repository';
 
 export interface NotionUserContent {
   recordMap: {
-    notion_user: Record<
-      string,
-      {
+    notion_user: {
+      [uuid: string]: {
         role: string;
         value: {
           id: string;
@@ -13,11 +12,10 @@ export interface NotionUserContent {
           family_name: string;
           profile_photo: string;
         };
-      }
-    >;
-    space: Record<
-      string,
-      {
+      };
+    };
+    space: {
+      [id: string]: {
         role: string;
         value: {
           id: string;
@@ -25,11 +23,10 @@ export interface NotionUserContent {
           domain: string;
           pages: string[];
         };
-      }
-    >;
-    block: Record<
-      string,
-      {
+      };
+    };
+    block: {
+      [uuid: string]: {
         role: string;
         value: {
           id: string;
@@ -43,11 +40,10 @@ export interface NotionUserContent {
           };
           collection_id: string;
         };
-      }
-    >;
-    collection: Record<
-      string,
-      {
+      };
+    };
+    collection: {
+      [uuid: string]: {
         role: string;
         value: {
           id: string;
@@ -55,8 +51,8 @@ export interface NotionUserContent {
           parent_id: string;
           name: string[][];
         };
-      }
-    >;
+      };
+    };
   };
 }
 

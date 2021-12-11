@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useMemo } from 'react';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Form } from '@ant-design/compatible';
@@ -9,8 +8,8 @@ import styles from './index.less';
 import { ImageHostingServiceMeta, BUILT_IN_IMAGE_HOSTING_ID } from '@/backend';
 import { UserPreferenceStore, ImageHosting } from '@/common/types';
 import { FormattedMessage } from 'react-intl';
-import useVerifiedAccount from '@/common/hooks/useVerifiedAccount';
-import useFilterImageHostingServices from '@/common/hooks/useFilterImageHostingServices';
+import useVerifiedAccount from '@/hooks/useVerifiedAccount';
+import useFilterImageHostingServices from '@/hooks/useFilterImageHostingServices';
 import ImageHostingSelect from '@/components/ImageHostingSelect';
 import RepositorySelect from '@/components/RepositorySelect';
 import Container from 'typedi';
@@ -18,19 +17,26 @@ import { IPermissionsService } from '@/service/common/permissions';
 import { ITabService } from '@/service/common/tab';
 
 type PageOwnProps = {
-  imageHostingServicesMeta: Record<string, ImageHostingServiceMeta>;
+  imageHostingServicesMeta: {
+    [type: string]: ImageHostingServiceMeta;
+  };
   servicesMeta: UserPreferenceStore['servicesMeta'];
   imageHosting: ImageHosting[];
   visible: boolean;
-  onCancel: () => void;
-  onAdd: (id: string, userInfo: any) => void;
+  onCancel(): void;
+  onAdd(id: string, userInfo: any): void;
 };
 type PageProps = PageOwnProps & FormComponentProps;
 
 const ModalTitle = () => (
   <div className={styles.modalTitle}>
     <FormattedMessage id="preference.accountList.addAccount" defaultMessage="Add Account" />
-    <a title="Help" href={'https://github.com/lazzzyapp/lazzzy-extension/issues'} target="_blank">
+    <a
+      title="link"
+      rel="noopener noreferrer"
+      href={'https://github.com/lazzzyapp/lazzzy-extension/issues'}
+      target="_blank"
+    >
       <QuestionCircleOutlined />
     </a>
   </div>

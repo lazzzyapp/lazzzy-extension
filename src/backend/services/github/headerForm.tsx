@@ -5,7 +5,7 @@ import { FormComponentProps } from '@ant-design/compatible/lib/form';
 import React, { Fragment } from 'react';
 import backend from '../..';
 import GithubDocumentService from './service';
-import locale from '@/common/locales';
+import locale from '@/locales';
 import { useFetch } from '@shihengtech/hooks';
 
 const HeaderForm: React.FC<FormComponentProps & { currentRepository: any }> = ({
@@ -13,6 +13,7 @@ const HeaderForm: React.FC<FormComponentProps & { currentRepository: any }> = ({
   currentRepository,
 }) => {
   const service = backend.getDocumentService() as GithubDocumentService;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const labelsResponse = useFetch(
     async () => {
       if (currentRepository) {
@@ -38,7 +39,6 @@ const HeaderForm: React.FC<FormComponentProps & { currentRepository: any }> = ({
             style={{ width: '100%' }}
             placeholder={locale.format({
               id: 'backend.services.github.headerForm.applyLabels',
-              defaultMessage: 'Apply labels',
             })}
             loading={labelsResponse.loading}
           >

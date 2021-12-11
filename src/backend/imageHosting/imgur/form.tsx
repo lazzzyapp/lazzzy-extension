@@ -21,7 +21,7 @@ export default ({ form: { getFieldDecorator }, info }: Props) => {
             required: true,
           },
         ],
-      })(<Input placeholder="please input clientId" />)}
+      })(<Input placeholder="please input clientId"></Input>)}
     </Form.Item>
   );
 };

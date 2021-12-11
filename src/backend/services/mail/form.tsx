@@ -5,7 +5,7 @@ import { FormComponentProps } from '@ant-design/compatible/lib/form';
 import React, { Fragment } from 'react';
 import { MailBackendServiceConfig } from './interface';
 import { FormattedMessage } from 'react-intl';
-import i18n from '@/common/locales';
+import i18n from '@/locales';
 import PowerpackForm from '@/components/powerpackForm';
 
 interface OneNoteProps {
@@ -25,7 +25,7 @@ const ExtraForm: React.FC<OneNoteProps & FormComponentProps> = props => {
   if (info) {
     initData = info;
   }
-  const editMode = info ? true : false;
+  let editMode = info ? true : false;
   return (
     <Fragment>
       <PowerpackForm form={form} />

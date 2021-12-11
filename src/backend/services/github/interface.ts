@@ -1,4 +1,5 @@
-import { Repository, CreateDocumentRequest } from '../interface';
+import { CreateDocumentRequest } from '../CreateDocumentRequest';
+import { Repository } from '../Repository';
 
 export interface GithubBackendServiceConfig {
   accessToken: string;

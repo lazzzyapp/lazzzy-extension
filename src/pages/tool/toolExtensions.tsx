@@ -8,8 +8,7 @@ import { IExtensionWithId } from '@/extensions/common';
 
 type ToolExtensionsProps = {
   extensions: IExtensionWithId[];
-  // eslint-disable-next-line no-unused-vars
-  onClick: (router: IExtensionWithId) => void;
+  onClick(router: IExtensionWithId): void;
 };
 
 const ToolExtensions: React.FC<ToolExtensionsProps> = ({ extensions, onClick }) => {
@@ -19,7 +18,12 @@ const ToolExtensions: React.FC<ToolExtensionsProps> = ({ extensions, onClick }) 
   return (
     <Section
       className={styles.section}
-      title={<FormattedMessage id="tool.toolExtensions" defaultMessage="Tool Extensions" />}
+      title={
+        <FormattedMessage
+          id="tool.toolExtensions"
+          defaultMessage="Webpage Tools"
+        ></FormattedMessage>
+      }
     >
       {extensions.map(o => (
         <Button

@@ -28,7 +28,11 @@ export default class GithubRepositoryDocumentService implements DocumentService 
         Authorization: `token ${config.accessToken}`,
       },
       timeout: 10000,
-      transformResponse: [(data): string => JSON.parse(data)],
+      transformResponse: [
+        (data): string => {
+          return JSON.parse(data);
+        },
+      ],
       withCredentials: true,
     });
     this.request = request;
@@ -36,9 +40,13 @@ export default class GithubRepositoryDocumentService implements DocumentService 
     this.config = config;
   }
 
-  getId = () => md5(`${this.config.accessToken}_github_repository`);
+  getId = () => {
+    return md5(`${this.config.accessToken}_github_repository`);
+  };
 
-  getStorageLocation = () => this.config.storageLocation;
+  getStorageLocation = () => {
+    return this.config.storageLocation;
+  };
 
   getUserInfo = async () => {
     const data = await this.request.get<GithubUserInfoResponse>('user');
@@ -65,7 +73,7 @@ export default class GithubRepositoryDocumentService implements DocumentService 
     return result;
   };
 
-  createDocument: any = async (info: GithubCreateDocumentRequest): Promise<CompleteStatus> => {
+  createDocument = async (info: GithubCreateDocumentRequest): Promise<CompleteStatus> => {
     if (!this.repositories) {
       this.getRepositories();
     }
@@ -81,17 +89,18 @@ export default class GithubRepositoryDocumentService implements DocumentService 
       this.config.savePath += '/';
     }
 
-    const b64EncodeUnicode = (str: string) =>
-      btoa(
+    let b64EncodeUnicode = (str: string) => {
+      return btoa(
         encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(_match, p1) {
           return String.fromCharCode(toNumber(`0x${p1}`));
         })
       );
-    const fileContent: string = b64EncodeUnicode(`# ${title}\n${body}`);
+    };
+    let fileContent: string = b64EncodeUnicode(`# ${title}\n${body}`);
 
-    const fileName: string = fileNamify(title, { replacement: ' ' });
+    let fileName: string = fileNamify(title, { replacement: ' ' });
 
-    const requestPath: string = `/repos/${repository.namespace}/contents/${this.config.savePath}${fileName}.md`;
+    let requestPath: string = `/repos/${repository.namespace}/contents/${this.config.savePath}${fileName}.md`;
 
     const response = await this.request
       .put<{

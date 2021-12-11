@@ -1,12 +1,12 @@
 import React from 'react';
-import { Dispatch, bindActionCreators } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'dva';
-import { changeData } from '@/actions/clipper';
-import { asyncRunExtension } from '@/actions/userPreference';
+import { changeData } from 'pageActions/clipper';
+import { asyncRunExtension } from 'pageActions/userPreference';
 import * as HyperMD from 'hypermd';
 import { EditorContainer } from 'components/container';
-import { isUndefined } from '@/common/object';
-import { GlobalStore } from '@/common/types';
+import { isUndefined } from 'common/object';
+import { GlobalStore } from 'common/types';
 import { IExtensionWithId } from '@/extensions/common';
 import { parse } from 'qs';
 
@@ -18,10 +18,12 @@ const useActions = {
 const mapStateToProps = ({
   clipper: { clipperData },
   userPreference: { liveRendering },
-}: GlobalStore) => ({
-  liveRendering,
-  clipperData,
-});
+}: GlobalStore) => {
+  return {
+    liveRendering,
+    clipperData,
+  };
+};
 type PageOwnProps = {
   pathname: string;
   search?: string;
@@ -29,9 +31,9 @@ type PageOwnProps = {
 };
 type PageProps = ReturnType<typeof mapStateToProps> & typeof useActions & PageOwnProps;
 
-const editorId = 'xcesiv_Love_LJ';
+const editorId = 'x_loves_m';
 
-class LazzzyPluginPage extends React.Component<PageProps, { markdown: string }> {
+class ClipperPluginPage extends React.Component<PageProps, { markdown: string }> {
   private myCodeMirror: any;
 
   constructor(props: any) {
@@ -51,7 +53,7 @@ class LazzzyPluginPage extends React.Component<PageProps, { markdown: string }> 
       });
     }
     if (isUndefined(data) && search) {
-      let content = parse(search.slice(1));
+      const content = parse(search.slice(1));
       this.props.changeData({
         data: content.markdown || '',
         pathName: this.props.pathname,
@@ -62,7 +64,7 @@ class LazzzyPluginPage extends React.Component<PageProps, { markdown: string }> 
       return content.markdown || '';
     }
     if (search && !isUndefined(data)) {
-      content = parse(search.slice(1));
+      const content = parse(search.slice(1));
       if (content.markdown !== this.state.markdown) {
         this.setState({
           markdown: (content.markdown as string) || '',
@@ -95,7 +97,7 @@ class LazzzyPluginPage extends React.Component<PageProps, { markdown: string }> 
 
   componentDidMount = () => {
     const data = this.checkExtension();
-    const myTextarea = document.getElementById(editorId) as HTMLTextAreaElement;
+    let myTextarea = document.getElementById(editorId) as HTMLTextAreaElement;
     this.myCodeMirror = HyperMD.fromTextArea(myTextarea, {
       lineNumbers: false,
       hmdModeLoader: false,
@@ -123,10 +125,7 @@ class LazzzyPluginPage extends React.Component<PageProps, { markdown: string }> 
   render() {
     return (
       <EditorContainer>
-        <label>
-          Editor
-          <textarea id={editorId} />
-        </label>
+        <textarea title="title" id={editorId} />
       </EditorContainer>
     );
   }
@@ -134,4 +133,4 @@ class LazzzyPluginPage extends React.Component<PageProps, { markdown: string }> 
 
 export default connect(mapStateToProps, (dispatch: Dispatch) =>
   bindActionCreators<typeof useActions, typeof useActions>(useActions, dispatch)
-)(LazzzyPluginPage as React.ComponentType<PageProps>);
+)(ClipperPluginPage as React.ComponentType<PageProps>);

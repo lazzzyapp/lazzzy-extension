@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import useOriginPermission from '@/common/hooks/useOriginPermission';
+import useOriginPermission from '@/hooks/useOriginPermission';
 import { FormComponentProps } from '@ant-design/compatible/lib/form';
 
 interface UseOriginFormProps extends FormComponentProps {

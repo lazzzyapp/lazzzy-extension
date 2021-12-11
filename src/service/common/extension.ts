@@ -1,5 +1,3 @@
-/* eslint-disable no-redeclare */
-/* eslint-disable no-unused-vars */
 import { IExtensionWithId, IContextMenusWithId } from '@/extensions/common';
 import { Token } from 'typedi';
 
@@ -14,15 +12,15 @@ export interface IExtensionService {
 
   EnabledAutomaticExtensionIds: string[];
 
-  getExtensionConfig: <T>(id: string) => T | undefined;
+  getExtensionConfig<T>(id: string): T | undefined;
 
-  setExtensionConfig: <T = any>(id: string, data: T) => Promise<void>;
+  setExtensionConfig<T = any>(id: string, data: T): Promise<void>;
 
-  toggleDefault: (id: string) => Promise<void>;
+  toggleDefault(id: string): Promise<void>;
 
-  toggleDisableExtension: (id: string) => Promise<void>;
+  toggleDisableExtension(id: string): Promise<void>;
 
-  toggleAutomaticExtension: (id: string) => Promise<void>;
+  toggleAutomaticExtension(id: string): Promise<void>;
 }
 
 export interface IExtensionContainer {

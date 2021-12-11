@@ -6,7 +6,7 @@ import { FormComponentProps } from '@ant-design/compatible/lib/form';
 import React, { Fragment } from 'react';
 import { GithubBackendServiceConfig } from './interface';
 import { FormattedMessage } from 'react-intl';
-import locale from '@/common/locales';
+import locale from '@/locales';
 import { stringify } from 'qs';
 
 interface GithubFormProps {
@@ -16,7 +16,7 @@ interface GithubFormProps {
 
 const GenerateNewTokenUrl = `https://github.com/settings/tokens/new?${stringify({
   scopes: 'repo',
-  description: 'Lazzzy',
+  description: 'Lazzzy Extension',
 })}`;
 
 const visibilityOptions = [
@@ -110,7 +110,12 @@ const GithubForm: React.FC<GithubFormProps & FormComponentProps> = ({
                   </span>
                 }
               >
-                <a title="New Token" href={GenerateNewTokenUrl} target={GenerateNewTokenUrl}>
+                <a
+                  title="title"
+                  rel="noopener noreferrer"
+                  href={GenerateNewTokenUrl}
+                  target={GenerateNewTokenUrl}
+                >
                   <KeyOutlined />
                 </a>
               </Tooltip>

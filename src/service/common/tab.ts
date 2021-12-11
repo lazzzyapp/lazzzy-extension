@@ -1,5 +1,3 @@
-/* eslint-disable no-redeclare */
-/* eslint-disable no-unused-vars */
 import { Token } from 'typedi';
 export interface Tab {
   id?: number;
@@ -13,19 +11,19 @@ export interface CaptureVisibleTabOptions {
   format?: string;
 }
 export interface ITabService {
-  getCurrent: () => Promise<Tab>;
+  getCurrent(): Promise<Tab>;
 
-  closeCurrent: () => Promise<void>;
+  closeCurrent(): Promise<void>;
 
-  remove: (tabId: number) => Promise<void>;
+  remove(tabId: number): Promise<void>;
 
-  captureVisibleTab: (option: CaptureVisibleTabOptions | number) => Promise<string>;
+  captureVisibleTab(option: CaptureVisibleTabOptions | number): Promise<string>;
 
-  sendMessage: <T>(tabId: number, message: any) => Promise<T>;
+  sendMessage<T>(tabId: number, message: any): Promise<T>;
 
-  sendActionToCurrentTab: <T>(action: any) => Promise<T>;
+  sendActionToCurrentTab<T>(action: any): Promise<T>;
 
-  create: (createProperties: chrome.tabs.CreateProperties) => Promise<chrome.tabs.Tab>;
+  create(createProperties: chrome.tabs.CreateProperties): Promise<chrome.tabs.Tab>;
 }
 
 export abstract class AbstractTabService implements ITabService {

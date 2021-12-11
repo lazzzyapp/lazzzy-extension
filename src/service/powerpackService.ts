@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { IBackendService } from './../services/backend/common/backend';
 import { IStorageService } from '@web-clipper/shared/lib/storage';
 import { ILocalStorageService } from '@/service/common/storage';
@@ -14,7 +13,7 @@ import { loading } from '@/common/loading';
 type PowerpackUserInfo = _PowerpackUserInfo;
 
 export class PowerpackService implements IPowerpackService {
-  static LOCAL_ACCESS_TOKEN_LOCALE_KEY: string = 'local.access.token.locale';
+  static LOCAL_ACCESS_TOKEN_LOCALE_KEY: string = 'local.access.token.locales';
 
   @observable
   public userInfo: PowerpackUserInfo | null = null;

@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
-import { IServerChannel /* IChannel */ } from '@/service/common/ipc';
+import { IServerChannel, IChannel } from '@/service/common/ipc';
 import { ICookieService } from '@/service/common/cookie';
 
 export class CookieChannel implements IServerChannel {
-  // constructor(private service: ICookieService) {}
+  constructor(private service: ICookieService) {}
 
   call = async (
     _context: chrome.runtime.Port['sender'],
@@ -25,14 +24,17 @@ export class CookieChannel implements IServerChannel {
 }
 
 export class CookieChannelClient implements ICookieService {
-  //  constructor(private channel: IChannel) {}
+  constructor(private channel: IChannel) {}
 
-  get = async (detail: chrome.cookies.Details): Promise<chrome.cookies.Cookie | null> =>
-    this.channel.call('get', detail);
+  get = async (detail: chrome.cookies.Details): Promise<chrome.cookies.Cookie | null> => {
+    return this.channel.call('get', detail);
+  };
 
-  getAll = async (detail: chrome.cookies.GetAllDetails): Promise<chrome.cookies.Cookie[]> =>
-    this.channel.call('getAll', detail);
+  getAll = async (detail: chrome.cookies.GetAllDetails): Promise<chrome.cookies.Cookie[]> => {
+    return this.channel.call('getAll', detail);
+  };
 
-  getAllCookieStores = async (): Promise<chrome.cookies.CookieStore[]> =>
-    this.channel.call('getAllCookieStores');
+  getAllCookieStores = async (): Promise<chrome.cookies.CookieStore[]> => {
+    return this.channel.call('getAllCookieStores');
+  };
 }

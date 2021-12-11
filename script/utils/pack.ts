@@ -17,7 +17,7 @@ export function pack(options: IPackOptions) {
   }
   const dest = path.join(
     options.releaseDir,
-    `lazzzy_${options.targetBrowser.toLocaleLowerCase()}.zip`
+    `lazzzy_extension_${options.targetBrowser.toLocaleLowerCase()}.zip`
   );
   const destStream = fs.createWriteStream(dest);
   return new Promise(r => {

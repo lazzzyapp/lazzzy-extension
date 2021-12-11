@@ -4,19 +4,19 @@ import { connect } from 'dva';
 import { List, Select, Switch } from 'antd';
 import { asyncSetLocaleToStorage, asyncSetEditorLiveRendering } from '@/actions/userPreference';
 import { FormattedMessage } from 'react-intl';
-import { locales } from '@/common/locales';
+import { locales } from '@/locales';
 import { useObserver } from 'mobx-react';
 import Container from 'typedi';
 import { IConfigService } from '@/service/common/config';
 import { IPreferenceService } from '@/service/common/preference';
 
-const mapStateToProps = ({
-  userPreference: { locale, liveRendering, iconColor },
-}: GlobalStore) => ({
-  locale,
-  liveRendering,
-  iconColor,
-});
+const mapStateToProps = ({ userPreference: { locale, liveRendering, iconColor } }: GlobalStore) => {
+  return {
+    locale,
+    liveRendering,
+    iconColor,
+  };
+};
 type PageStateProps = ReturnType<typeof mapStateToProps>;
 
 type PageProps = PageStateProps & DvaRouterProps;
@@ -55,12 +55,13 @@ const Base: React.FC<PageProps> = props => {
       description: (
         <FormattedMessage
           id="preference.basic.configLanguage.description"
-          defaultMessage="Please add translations on Github"
+          defaultMessage="My native language is Chinese,Welcome to submit a translation on GitHub"
           values={{
             GitHub: (
               <a
+                title="title"
                 rel="noopener noreferrer"
-                href="https://github.com/lazzzyapp/lazzzy-extension/tree/master/src/common/locales/data"
+                href="https://github.com/lazzzyapp/lazzzy-extension/tree/main/src/locales/data"
                 target="_blank"
               >
                 GitHub
@@ -144,19 +145,19 @@ const Base: React.FC<PageProps> = props => {
       key: 'update',
       action: (
         <a
-          title="Check releaes"
+          title="title"
+          rel="noopener noreferrer"
           href="https://github.com/lazzzyapp/lazzzy-extension/releases"
           target="_blank"
-          rel="noopener noreferrer"
         >
-          <FormattedMessage id="preference.basic.update.button" defaultMessage="Check Releases" />
+          <FormattedMessage id="preference.basic.update.button" defaultMessage="Install Update" />
         </a>
       ),
-      title: <FormattedMessage id="preference.basic.update.title" defaultMessage="Updates" />,
+      title: <FormattedMessage id="preference.basic.update.title" defaultMessage="Has Update" />,
       description: (
         <FormattedMessage
           id="preference.basic.update.description"
-          defaultMessage="For nightly released versions please checkout the releases on Github"
+          defaultMessage="Get the latest version on GitHub, which is usually a week ahead of the Web Store."
         />
       ),
     });

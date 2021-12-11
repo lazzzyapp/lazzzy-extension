@@ -7,20 +7,17 @@ export default new TextExtension(
     version: '0.0.1',
     description: 'Intelligent extraction of webpage main content.',
     i18nManifest: {
-      'en-US': {
-        name: 'Smart Extraction',
-        description: 'Intelligent extraction of current page elements',
-      },
+      'zh-CN': { name: '智能提取', description: '智能提取当前页面元素' },
     },
   },
   {
     run: async context => {
       const { turndown, document, Readability, $ } = context;
-      const documentClone = document.cloneNode(true);
+      let documentClone = document.cloneNode(true);
       $(documentClone)
         .find('#skPlayer')
         .remove();
-      const article = new Readability(documentClone, {
+      let article = new Readability(documentClone, {
         keepClasses: true,
       }).parse();
       return turndown.turndown(article.content);

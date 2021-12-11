@@ -1,13 +1,12 @@
-/* eslint-disable no-redeclare */
 import { CompleteStatus, UnauthorizedError } from './../interface';
+import { DocumentService, CreateDocumentRequest } from '../../index';
 import axios, { AxiosInstance } from 'axios';
 import { generateUuid } from '@web-clipper/shared/lib/uuid';
-import localeService from '@/common/locales';
+import localeService from '@/locales';
 import { NotionRepository, NotionUserContent } from './types';
 import { IWebRequestService } from '@/service/common/webRequest';
 import Container from 'typedi';
-import { ICookieService, ICookieServiceInterface } from '@/service/common/cookie';
-import { DocumentService, CreateDocumentRequest } from '@/backend/services/interface';
+import { ICookieService } from '@/service/common/cookie';
 
 const PAGE = 'page';
 const COLLECTION_VIEW_PAGE = 'collection_view_page';
@@ -18,13 +17,17 @@ export default class NotionDocumentService implements DocumentService {
   private repositories: NotionRepository[];
   private userContent?: NotionUserContent;
   private webRequestService: IWebRequestService;
-  private cookieService: ICookieServiceInterface;
+  private cookieService: ICookieService;
 
   constructor() {
     const request = axios.create({
       baseURL: origin,
       timeout: 10000,
-      transformResponse: [(data): any => JSON.parse(data)],
+      transformResponse: [
+        (data): any => {
+          return JSON.parse(data);
+        },
+      ],
       withCredentials: true,
     });
     this.request = request;
@@ -49,7 +52,9 @@ export default class NotionDocumentService implements DocumentService {
     );
   }
 
-  getId = () => 'notion';
+  getId = () => {
+    return 'notion';
+  };
 
   getUserInfo = async () => {
     if (!this.userContent) {
@@ -125,7 +130,7 @@ export default class NotionDocumentService implements DocumentService {
     title,
     content,
   }: CreateDocumentRequest): Promise<CompleteStatus> => {
-    const fileName = `${title}.md`;
+    let fileName = `${title}.md`;
 
     const repository = this.repositories.find(o => o.id === repositoryId);
     if (!repository) {

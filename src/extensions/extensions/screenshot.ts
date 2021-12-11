@@ -7,14 +7,14 @@ export default new TextExtension<SelectAreaPosition>(
     icon: 'picture',
     version: '0.0.1',
     i18nManifest: {
-      'en-US': { name: 'Screenshot' },
+      'zh-CN': { name: '截图' },
     },
   },
   {
     init: ({ currentImageHostingService }) => !!currentImageHostingService,
     run: async context => {
-      const { AreaSelector, toggleLazzzy, toggleLoading } = context;
-      toggleLazzzy();
+      const { AreaSelector, toggleClipper, toggleLoading } = context;
+      toggleClipper();
       const response = await new AreaSelector().start();
       toggleLoading();
       return response;
@@ -23,13 +23,13 @@ export default new TextExtension<SelectAreaPosition>(
       const { result, loadImage, captureVisibleTab, imageService } = context;
       const base64Capture = await captureVisibleTab();
       const img = await loadImage(base64Capture);
-      const canvas: HTMLCanvasElement = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
+      let canvas: HTMLCanvasElement = document.createElement('canvas');
+      let ctx = canvas.getContext('2d');
       let sx;
       let sy;
       let sheight;
       let swidth;
-      const {
+      let {
         rightBottom: { clientX: rightBottomX, clientY: rightBottomY },
         leftTop: { clientX: leftTopX, clientY: leftTopY },
       } = result;
@@ -54,9 +54,9 @@ export default new TextExtension<SelectAreaPosition>(
       return `![](${url})\n\n`;
     },
     destroy: async context => {
-      const { toggleLazzzy, toggleLoading } = context;
+      const { toggleClipper, toggleLoading } = context;
       toggleLoading();
-      toggleLazzzy();
+      toggleClipper();
     },
   }
 );

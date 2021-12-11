@@ -1,20 +1,15 @@
-/* eslint-disable no-empty-function */
-import { IBasicRequestService } from '@/service/common/request/service';
-import { IRequestService } from '@/service/common/request/service';
-
+import { IBasicRequestService } from '@/service/common/request';
+import { IRequestService } from '@/service/common/IRequestService';
 import { ILocaleService } from '@/service/common/locale';
 import { Inject, Service } from 'typedi';
-import { IEnvironmentService, IEnvironmentServiceInterface } from './environment';
+import { IEnvironmentService } from './environment';
 
-const privacyLocale = ['en-US'];
-const changelogLocale = ['en-US'];
+const privacyLocale = ['en-US', 'zh-CN'];
+const changelogLocale = ['en-US', 'zh-CN'];
 
-export class EnvironmentService implements IEnvironmentServiceInterface {
-  // eslint-disable-next-line no-useless-constructor
+export class EnvironmentService implements IEnvironmentService {
   constructor(
-    // eslint-disable-next-line no-unused-vars
     @Inject(ILocaleService) private localeService: ILocaleService,
-    // eslint-disable-next-line no-unused-vars
     @Inject(IBasicRequestService) private basicRequestService: IRequestService
   ) {}
 
@@ -37,7 +32,7 @@ export class EnvironmentService implements IEnvironmentServiceInterface {
   }
 
   async resourceHost(): Promise<string> {
-    return 'https://resource.lazzzy.app';
+    return 'https://resource.clipper.website';
   }
 }
 

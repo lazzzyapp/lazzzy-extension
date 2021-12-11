@@ -1,6 +1,6 @@
-import { ILocaleService } from './../../common/locale';
+import { ILocaleService } from '@/service/common/locale';
 import { LOCAL_USER_PREFERENCE_LOCALE_KEY } from '@/common/types';
-import { IExtensionWithId, getLocaleExtensionManifest } from '@/extensions/common';
+import { getLocaleExtensionManifest, IExtensionWithId } from '@/extensions/common';
 import { extensions, contextMenus } from '@/extensions';
 import { IStorageService } from '@web-clipper/shared/lib/storage';
 import { ILocalStorageService } from '@/service/common/storage';
