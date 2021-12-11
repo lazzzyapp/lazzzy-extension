@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
       - name: Install Dependencies
         run: |
-          yarn
+          yarn install
       - name: Build project
         run: |
           yarn run release

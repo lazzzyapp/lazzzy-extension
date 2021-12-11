@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "cov": "jest --coverage",
-    "dev": "rm -rf dist && mkdir dist && NODE_ENV=development webpack --config webpack/webpack.dev.js --watch",
+    "dev": "NODE_ENV=development webpack --config webpack/webpack.dev.js --watch",
     "dev:ff": "TARGET_BROWSER=Firefox NODE_ENV=development webpack --config webpack/webpack.dev.js --watch",
     "release": "ts-node script/release.ts",
     "release:ff": "bash script/release_ff.sh",
