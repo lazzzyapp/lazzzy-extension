@@ -692,10 +692,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chrome@^0.0.141":
-  version "0.0.141"
-  resolved "https://registry.nlark.com/@types/chrome/download/@types/chrome-0.0.141.tgz#337648651a2b75a74bf3038680dc0e47ddd75d07"
-  integrity sha1-M3ZIZRordadL8wOGgNwOR93XXQc=
+"@types/chrome@^0.0.174":
+  version "0.0.174"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.174.tgz#ee1679f3a4fc57bb2c3b76957845a68afb7d478c"
+  integrity sha512-x5kjvNdwDtOnT+vbnksj69pDl0u9P/WH9LbQWJawLqGgkBRO3AN/xzTxTPgLpp3IqCbuwfp7bRCHqkkaZguzWw==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
