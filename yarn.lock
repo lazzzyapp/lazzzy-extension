@@ -9919,10 +9919,10 @@ typedi@^0.8.0:
   resolved "https://registry.npm.taobao.org/typedi/download/typedi-0.8.0.tgz#d8e203bd1d41a96e2b0a5c6295147d74b2b2d03e"
   integrity sha1-2OIDvR1BqW4rClxilRR9dLKy0D4=
 
-typescript@^3.7.3:
-  version "3.9.9"
-  resolved "https://registry.nlark.com/typescript/download/typescript-3.9.9.tgz#e69905c54bc0681d0518bd4d587cc6f2d0b1a674"
-  integrity sha1-5pkFxUvAaB0FGL1NWHzG8tCxpnQ=
+typescript@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.2.tgz#fe12d2727b708f4eef40f51598b3398baa9611d4"
+  integrity sha512-HM/hFigTBHZhLXshn9sN37H085+hQGeJHJ/X7LpBWLID/fbc2acUMfU+lGD98X81sKP+pFa9f0DZmCwB9GnbAg==
 
 ua-parser-js@^0.7.18:
   version "0.7.28"
